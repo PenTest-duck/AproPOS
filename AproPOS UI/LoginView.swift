@@ -6,42 +6,40 @@
 //
 
 import SwiftUI
-import Firebase
 
 struct LoginView: View {
     
-    @State var email = ""
-    @State var password = ""
-    @State var isLoggedIn = false
-    @State private var failedLogin = false
+    @StateObject private var loginVM = LoginViewModel();
     
     var body: some View {
         
-        if isLoggedIn {
+        if loginVM.isLoggedIn {
             MainView()
         } else {
             NavigationView {
                 VStack {
-                    Text("AproPOS Login")
+                    Text("AproPOS")
                         .fontWeight(.bold)
                         .font(.system(size: 50))
                     
-                    TextField(" Email", text: $email)
+                    TextField(" Email", text: $loginVM.email)
                         .font(.system(size: 40))
                         .border(.black)
                         .padding(.bottom, 10)
                     
-                    SecureField(" Password", text: $password)
+                    SecureField(" Password", text: $loginVM.password)
                         .font(.system(size: 40))
                         .border(.black)
                     
-                    if failedLogin {
+                    // Fail login dialogue
+                    // ADD: refresh dialogue on second failure
+                    if loginVM.failedLogin {
                         Text("Invalid login, please try again.")
                             .font(.system(size: 30))
                             .foregroundColor(.red)
                     }
                     
-                    Button(action: { login() }) {
+                    Button(action: { loginVM.login() }) {
                         Image(systemName: "arrow.right.square.fill")
                             .foregroundColor(.blue)
                             .font(.system(size: 60))
@@ -51,21 +49,6 @@ struct LoginView: View {
                     .frame(width: 400, height: 200)
                     .background(.white)
             }.navigationViewStyle(StackNavigationViewStyle())
-        }
-    
-    }
-    
-    // Verify login with Firebase
-    // From https://designcode.io/swiftui-advanced-handbook-firebase-auth
-    func login() {
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            if error != nil {
-                print(error?.localizedDescription ?? "") // debugging purposes
-                failedLogin = true
-            } else {
-                print("success") // debugging purposes
-                isLoggedIn = true
-            }
         }
     }
 }
