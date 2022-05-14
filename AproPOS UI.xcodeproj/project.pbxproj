@@ -22,7 +22,8 @@
 		4065B3FD27C8A54B00B1D55A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */; };
 		407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */; };
 		407BCC3C282D0F9700F8D93E /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407BCC3B282D0F9700F8D93E /* OrderModel.swift */; };
-		409B2077282E6FAD0014CB54 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B2076282E6FAD0014CB54 /* LoginViewModel.swift */; };
+		409B2077282E6FAD0014CB54 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B2076282E6FAD0014CB54 /* AuthViewModel.swift */; };
+		409B2079282E72950014CB54 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B2078282E72950014CB54 /* CreateAccountView.swift */; };
 		40BD731727D6001700CBDA9A /* DIN.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40BD731627D6001700CBDA9A /* DIN.ttf */; };
 		40BD731A27D6019200CBDA9A /* DIN Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40BD731927D6019200CBDA9A /* DIN Bold.ttf */; };
 		40BD731C27D606A200CBDA9A /* NewOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD731B27D606A200CBDA9A /* NewOrderView.swift */; };
@@ -52,7 +53,8 @@
 		4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementOrderView.swift; sourceTree = "<group>"; };
 		407BCC3B282D0F9700F8D93E /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
-		409B2076282E6FAD0014CB54 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		409B2076282E6FAD0014CB54 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		409B2078282E72950014CB54 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		40BD731627D6001700CBDA9A /* DIN.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DIN.ttf; sourceTree = "<group>"; };
 		40BD731827D6010300CBDA9A /* AproPOS-UI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "AproPOS-UI-Info.plist"; sourceTree = SOURCE_ROOT; };
 		40BD731927D6019200CBDA9A /* DIN Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Bold.ttf"; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 				40D33A42282BD12100D34B95 /* GoogleService-Info.plist */,
 				402985F927C7ADDA007A70C2 /* AproPOS_UIApp.swift */,
 				40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */,
-				409B2076282E6FAD0014CB54 /* LoginViewModel.swift */,
+				409B2078282E72950014CB54 /* CreateAccountView.swift */,
 				4029860B27C7AEF7007A70C2 /* MainView.swift */,
 				4029860927C7AEDC007A70C2 /* OrderView.swift */,
 				407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */,
@@ -113,6 +115,7 @@
 				4029861927C7AF9D007A70C2 /* InventoryView.swift */,
 				4029861727C7AF8F007A70C2 /* AnalyticsView.swift */,
 				4038921D27E0923500B9FDFB /* StaffView.swift */,
+				409B207A282F6C730014CB54 /* ViewModels */,
 				407BCC3A282D0F8500F8D93E /* Models */,
 				40BD731327D5FE3200CBDA9A /* Fonts */,
 				4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */,
@@ -136,6 +139,14 @@
 				407BCC3B282D0F9700F8D93E /* OrderModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		409B207A282F6C730014CB54 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				409B2076282E6FAD0014CB54 /* AuthViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		40BD731327D5FE3200CBDA9A /* Fonts */ = {
@@ -234,7 +245,7 @@
 				407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */,
 				4029861A27C7AF9D007A70C2 /* InventoryView.swift in Sources */,
 				40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */,
-				409B2077282E6FAD0014CB54 /* LoginViewModel.swift in Sources */,
+				409B2077282E6FAD0014CB54 /* AuthViewModel.swift in Sources */,
 				4029861227C7AF41007A70C2 /* ReservationView.swift in Sources */,
 				4029861827C7AF8F007A70C2 /* AnalyticsView.swift in Sources */,
 				4029860C27C7AEF7007A70C2 /* MainView.swift in Sources */,
@@ -243,6 +254,7 @@
 				4029861027C7AF26007A70C2 /* BillingView.swift in Sources */,
 				40DD9E6727D8CF2000610DB2 /* BillingView2.swift in Sources */,
 				40BD731C27D606A200CBDA9A /* NewOrderView.swift in Sources */,
+				409B2079282E72950014CB54 /* CreateAccountView.swift in Sources */,
 				4038921E27E0923500B9FDFB /* StaffView.swift in Sources */,
 				402985FA27C7ADDA007A70C2 /* AproPOS_UIApp.swift in Sources */,
 				4016CAF427C8F27700A97867 /* ManagementView.swift in Sources */,

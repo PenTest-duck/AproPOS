@@ -9,46 +9,69 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @StateObject private var loginVM = LoginViewModel();
+    @StateObject private var authVM = AuthViewModel()
     
     var body: some View {
         
-        if loginVM.isLoggedIn {
+        if authVM.isLoggedIn {
             MainView()
         } else {
             NavigationView {
                 VStack {
                     Text("AproPOS")
                         .fontWeight(.bold)
-                        .font(.system(size: 50))
+                        .font(.system(size: 70))
                     
-                    TextField(" Email", text: $loginVM.email)
-                        .font(.system(size: 40))
-                        .border(.black)
-                        .padding(.bottom, 10)
+                    Spacer();
                     
-                    SecureField(" Password", text: $loginVM.password)
-                        .font(.system(size: 40))
-                        .border(.black)
+                    // Button to be styled
+                    NavigationLink(destination: CreateAccountView()) {
+                        Text("Create Account")
+                            .underline()
+                            .font(.system(size: 30))
+                            .navigationBarHidden(true)
+                    }
                     
                     // Fail login dialogue
                     // ADD: refresh dialogue on second failure
-                    if loginVM.failedLogin {
-                        Text("Invalid login, please try again.")
+                    if authVM.failedLogin {
+                        Text(authVM.loginError)
                             .font(.system(size: 30))
                             .foregroundColor(.red)
                     }
                     
-                    Button(action: { loginVM.login() }) {
+                    TextField(" Email", text: $authVM.email)
+                        .disableAutocorrection(true)
+                        .autocapitalization(.none)
+                        .font(.system(size: 40))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                        .padding(.bottom, 10)
+                    
+                    SecureField(" Password", text: $authVM.password)
+                        .disableAutocorrection(true)
+                        .autocapitalization(.none)
+                        .font(.system(size: 40))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                    
+                    Button(action: { authVM.login() }) {
                         Image(systemName: "arrow.right.square.fill")
-                            .foregroundColor(.blue)
+                            .foregroundColor(Color.blue)
                             .font(.system(size: 60))
                             .padding(.top, 20)
                     }
+                    
+                    Spacer();
                 }
-                    .frame(width: 400, height: 200)
+                    .frame(width: 450, height: 800)
                     .background(.white)
             }.navigationViewStyle(StackNavigationViewStyle())
+                .navigationBarBackButtonHidden(true)
         }
     }
 }
