@@ -101,20 +101,7 @@
 				40BD731827D6010300CBDA9A /* AproPOS-UI-Info.plist */,
 				40D33A42282BD12100D34B95 /* GoogleService-Info.plist */,
 				402985F927C7ADDA007A70C2 /* AproPOS_UIApp.swift */,
-				40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */,
-				409B2078282E72950014CB54 /* CreateAccountView.swift */,
-				4029860B27C7AEF7007A70C2 /* MainView.swift */,
-				4029860927C7AEDC007A70C2 /* OrderView.swift */,
-				407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */,
-				40BD731B27D606A200CBDA9A /* NewOrderView.swift */,
-				4029860F27C7AF26007A70C2 /* BillingView.swift */,
-				40DD9E6627D8CF2000610DB2 /* BillingView2.swift */,
-				4029861127C7AF41007A70C2 /* ReservationView.swift */,
-				4016CAF327C8F27700A97867 /* ManagementView.swift */,
-				4029860D27C7AF1A007A70C2 /* MenuView.swift */,
-				4029861927C7AF9D007A70C2 /* InventoryView.swift */,
-				4029861727C7AF8F007A70C2 /* AnalyticsView.swift */,
-				4038921D27E0923500B9FDFB /* StaffView.swift */,
+				406BFEBC2836F6F100FEA7B9 /* Views */,
 				409B207A282F6C730014CB54 /* ViewModels */,
 				407BCC3A282D0F8500F8D93E /* Models */,
 				40BD731327D5FE3200CBDA9A /* Fonts */,
@@ -131,6 +118,27 @@
 				4029860027C7ADDC007A70C2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		406BFEBC2836F6F100FEA7B9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */,
+				409B2078282E72950014CB54 /* CreateAccountView.swift */,
+				4029860B27C7AEF7007A70C2 /* MainView.swift */,
+				4029860927C7AEDC007A70C2 /* OrderView.swift */,
+				407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */,
+				40BD731B27D606A200CBDA9A /* NewOrderView.swift */,
+				4029860F27C7AF26007A70C2 /* BillingView.swift */,
+				40DD9E6627D8CF2000610DB2 /* BillingView2.swift */,
+				4029861127C7AF41007A70C2 /* ReservationView.swift */,
+				4016CAF327C8F27700A97867 /* ManagementView.swift */,
+				4029860D27C7AF1A007A70C2 /* MenuView.swift */,
+				4029861927C7AF9D007A70C2 /* InventoryView.swift */,
+				4029861727C7AF8F007A70C2 /* AnalyticsView.swift */,
+				4038921D27E0923500B9FDFB /* StaffView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		407BCC3A282D0F8500F8D93E /* Models */ = {
