@@ -25,11 +25,20 @@ struct LoginView: View {
                     Spacer();
                     
                     // Button to be styled
-                    NavigationLink(destination: CreateAccountView()) {
-                        Text("Create Account")
-                            .underline()
-                            .font(.system(size: 30))
-                            .navigationBarHidden(true)
+                    HStack {
+                        NavigationLink(destination: CreateAccountView()) {
+                            Text("Create Account")
+                                .underline()
+                                .font(.system(size: 30))
+                                .navigationBarHidden(true)
+                        }
+                        
+                        NavigationLink(destination: ForgotPasswordView()) {
+                            Text("Forgot Password")
+                                .underline()
+                                .font(.system(size: 30))
+                                .navigationBarHidden(true)
+                        }
                     }
                     
                     // Fail login dialogue

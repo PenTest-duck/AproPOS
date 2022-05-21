@@ -7,13 +7,17 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 final class AuthViewModel: ObservableObject {
+    
+    let db = Firestore.firestore()
+    
     @Published var email = ""
     @Published var password = ""
     @Published var isLoggedIn = false
     @Published var failedLogin = false
-    @Published var loginError = ""
+    @Published var loginError = "" // Contains login error message
     
     @Published var firstName = ""
     @Published var lastName = ""
@@ -23,7 +27,11 @@ final class AuthViewModel: ObservableObject {
     //@Published var securityQuestion = ""
     //@Published var securityAnswer = ""
     @Published var createAccountSuccess = false
-    @Published var createAccountError = ""
+    @Published var createAccountError = "" // Contains create account error message
+    
+    @Published var resetPasswordEmail = ""
+    @Published var resetPasswordSuccess = false
+    @Published var resetPasswordError = ""
     
     // Verify login with Firebase
     // From https://designcode.io/swiftui-advanced-handbook-firebase-auth
@@ -38,6 +46,7 @@ final class AuthViewModel: ObservableObject {
         }
     }
     
+    // Create new user account
     func createAccount() {
         
         // Check no fields are empty
@@ -66,10 +75,11 @@ final class AuthViewModel: ObservableObject {
             if (error != nil) {
                 self.createAccountSuccess = false
                 self.createAccountError = error?.localizedDescription ?? ""
-            } else {
-                self.createAccountSuccess = true
+                return
             }
         }
+        
+        createFirestoreUser()
     }
     
     // Check if email input is a valid email address
@@ -85,6 +95,37 @@ final class AuthViewModel: ObservableObject {
         
         let emailTest = NSPredicate(format:"SELF MATCHES[c] %@", emailRegEx)
         return emailTest.evaluate(with: email)
+    }
+    
+    // Send a reset password email
+    func resetPassword() {
+        Auth.auth().sendPasswordReset(withEmail: resetPasswordEmail) { error in
+            if (error != nil) {
+                self.resetPasswordSuccess = false
+                self.resetPasswordError = error?.localizedDescription ?? ""
+            } else {
+                self.resetPasswordSuccess = true
+            }
+        }
+    }
+    
+    // Create user document on Firestore
+    // From: https://designcode.io/swiftui-advanced-handbook-write-to-firestore
+    func createFirestoreUser() {
+        let userDocRef = db.collection("users").document(newEmail)
+        let userDocData: [String: Any] = [
+            "firstName": firstName,
+            "lastName": lastName,
+            "role": "staff"
+        ]
+        
+        userDocRef.setData(userDocData) { error in
+            if (error != nil) {
+                self.createAccountError = error?.localizedDescription ?? ""
+            } else {
+                self.createAccountSuccess = true
+            }
+        }
     }
 }
 
