@@ -14,6 +14,7 @@ final class OrderViewModel: ObservableObject {
     
     private var db = Firestore.firestore()
     
+    // From: https://peterfriese.dev/posts/swiftui-firebase-fetch-data/
     func fetchData() {
         db.collection("orders").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
@@ -28,7 +29,7 @@ final class OrderViewModel: ObservableObject {
                 let status = data["status"] as? String ?? ""
                 let orderedMenuItems = data["orderedMenuItems"] as? [[String: Int]] ?? []
 
-                return OrderModel(id: .init(), tableNumber: tableNumber, startTimeEvent: startTimeEvent, status: status, orderedMenuItems: orderedMenuItems)
+                return OrderModel(tableNumber: tableNumber, startTimeEvent: startTimeEvent, status: status, orderedMenuItems: orderedMenuItems)
             }
         }
     }

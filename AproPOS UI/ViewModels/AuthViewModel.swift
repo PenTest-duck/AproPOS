@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 final class AuthViewModel: ObservableObject {
     
-    let db = Firestore.firestore()
+    @Published var userRepository = UserRepository()
     
     @Published var email = ""
     @Published var password = ""
@@ -79,7 +79,9 @@ final class AuthViewModel: ObservableObject {
             }
         }
         
-        createFirestoreUser()
+        // Create new Firestore document for user
+        let newUser = UserModel(email: newEmail, firstName: firstName, lastName: lastName, role: "staff")
+        userRepository.addUser(user: newUser)
     }
     
     // Check if email input is a valid email address
@@ -105,25 +107,6 @@ final class AuthViewModel: ObservableObject {
                 self.resetPasswordError = error?.localizedDescription ?? ""
             } else {
                 self.resetPasswordSuccess = true
-            }
-        }
-    }
-    
-    // Create user document on Firestore
-    // From: https://designcode.io/swiftui-advanced-handbook-write-to-firestore
-    func createFirestoreUser() {
-        let userDocRef = db.collection("users").document(newEmail)
-        let userDocData: [String: Any] = [
-            "firstName": firstName,
-            "lastName": lastName,
-            "role": "staff"
-        ]
-        
-        userDocRef.setData(userDocData) { error in
-            if (error != nil) {
-                self.createAccountError = error?.localizedDescription ?? ""
-            } else {
-                self.createAccountSuccess = true
             }
         }
     }
