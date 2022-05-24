@@ -10,7 +10,6 @@ import Foundation
 struct MenuItemModel: Identifiable {
     var id: String
     var name: String
-    
     var price: Decimal
     var ingredients: [[String: Int]]
     //var image: UIImage

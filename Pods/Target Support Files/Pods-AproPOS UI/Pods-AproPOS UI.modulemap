@@ -1,0 +1,6 @@
+framework module Pods_AproPOS_UI {
+  umbrella header "Pods-AproPOS UI-umbrella.h"
+
+  export *
+  module * { export * }
+}

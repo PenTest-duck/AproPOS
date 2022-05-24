@@ -6,26 +6,25 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
 class UserRepository: ObservableObject {
-    @Published var createAccountSuccess = false
-    @Published var createAccountError = "" // Contains create account error message
+    //@Published var createAccountSuccess = false
+    //@Published var createAccountError = "" // Contains create account error message
     
     private let db = Firestore.firestore()
     
-    func addUser(user: UserModel) {
+    func addUser(user: UserModel) -> String {
         let docRef = db.collection("users").document(user.id!)
         
         do {
             try docRef.setData(from: user)
-            createAccountSuccess = true
+            return "success"
         } catch {
-            createAccountSuccess = false
-            createAccountError = error.localizedDescription
+            return error.localizedDescription
         }
     }
 }

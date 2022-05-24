@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseCore
+import FirebaseAuth
 import FirebaseFirestore
 
 final class AuthViewModel: ObservableObject {
@@ -81,7 +82,14 @@ final class AuthViewModel: ObservableObject {
         
         // Create new Firestore document for user
         let newUser = UserModel(email: newEmail, firstName: firstName, lastName: lastName, role: "staff")
-        userRepository.addUser(user: newUser)
+        let createUserResult = userRepository.addUser(user: newUser)
+        
+        if createUserResult == "success" {
+            self.createAccountSuccess = true
+        } else {
+            self.createAccountSuccess = false
+            self.createAccountError = createUserResult
+        }
     }
     
     // Check if email input is a valid email address
