@@ -11,6 +11,8 @@ struct MenuItemModel: Identifiable {
     var id: String
     var name: String
     var price: Decimal
-    var ingredients: [[String: Int]]
+    var estimatedServingTime: Int // minutes
+    var ingredients: [String: Int]
+    var warnings: [String]
     //var image: UIImage
 }

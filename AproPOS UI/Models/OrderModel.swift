@@ -17,7 +17,7 @@ struct OrderModel: Identifiable {
         return formatter.string(from: startTimeEvent)
     }
     var status: String // preparing, served, paid
-    var orderedMenuItems: [[String: Int]]
+    var orderedMenuItems: [[String: Int]] // double bracket or no?
 
 }
 

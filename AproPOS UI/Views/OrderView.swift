@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct OrderView: View {
+    @StateObject private var orderVM = OrderViewModel()
+    
     func served() {}
     
     var body: some View {
