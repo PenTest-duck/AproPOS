@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct MenuItemModel: Identifiable {
     var id: String
@@ -14,5 +15,5 @@ struct MenuItemModel: Identifiable {
     var estimatedServingTime: Int // minutes
     var ingredients: [String: Int]
     var warnings: [String]
-    //var image: UIImage
+    var image: UIImage // needed to import UIKit
 }

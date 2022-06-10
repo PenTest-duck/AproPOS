@@ -8,8 +8,44 @@
 import SwiftUI
 
 struct ImplementOrderView: View {
+    @StateObject private var orderVM = OrderViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Message: \(orderVM.message)")
+            
+            TextField(" Table Number", text: $orderVM.tableNumberInput)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .frame(width: 300)
+                .font(.system(size: 40))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.black, lineWidth: 1)
+                )
+            
+            
+            
+            Button(action: {
+                testOrderMenuItems()
+                
+                orderVM.addOrder(tableNumber:  orderVM.tableNumberInput, orderedMenuItems: orderVM.orderedMenuItemsInput)
+                
+            }) {
+                Text("Add Order")
+            }
+            
+            Button(action: { orderVM.getOrders() }) {
+                Text("Get Orders")
+            }
+        }
+        .onAppear {
+            orderVM.getOrders()
+        }
+    }
+    
+    func testOrderMenuItems() { // for testing only
+        orderVM.orderedMenuItemsInput = ["Noodles" : 2, "Fried Rice" : 3]
     }
 }
 

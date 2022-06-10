@@ -6,19 +6,21 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct OrderModel: Identifiable {
-    var id: String = UUID().uuidString
+struct OrderModel: Identifiable, Codable {
+    @DocumentID public var id: String?
     var tableNumber: Int
     var startTimeEvent: Date
-    var startTime: String { // From: https://medium.com/swift-productions/convert-date-into-string-from-firestore-swiftui-a70a9297e0af
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
-        return formatter.string(from: startTimeEvent)
-    }
     var status: String // preparing, served, paid
-    var orderedMenuItems: [[String: Int]] // double bracket or no?
+    var orderedMenuItems: [String: Int]
+    
+    init(id: String = UUID().uuidString, tableNumber: Int, startTimeEvent: Date = Date(), status: String = "preparing", orderedMenuItems: [String: Int]) {
+        self.id = id
+        self.tableNumber = tableNumber
+        self.startTimeEvent = startTimeEvent
+        self.status = status
+        self.orderedMenuItems = orderedMenuItems
+    }
 
 }
-
-extension OrderModel: Equatable {}

@@ -11,26 +11,27 @@ import FirebaseFirestore
 
 final class OrderViewModel: ObservableObject {
     @Published var orders = [OrderModel]()
+    @Published var orderRepository = OrderRepository()
     
-    private var db = Firestore.firestore()
+    @Published var tableNumberInput: String = ""
+    @Published var orderedMenuItemsInput: [String: Int] = [:]
     
-    // From: https://peterfriese.dev/posts/swiftui-firebase-fetch-data/
-    func fetchData() {
-        db.collection("orders").addSnapshotListener { (querySnapshot, error) in
-            guard let documents = querySnapshot?.documents else {
-                print("No documents")
-                return
-            }
-
-            self.orders = documents.map { queryDocumentSnapshot -> OrderModel in
-                let data = queryDocumentSnapshot.data()
-                let tableNumber = data["tableNumber"] as? Int ?? 0
-                let startTimeEvent = (data["startTime"] as? Timestamp)?.dateValue() ?? Date()
-                let status = data["status"] as? String ?? ""
-                let orderedMenuItems = data["orderedMenuItems"] as? [[String: Int]] ?? []
-
-                return OrderModel(tableNumber: tableNumber, startTimeEvent: startTimeEvent, status: status, orderedMenuItems: orderedMenuItems)
-            }
-        }
+    @Published var message = ""
+    
+    /*func getStartTime() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        return formatter.string(from: Date())
+    }*/
+    
+    func addOrder(tableNumber: String, orderedMenuItems: [String: Int]) { // Convert tableNumber from String to Int
+        let newOrder = OrderModel(tableNumber: (Int(tableNumberInput) ?? 0), orderedMenuItems: orderedMenuItemsInput)
+        message = orderRepository.addOrder(order: newOrder)
     }
+    
+    func getOrders() {
+        orders = orderRepository.fetchOrders() // first time it doesn't fill it up?
+        print(orders)
+    }
+
 }
