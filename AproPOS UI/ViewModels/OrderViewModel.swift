@@ -29,9 +29,11 @@ final class OrderViewModel: ObservableObject {
         message = orderRepository.addOrder(order: newOrder)
     }
     
-    func getOrders() {
+    func getOrders() -> [OrderModel] {
         orders = orderRepository.fetchOrders() // first time it doesn't fill it up?
-        print(orders)
+        print(orders) // for debugging
+        print("hi")
+        return orders
     }
 
 }

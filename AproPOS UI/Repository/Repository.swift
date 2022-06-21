@@ -93,3 +93,8 @@ class OrderRepository: ObservableObject {
     }
 
 }
+
+class MenuRepository: ObservableObject {
+    
+    
+}

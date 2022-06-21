@@ -8,5 +8,8 @@
 import Foundation
 
 final class MenuViewModel: ObservableObject {
+    @Published var menuList = [MenuItemModel]()
+    @Published var menuRepository = MenuRepository()
+    
     
 }

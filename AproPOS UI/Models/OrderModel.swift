@@ -13,7 +13,7 @@ struct OrderModel: Identifiable, Codable {
     var tableNumber: Int
     var startTimeEvent: Date
     var status: String // preparing, served, paid
-    var orderedMenuItems: [String: Int]
+    var orderedMenuItems: [String: Int] // could possibly make this into a [MenuItemModel] ?
     
     init(id: String = UUID().uuidString, tableNumber: Int, startTimeEvent: Date = Date(), status: String = "preparing", orderedMenuItems: [String: Int]) {
         self.id = id

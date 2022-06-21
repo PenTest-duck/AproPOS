@@ -20,6 +20,7 @@ struct AproPOS_UIApp: App {
         WindowGroup {
             //LoginView()
             ImplementOrderView()
+            //orderRepository.fetchOrders()
         }
     }
 }
