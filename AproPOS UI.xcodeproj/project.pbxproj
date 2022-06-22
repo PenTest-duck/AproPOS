@@ -36,6 +36,8 @@
 		40D33A43282BD12100D34B95 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40D33A42282BD12100D34B95 /* GoogleService-Info.plist */; };
 		40DD9E6727D8CF2000610DB2 /* BillingView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DD9E6627D8CF2000610DB2 /* BillingView2.swift */; };
 		40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */; };
+		5E323E5D286291E200C48313 /* BillingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E323E5C286291E200C48313 /* BillingModel.swift */; };
+		5E323E5F2862927E00C48313 /* ReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E323E5E2862927E00C48313 /* ReservationModel.swift */; };
 		BB5099C538EBC8A84617709E /* Pods_AproPOS_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51CF6483D3148CF20729988F /* Pods_AproPOS_UI.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,8 @@
 		40DD9E6627D8CF2000610DB2 /* BillingView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingView2.swift; sourceTree = "<group>"; };
 		40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		51CF6483D3148CF20729988F /* Pods_AproPOS_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AproPOS_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E323E5C286291E200C48313 /* BillingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingModel.swift; sourceTree = "<group>"; };
+		5E323E5E2862927E00C48313 /* ReservationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationModel.swift; sourceTree = "<group>"; };
 		E4C6F744FAD4140DDB3B83C1 /* Pods-AproPOS UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AproPOS UI.release.xcconfig"; path = "Target Support Files/Pods-AproPOS UI/Pods-AproPOS UI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,6 +180,8 @@
 				407C0F442838AFF100052389 /* UserModel.swift */,
 				407BCC3B282D0F9700F8D93E /* OrderModel.swift */,
 				401866F3283CFDFF0046BFBC /* MenuItemModel.swift */,
+				5E323E5C286291E200C48313 /* BillingModel.swift */,
+				5E323E5E2862927E00C48313 /* ReservationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4029860E27C7AF1A007A70C2 /* MenuView.swift in Sources */,
+				5E323E5F2862927E00C48313 /* ReservationModel.swift in Sources */,
 				407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */,
 				4029861A27C7AF9D007A70C2 /* InventoryView.swift in Sources */,
 				40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */,
@@ -353,6 +360,7 @@
 				406BFEBE2836F7E700FEA7B9 /* ForgotPasswordView.swift in Sources */,
 				407C0F452838AFF100052389 /* UserModel.swift in Sources */,
 				4016CAF427C8F27700A97867 /* ManagementView.swift in Sources */,
+				5E323E5D286291E200C48313 /* BillingModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
