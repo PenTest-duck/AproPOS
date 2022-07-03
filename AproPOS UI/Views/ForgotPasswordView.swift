@@ -36,7 +36,8 @@ struct ForgotPasswordView: View {
                         .fontWeight(.bold)
                         .font(.system(size: 30))
                     
-                    TextField(" Email", text: $authVM.resetPasswordEmail)
+                    TextField("Email", text: $authVM.resetPasswordEmail)
+                        .padding()
                         .disableAutocorrection(true)
                         .autocapitalization(.none)
                         .font(.system(size: 40))
