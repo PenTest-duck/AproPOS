@@ -27,25 +27,33 @@ final class OrderViewModel: ObservableObject {
     }*/
     
     func addOrder() { // Convert tableNumber from String to Int
-        let validatedTableNumberInput = Int(tableNumberInput) ?? 0
-        
-        if validatedTableNumberInput == 0 {
+        if tableNumberInput == "0" {
             message = "Invalid table number"
+        } else if orders.firstIndex(where: { $0.id == tableNumberInput }) != nil {            // orders needs to update beforehand
+            message = "Order already exists"
         } else {
             // TODO: Refresh subtotalPrice when ordering
-            
-            message = orderRepository.addOrder(tableNumber: validatedTableNumberInput, menuItems: menuItemsInput)
-            
-            //let newOrder = OrderModel(tableNumber: validatedTableNumberInput, menuItems: menuItemsInput)//, subtotalPrice: subtotalPrice)
-            //message = orderRepository.addOrder(order: newOrder)
-            
-            // TODO: Reduce inventory
             orderRepository.reduceInventory(menuItems: menuItemsInput)
+            message = orderRepository.addOrder(id: tableNumberInput, menuItems: menuItemsInput)
         }
     }
     
     func getOrders() {
         orders = orderRepository.fetchOrders() // first time it doesn't fill it up?
         print(orders) // for debugging
+    }
+    
+    func removeOrder(tableNumber: String) {
+        orderRepository.removeOrder(tableNumber: tableNumber)
+    }
+    
+    func editOrder(tableNumber: String) { // should be same logic as addOrder() except without reducing inventory
+        if tableNumberInput == "0" {
+            message = "Invalid table number"
+        } else if orders.firstIndex(where: { $0.id == tableNumberInput }) == nil {            // orders needs to update beforehand
+            message = "Order does not exist"
+        } else {
+            message = orderRepository.addOrder(id: tableNumberInput, menuItems: menuItemsInput)
+        }
     }
 }

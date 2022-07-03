@@ -49,12 +49,13 @@ class OrderRepository: ObservableObject {
             self.orders = documents.map { queryDocumentSnapshot -> OrderModel in
                 let data = queryDocumentSnapshot.data()
                 
-                let tableNumber = data["tableNumber"] as? Int ?? 0
+                let id = queryDocumentSnapshot.documentID
                 let startTimeEvent = data["startTimeEvent"] as? Date ?? Date() // nil
                 let status = data["status"] as? String ?? ""
                 let menuItems = data["menuItems"] as? [String: Int] ?? [:]
+                let subtotalPrice = data["subtotalPrice"] as? Double ?? 0.00
 
-                return OrderModel(tableNumber: tableNumber, startTimeEvent: startTimeEvent, status: status, menuItems: menuItems)
+                return OrderModel(id: id, startTimeEvent: startTimeEvent, status: status, menuItems: menuItems, subtotalPrice: Decimal(subtotalPrice))
             }
         }
         
@@ -72,7 +73,7 @@ class OrderRepository: ObservableObject {
         }
     }*/
     
-    func addOrder(tableNumber: Int, menuItems: [String: Int]) -> String {
+    func addOrder(id: String, menuItems: [String: Int]) -> String {
         db.collection("menu").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
@@ -94,7 +95,7 @@ class OrderRepository: ObservableObject {
             }
             
             // Add Order:
-            let newOrder = OrderModel(tableNumber: tableNumber, menuItems: menuItems, subtotalPrice: self.subtotalPrice)
+            let newOrder = OrderModel(id: id, menuItems: menuItems, subtotalPrice: self.subtotalPrice)
             let docRef = self.db.collection("orders").document(newOrder.id!)
             
             do {
@@ -130,6 +131,18 @@ class OrderRepository: ObservableObject {
                 }
             }
             
+        }
+    }
+    
+    func removeOrder(tableNumber: String) {
+        db.collection("orders").document(tableNumber).delete() { err in // function doesn't throw?
+            if let err = err {
+                //return err
+                print("Error removing document: \(err)")
+            } else {
+                //return "success"
+                print("Document successfully removed!")
+            }
         }
     }
 

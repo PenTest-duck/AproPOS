@@ -40,6 +40,12 @@ struct ImplementOrderView: View {
             }) {
                 Text("Get Orders")
             }
+            
+            Button(action: {
+                orderVM.removeOrder(tableNumber: orderVM.tableNumberInput)
+            }) {
+                Text("Remove Order")
+            }
         }
         .onAppear {
             orderVM.getOrders()
