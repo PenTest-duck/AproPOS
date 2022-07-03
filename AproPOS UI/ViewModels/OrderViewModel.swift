@@ -38,6 +38,9 @@ final class OrderViewModel: ObservableObject {
             
             //let newOrder = OrderModel(tableNumber: validatedTableNumberInput, menuItems: menuItemsInput)//, subtotalPrice: subtotalPrice)
             //message = orderRepository.addOrder(order: newOrder)
+            
+            // TODO: Reduce inventory
+            orderRepository.reduceInventory(menuItems: menuItemsInput)
         }
     }
     

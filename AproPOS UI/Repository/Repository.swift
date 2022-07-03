@@ -36,6 +36,7 @@ class OrderRepository: ObservableObject {
     private let db = Firestore.firestore()
     var orders = [OrderModel]()
     var menuPrices = [[String: Decimal]]()
+    var menuIngredients = [[String: [String: Int]]]()
     var subtotalPrice = Decimal(0)
 
     func fetchOrders() -> [OrderModel] {
@@ -92,6 +93,7 @@ class OrderRepository: ObservableObject {
                 self.subtotalPrice += menuItemPrice * Decimal(menuItem.value)
             }
             
+            // Add Order:
             let newOrder = OrderModel(tableNumber: tableNumber, menuItems: menuItems, subtotalPrice: self.subtotalPrice)
             let docRef = self.db.collection("orders").document(newOrder.id!)
             
@@ -105,6 +107,30 @@ class OrderRepository: ObservableObject {
         }
         
         return "success"
+    }
+    
+    func reduceInventory(menuItems: [String: Int]) {
+        db.collection("menu").addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            self.menuIngredients = documents.map { queryDocumentSnapshot -> [String: [String: Int]] in
+                let data = queryDocumentSnapshot.data()
+                let id = queryDocumentSnapshot.documentID
+                let ingredients = data["ingredients"] as? [String: Int] ?? [:]
+                return [id: ingredients]
+            }
+            
+            for menuItem in menuItems {
+                let ingredients = (self.menuIngredients.compactMap { $0[menuItem.key] })[0]
+                for ingredient in ingredients {
+                    self.db.collection("inventory").document(ingredient.key).updateData(["currentStock": FieldValue.increment(-Double(ingredient.value * menuItem.value))])
+                }
+            }
+            
+        }
     }
 
 }
