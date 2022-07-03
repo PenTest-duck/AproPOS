@@ -14,13 +14,13 @@ struct AproPOS_UIApp: App {
     // Initially connect to Firebase at app startup
     init() {
         FirebaseApp.configure()
+        // Perhaps load data here
     }
     
     var body: some Scene {
         WindowGroup {
             //LoginView()
             ImplementOrderView()
-            //orderRepository.fetchOrders()
         }
     }
 }

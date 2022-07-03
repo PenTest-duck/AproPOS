@@ -12,6 +12,7 @@ import FirebaseFirestore
 final class OrderViewModel: ObservableObject {
     @Published var orders = [OrderModel]()
     @Published var orderRepository = OrderRepository()
+    //@Published var dataRepository = DataRepository()
     
     @Published var tableNumberInput: String = ""
     @Published var orderedMenuItemsInput: [String: Int] = [:]
@@ -24,16 +25,19 @@ final class OrderViewModel: ObservableObject {
         return formatter.string(from: Date())
     }*/
     
-    func addOrder(tableNumber: String, orderedMenuItems: [String: Int]) { // Convert tableNumber from String to Int
+    func addOrder() { // Convert tableNumber from String to Int
         let newOrder = OrderModel(tableNumber: (Int(tableNumberInput) ?? 0), orderedMenuItems: orderedMenuItemsInput)
-        message = orderRepository.addOrder(order: newOrder)
+        if newOrder.tableNumber == 0 {
+            message = "Invalid table number"
+        } else {
+            message = orderRepository.addOrder(order: newOrder)
+            //message = dataRepository.addItem(category: "orders", item: newOrder)
+        }
     }
     
-    func getOrders() -> [OrderModel] {
+    func getOrders() {
         orders = orderRepository.fetchOrders() // first time it doesn't fill it up?
         print(orders) // for debugging
-        print("hi")
-        return orders
     }
 
 }

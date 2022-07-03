@@ -10,6 +10,7 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
+import UIKit // for UIImage
 
 
 class UserRepository: ObservableObject {
@@ -94,7 +95,110 @@ class OrderRepository: ObservableObject {
 
 }
 
+/*
+class DataRepository: ObservableObject {
+    private let db = Firestore.firestore()
+    
+    func addItem(category: String, item: AnyObject) -> String {
+        
+        var orderItem: OrderModel
+        
+        if category == "orders" {
+            orderItem = item as! OrderModel
+        }
+        
+        let docRef = db.collection(category).document(orderItem.id!)
+        
+        do {
+            try docRef.setData(from: orderItem)
+            return "success"
+        } catch {
+            return error.localizedDescription
+        }
+    }
+}
+ */
+
 class MenuRepository: ObservableObject {
     
+    private let db = Firestore.firestore()
+    var menu = [MenuItemModel]()
+    
+    func fetchMenu() -> [MenuItemModel] {
+        db.collection("menu").addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            self.menu = documents.map { queryDocumentSnapshot -> MenuItemModel in
+                let data = queryDocumentSnapshot.data()
+                let id = queryDocumentSnapshot.documentID
+                let price = data["price"] as? Decimal ?? 0.00
+                let estimatedServingTime = data["estimatedServingTime"] as? Int ?? 0
+                let warnings = data["warnings"] as? [String] ?? []
+                let ingredients = data["ingredients"] as? [String: Int] ?? [:]
+                let image = data["image"] as? Data ?? (UIImage(named: "defaultMenuItemImage")!).pngData()!
+                
+                let deserialisedImage = UIImage(data: image)!
+
+                return MenuItemModel(id: id, price: price, estimatedServingTime: estimatedServingTime, warnings: warnings, ingredients: ingredients, image: deserialisedImage)
+            }
+        }
+        
+        return menu
+    }
+    
+    func addMenuItem(menuItem: MenuItemModel) -> String {
+        let docRef = db.collection("menu").document(menuItem.id!)
+        
+        do {
+            try docRef.setData(from: menuItem)
+            return "success"
+        } catch {
+            return error.localizedDescription
+        }
+    }
+    
+}
+
+
+class BillingRepository: ObservableObject {
+    
+    private let db = Firestore.firestore()
+    var bills = [BillingModel]()
+    
+    func fetchBills() -> [BillingModel] {
+        db.collection("bills").addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            self.bills = documents.map { queryDocumentSnapshot -> BillingModel in
+                let data = queryDocumentSnapshot.data()
+                let orderID = data["orderID"] as? String ?? ""
+                let startTimeEvent = data["startTimeEvent"] as? Date ?? Date() // nil
+                let subtotalPrice = data["subtotalPrice"] as? Decimal ?? 0.00
+                let discount = data["discount"] as? Decimal ?? 0.00
+                let totalPrice = data["totalPrice"] as? Decimal ?? 0.00
+
+                return BillingModel(orderID: orderID, startTimeEvent: startTimeEvent, subtotalPrice: subtotalPrice, discount: discount, totalPrice: totalPrice)
+            }
+        }
+        
+        return bills
+    }
+    
+    func addBill(bill: BillingModel) -> String {
+        let docRef = db.collection("bills").document(bill.id!)
+        
+        do {
+            try docRef.setData(from: bill)
+            return "success"
+        } catch {
+            return error.localizedDescription
+        }
+    }
     
 }

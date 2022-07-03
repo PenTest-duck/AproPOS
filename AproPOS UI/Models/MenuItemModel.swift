@@ -7,24 +7,24 @@
 
 import Foundation
 import FirebaseFirestoreSwift
-import UIKit
+import UIKit // for UIImage
 
-struct MenuItemModel: Identifiable {
+struct MenuItemModel: Identifiable, Codable {
     @DocumentID public var id: String?
-    var name: String
+    //var name: String
     var price: Decimal
     var estimatedServingTime: Int // minutes
-    var warnings: [String]
+    var warnings: [String] // vegetarian, vegan, gluten, allergen, alcohol
     var ingredients: [String: Int]
-    var image: UIImage // needed to import UIKit
+    var image: Data // to conform to Codable
     
-    init(id: String = UUID().uuidString, name: String, price: Decimal, estimatedServingTime: Int, warnings: [String], ingredients: [String: Int], image: UIImage) {
+    init(id: String = UUID().uuidString, price: Decimal, estimatedServingTime: Int, warnings: [String] = [], ingredients: [String: Int] = [:], image: UIImage = UIImage(named: "defaultMenuItemImage")!) {
         self.id = id
-        self.name = name
+        //self.name = name
         self.price = price
         self.estimatedServingTime = estimatedServingTime
         self.warnings = warnings
         self.ingredients = ingredients
-        self.image = image
+        self.image = image.pngData()!
     }
 }

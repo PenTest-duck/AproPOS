@@ -29,13 +29,15 @@ struct ImplementOrderView: View {
             Button(action: {
                 testOrderMenuItems()
                 
-                orderVM.addOrder(tableNumber:  orderVM.tableNumberInput, orderedMenuItems: orderVM.orderedMenuItemsInput)
+                orderVM.addOrder()
                 
             }) {
                 Text("Add Order")
             }
             
-            Button(action: { orderVM.getOrders() }) {
+            Button(action: {
+                orderVM.getOrders()
+            }) {
                 Text("Get Orders")
             }
         }
