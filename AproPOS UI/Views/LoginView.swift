@@ -49,7 +49,8 @@ struct LoginView: View {
                             .foregroundColor(.red)
                     }
                     
-                    TextField(" Email", text: $authVM.email)
+                    TextField("Email", text: $authVM.email)
+                        .padding()
                         .disableAutocorrection(true)
                         .autocapitalization(.none)
                         .font(.system(size: 40))
@@ -59,7 +60,8 @@ struct LoginView: View {
                         )
                         .padding(.bottom, 10)
                     
-                    SecureField(" Password", text: $authVM.password)
+                    SecureField("Password", text: $authVM.password)
+                        .padding()
                         .disableAutocorrection(true)
                         .autocapitalization(.none)
                         .font(.system(size: 40))
