@@ -14,6 +14,8 @@
 		401CDE4E28708C7E00DCA698 /* ImplementBillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */; };
 		401CDE522871305E00DCA698 /* ImplementMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE512871305E00DCA698 /* ImplementMenuView.swift */; };
 		401CDE5628713EE200DCA698 /* IngredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5528713EE200DCA698 /* IngredientModel.swift */; };
+		401CDE5828714B3400DCA698 /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5728714B3400DCA698 /* InventoryViewModel.swift */; };
+		401CDE5A28714DCD00DCA698 /* ImplementInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5928714DCD00DCA698 /* ImplementInventoryView.swift */; };
 		402985FA27C7ADDA007A70C2 /* AproPOS_UIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402985F927C7ADDA007A70C2 /* AproPOS_UIApp.swift */; };
 		402985FE27C7ADDC007A70C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402985FD27C7ADDC007A70C2 /* Assets.xcassets */; };
 		4029860127C7ADDC007A70C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4029860027C7ADDC007A70C2 /* Preview Assets.xcassets */; };
@@ -54,6 +56,8 @@
 		401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementBillingView.swift; sourceTree = "<group>"; };
 		401CDE512871305E00DCA698 /* ImplementMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementMenuView.swift; sourceTree = "<group>"; };
 		401CDE5528713EE200DCA698 /* IngredientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientModel.swift; sourceTree = "<group>"; };
+		401CDE5728714B3400DCA698 /* InventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewModel.swift; sourceTree = "<group>"; };
+		401CDE5928714DCD00DCA698 /* ImplementInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementInventoryView.swift; sourceTree = "<group>"; };
 		402985F627C7ADDA007A70C2 /* AproPOS UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AproPOS UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		402985F927C7ADDA007A70C2 /* AproPOS_UIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AproPOS_UIApp.swift; sourceTree = "<group>"; };
 		402985FD27C7ADDC007A70C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 				4029860D27C7AF1A007A70C2 /* MenuView.swift */,
 				401CDE512871305E00DCA698 /* ImplementMenuView.swift */,
 				4029861927C7AF9D007A70C2 /* InventoryView.swift */,
+				401CDE5928714DCD00DCA698 /* ImplementInventoryView.swift */,
 				4029861727C7AF8F007A70C2 /* AnalyticsView.swift */,
 				4038921D27E0923500B9FDFB /* StaffView.swift */,
 			);
@@ -203,6 +208,7 @@
 				409B2076282E6FAD0014CB54 /* AuthViewModel.swift */,
 				407C0F4228389B4D00052389 /* OrderViewModel.swift */,
 				401866F5283CFE130046BFBC /* MenuViewModel.swift */,
+				401CDE5728714B3400DCA698 /* InventoryViewModel.swift */,
 				40E7A08B2863D11100871A48 /* BillingViewModel.swift */,
 			);
 			path = ViewModels;
@@ -372,7 +378,9 @@
 				409B2079282E72950014CB54 /* CreateAccountView.swift in Sources */,
 				4038921E27E0923500B9FDFB /* StaffView.swift in Sources */,
 				402985FA27C7ADDA007A70C2 /* AproPOS_UIApp.swift in Sources */,
+				401CDE5A28714DCD00DCA698 /* ImplementInventoryView.swift in Sources */,
 				406BFEBE2836F7E700FEA7B9 /* ForgotPasswordView.swift in Sources */,
+				401CDE5828714B3400DCA698 /* InventoryViewModel.swift in Sources */,
 				407C0F452838AFF100052389 /* UserModel.swift in Sources */,
 				4016CAF427C8F27700A97867 /* ManagementView.swift in Sources */,
 				401CDE522871305E00DCA698 /* ImplementMenuView.swift in Sources */,

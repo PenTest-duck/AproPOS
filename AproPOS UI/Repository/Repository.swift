@@ -35,6 +35,8 @@ class OrderRepository: ObservableObject {
     // From: https://peterfriese.dev/posts/swiftui-firebase-fetch-data/
     private let db = Firestore.firestore()
     var orders = [OrderModel]()
+    var menuPrices = [[String: Decimal]]()
+    var subtotalPrice = Decimal(0)
 
     func fetchOrders() -> [OrderModel] {
         db.collection("orders").addSnapshotListener { (querySnapshot, error) in
@@ -45,24 +47,21 @@ class OrderRepository: ObservableObject {
 
             self.orders = documents.map { queryDocumentSnapshot -> OrderModel in
                 let data = queryDocumentSnapshot.data()
+                
                 let tableNumber = data["tableNumber"] as? Int ?? 0
                 let startTimeEvent = data["startTimeEvent"] as? Date ?? Date() // nil
                 let status = data["status"] as? String ?? ""
-                let orderedMenuItems = data["orderedMenuItems"] as? [String: Int] ?? [:]
+                let menuItems = data["menuItems"] as? [String: Int] ?? [:]
 
-                return OrderModel(tableNumber: tableNumber, startTimeEvent: startTimeEvent, status: status, orderedMenuItems: orderedMenuItems)
+                return OrderModel(tableNumber: tableNumber, startTimeEvent: startTimeEvent, status: status, menuItems: menuItems)
             }
         }
         
         return orders
     }
     
-    func addOrder(order: OrderModel) -> String {
+    /*func addOrder2(order: OrderModel) -> String {
         let docRef = db.collection("orders").document(order.id!)
-        
-        if order.tableNumber == 0 {
-            return "Invalid table number"
-        }
         
         do {
             try docRef.setData(from: order)
@@ -70,6 +69,42 @@ class OrderRepository: ObservableObject {
         } catch {
             return error.localizedDescription
         }
+    }*/
+    
+    func addOrder(tableNumber: Int, menuItems: [String: Int]) -> String {
+        db.collection("menu").addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            self.menuPrices = documents.map { queryDocumentSnapshot -> [String: Decimal] in
+                let data = queryDocumentSnapshot.data()
+                
+                let id = queryDocumentSnapshot.documentID
+                let price = data["price"] as? Double ?? 0.00
+
+                return [id: Decimal(price)]
+            }
+            
+            for menuItem in menuItems {
+                let menuItemPrice = (self.menuPrices.compactMap { $0[menuItem.key] })[0]
+                self.subtotalPrice += menuItemPrice * Decimal(menuItem.value)
+            }
+            
+            let newOrder = OrderModel(tableNumber: tableNumber, menuItems: menuItems, subtotalPrice: self.subtotalPrice)
+            let docRef = self.db.collection("orders").document(newOrder.id!)
+            
+            do {
+                try docRef.setData(from: newOrder)
+                print("success")
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+        return "success"
     }
 
 }
@@ -112,8 +147,10 @@ class MenuRepository: ObservableObject {
 
             self.menu = documents.map { queryDocumentSnapshot -> MenuItemModel in
                 let data = queryDocumentSnapshot.data()
+                
                 let id = queryDocumentSnapshot.documentID
-                let price = data["price"] as? Decimal ?? 0.00
+                //let price = data["price"] as? Decimal ?? 0.00
+                let price = data["price"] as? Double ?? 0.00
                 let estimatedServingTime = data["estimatedServingTime"] as? Int ?? 0
                 let warnings = data["warnings"] as? [String] ?? []
                 let ingredients = data["ingredients"] as? [String: Int] ?? [:]
@@ -121,7 +158,7 @@ class MenuRepository: ObservableObject {
                 
                 let deserialisedImage = UIImage(data: image)!
 
-                return MenuItemModel(id: id, price: price, estimatedServingTime: estimatedServingTime, warnings: warnings, ingredients: ingredients, image: deserialisedImage)
+                return MenuItemModel(id: id, price: Decimal(price), estimatedServingTime: estimatedServingTime, warnings: warnings, ingredients: ingredients, image: deserialisedImage)
             }
         }
         
@@ -139,6 +176,60 @@ class MenuRepository: ObservableObject {
         }
     }
     
+}
+
+class InventoryRepository: ObservableObject {
+    
+    private let db = Firestore.firestore()
+    var inventory = [IngredientModel]()
+    
+    func fetchInventory() -> [IngredientModel] {
+        db.collection("inventory").addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            self.inventory = documents.map { queryDocumentSnapshot -> IngredientModel in
+                let data = queryDocumentSnapshot.data()
+        
+                let id = queryDocumentSnapshot.documentID
+                let units = data["units"] as? String ?? ""
+                let currentStock = data["currentStock"] as? Double ?? 0
+                let minimumThreshold = data["minimumThreshold"] as? Double ?? 0
+                let costPerUnit = data["costPerUnit"] as? Double ?? 0.00
+                let warnings = data["warnings"] as? [String] ?? []
+                let comment = data["comment"] as? String ?? ""
+
+                return IngredientModel(id: id, units: units, currentStock: Decimal(currentStock), minimumThreshold: Decimal(minimumThreshold), costPerUnit: Decimal(costPerUnit), warnings: warnings, comment: comment)
+            }
+        }
+        
+        return inventory
+    }
+    
+    func addIngredient(ingredient: IngredientModel) -> String {
+        let docRef = db.collection("inventory").document(ingredient.id!)
+        
+        do {
+            try docRef.setData(from: ingredient)
+            return "success"
+        } catch {
+            return error.localizedDescription
+        }
+    }
+    
+    func removeIngredient(name: String) {
+        db.collection("inventory").document(name).delete() { err in // function doesn't throw?
+            if let err = err {
+                //return err
+                print("Error removing document: \(err)")
+            } else {
+                //return "success"
+                print("Document successfully removed!")
+            }
+        }
+    }
 }
 
 /*

@@ -47,7 +47,7 @@ struct ImplementOrderView: View {
     }
     
     func testOrderMenuItems() { // for testing only
-        orderVM.orderedMenuItemsInput = ["Noodles" : 2, "Fried Rice" : 3]
+        orderVM.menuItemsInput = ["Noodles" : 2, "Fried Rice" : 3]
     }
 }
 

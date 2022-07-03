@@ -14,10 +14,12 @@ final class OrderViewModel: ObservableObject {
     @Published var orderRepository = OrderRepository()
     
     @Published var tableNumberInput: String = ""
-    @Published var orderedMenuItemsInput: [String: Int] = [:]
+    @Published var menuItemsInput: [String: Int] = [:]
     
     @Published var message = ""
-    
+
+    private let db = Firestore.firestore()
+
     /*func getStartTime() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
@@ -30,8 +32,12 @@ final class OrderViewModel: ObservableObject {
         if validatedTableNumberInput == 0 {
             message = "Invalid table number"
         } else {
-            let newOrder = OrderModel(tableNumber: validatedTableNumberInput, orderedMenuItems: orderedMenuItemsInput)
-            message = orderRepository.addOrder(order: newOrder)
+            // TODO: Refresh subtotalPrice when ordering
+            
+            message = orderRepository.addOrder(tableNumber: validatedTableNumberInput, menuItems: menuItemsInput)
+            
+            //let newOrder = OrderModel(tableNumber: validatedTableNumberInput, menuItems: menuItemsInput)//, subtotalPrice: subtotalPrice)
+            //message = orderRepository.addOrder(order: newOrder)
         }
     }
     
@@ -39,7 +45,4 @@ final class OrderViewModel: ObservableObject {
         orders = orderRepository.fetchOrders() // first time it doesn't fill it up?
         print(orders) // for debugging
     }
-    
-    // TODO: Calculate subtotalPrice
-
 }

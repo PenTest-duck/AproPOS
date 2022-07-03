@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit // for UIImage
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 final class MenuViewModel: ObservableObject {
     @Published var menu = [MenuItemModel]()
@@ -21,7 +23,7 @@ final class MenuViewModel: ObservableObject {
     @Published var menuItemIngredientsInput: [String: Int] = [:]
     @Published var menuItemImageInput: UIImage = UIImage(named: "defaultMenuItemImage")!
     
-    func addMenuItem() { // Convert tableNumber from String to Int
+    func addMenuItem() { 
         if menuItemNameInput == "" {
             message = "Please enter a name"
         } else if menuItemPriceInput == 0.00 {
