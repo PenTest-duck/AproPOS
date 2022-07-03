@@ -17,8 +17,9 @@ struct MenuItemModel: Identifiable, Codable {
     var warnings: [String] // vegetarian, vegan, gluten, allergen, alcohol
     var ingredients: [String: Int]
     var image: Data // to conform to Codable
+    var status: [String: [String]] // available, unavailable
     
-    init(id: String = UUID().uuidString, price: Decimal, estimatedServingTime: Int, warnings: [String] = [], ingredients: [String: Int] = [:], image: UIImage = UIImage(named: "defaultMenuItemImage")!) {
+    init(id: String = UUID().uuidString, price: Decimal, estimatedServingTime: Int, warnings: [String] = [], ingredients: [String: Int] = [:], image: UIImage = UIImage(named: "defaultMenuItemImage")!, status: [String: [String]] = ["available": []]) {
         self.id = id
         //self.name = name
         self.price = price
@@ -26,5 +27,6 @@ struct MenuItemModel: Identifiable, Codable {
         self.warnings = warnings
         self.ingredients = ingredients
         self.image = image.pngData()!
+        self.status = status
     }
 }

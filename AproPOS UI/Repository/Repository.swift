@@ -73,7 +73,7 @@ class OrderRepository: ObservableObject {
         }
     }*/
     
-    func addOrder(id: String, menuItems: [String: Int]) -> String {
+    func addOrder(id: String, menuItems: [String: Int]) {
         db.collection("menu").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
@@ -106,8 +106,6 @@ class OrderRepository: ObservableObject {
             }
             
         }
-        
-        return "success"
     }
     
     func reduceInventory(menuItems: [String: Int]) {
@@ -134,6 +132,32 @@ class OrderRepository: ObservableObject {
         }
     }
     
+    func editOrder(id: String, newMenuItems: [String: Int]) {
+        db.collection("orders").document(id).getDocument { (document, error) in
+            guard let document = document, document.exists else {
+                print("Document does not exist")
+                return
+            }
+            let data = document.data()
+            let newMenuItemKeys = Array(newMenuItems.keys)
+            let existingMenuItems = data?["menuItems"] as? [String: Int]
+            let existingMenuItemKeys = Array(existingMenuItems!.keys)
+            
+            for existingMenuItem in existingMenuItems! {
+                if !newMenuItemKeys.contains(existingMenuItem.key) {
+                    
+                }
+            }
+            
+            for newMenuItem in newMenuItems {
+                if !existingMenuItemKeys.contains(newMenuItem.key) {
+                    
+                }
+            }
+            
+        }
+    }
+    
     func removeOrder(tableNumber: String) {
         db.collection("orders").document(tableNumber).delete() { err in // function doesn't throw?
             if let err = err {
@@ -144,6 +168,10 @@ class OrderRepository: ObservableObject {
                 print("Document successfully removed!")
             }
         }
+    }
+    
+    func generateBill(tableNumber: String) {
+        
     }
 
 }
@@ -176,6 +204,7 @@ class MenuRepository: ObservableObject {
     
     private let db = Firestore.firestore()
     var menu = [MenuItemModel]()
+    var ingredientStock = [[String: Double]]()
     
     func fetchMenu() -> [MenuItemModel] {
         db.collection("menu").addSnapshotListener { (querySnapshot, error) in
@@ -194,10 +223,11 @@ class MenuRepository: ObservableObject {
                 let warnings = data["warnings"] as? [String] ?? []
                 let ingredients = data["ingredients"] as? [String: Int] ?? [:]
                 let image = data["image"] as? Data ?? (UIImage(named: "defaultMenuItemImage")!).pngData()!
+                let status = data["status"] as? [String: [String]] ?? ["available": []]
                 
                 let deserialisedImage = UIImage(data: image)!
 
-                return MenuItemModel(id: id, price: Decimal(price), estimatedServingTime: estimatedServingTime, warnings: warnings, ingredients: ingredients, image: deserialisedImage)
+                return MenuItemModel(id: id, price: Decimal(price), estimatedServingTime: estimatedServingTime, warnings: warnings, ingredients: ingredients, image: deserialisedImage, status: status)
             }
         }
         
@@ -215,6 +245,57 @@ class MenuRepository: ObservableObject {
         }
     }
     
+    func checkUnavailableMenuItems() {
+        let menu = fetchMenu() // should refresh menu?
+        
+        db.collection("inventory").addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            self.ingredientStock = documents.map { queryDocumentSnapshot -> [String: Double] in
+                let data = queryDocumentSnapshot.data()
+                let id = queryDocumentSnapshot.documentID
+                let currentStock = data["currentStock"] as? Double ?? 0
+                return [id: currentStock]
+            }
+            
+            // TODO: Complete this
+            for menuItem in menu {
+                if Array(menuItem.status.keys)[0] == "available" {
+                    for ingredient in menuItem.ingredients {
+                        let stock = (self.ingredientStock.compactMap { $0[ingredient.key] })[0]
+                        if stock < Double(ingredient.value) {
+                            self.db.collection("menu").document(menuItem.id!).updateData(["status": ["unavailable": [ingredient.key]]])
+                        }
+                    }
+                } else {
+                    var lowIngredients = menuItem.status["unavailable"]
+                    for ingredient in lowIngredients! {
+                        let stock = (self.ingredientStock.compactMap { $0[ingredient] })[0]
+                        if stock >= Double(menuItem.ingredients[ingredient]!) {
+                            //lowIngredients.remove(at: lowIngredients.firstIndex(of: ingredient))
+                            //lowIngredients.remove(ingredient)
+                            self.db.collection("menu").document(menuItem.id!).updateData(["status": []])    // depends
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func removeMenuItem(name: String) {
+        db.collection("menu").document(name).delete() { err in // function doesn't throw?
+            if let err = err {
+                //return err
+                print("Error removing document: \(err)")
+            } else {
+                //return "success"
+                print("Document successfully removed!")
+            }
+        }
+    }
 }
 
 class InventoryRepository: ObservableObject {
@@ -269,6 +350,13 @@ class InventoryRepository: ObservableObject {
             }
         }
     }
+}
+
+class TableRepository: ObservableObject {
+    
+    private let db = Firestore.firestore()
+    var tables = [TableModel]()
+    
 }
 
 /*

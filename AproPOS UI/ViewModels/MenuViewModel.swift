@@ -42,4 +42,30 @@ final class MenuViewModel: ObservableObject {
         menu = menuRepository.fetchMenu() // first time it doesn't fill it up?
         print(menu) // for debugging
     }
+    
+    func editMenuItem() { // should be the same logic as addMenuItem() without checking for already existing menu items
+        if menuItemNameInput == "" {
+            message = "Please enter a name"
+        } else if menuItemPriceInput == 0.00 {
+            message = "Please enter a price"
+        } else if menuItemEstimatedServingTimeInput == 0 {
+            message = "Please enter an estimated serving time"
+        } else {
+            let newMenuItem = MenuItemModel(id: menuItemNameInput, price: menuItemPriceInput, estimatedServingTime: menuItemEstimatedServingTimeInput, warnings: menuItemWarningsInput, ingredients: menuItemIngredientsInput, image: menuItemImageInput)
+            message = menuRepository.addMenuItem(menuItem: newMenuItem)
+        }
+    }
+    
+    func removeMenuItem(name: String) {
+        menuRepository.removeMenuItem(name: menuItemNameInput)
+    }
+    
+    func checkUnavailableMenuItems() {
+        getMenu()
+        for menuItem in menu {
+            for ingredient in menuItem.ingredients {
+                ingredient.value
+            }
+        }
+    }
 }

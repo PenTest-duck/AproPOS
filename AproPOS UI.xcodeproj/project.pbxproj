@@ -16,6 +16,8 @@
 		401CDE5628713EE200DCA698 /* IngredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5528713EE200DCA698 /* IngredientModel.swift */; };
 		401CDE5828714B3400DCA698 /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5728714B3400DCA698 /* InventoryViewModel.swift */; };
 		401CDE5A28714DCD00DCA698 /* ImplementInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5928714DCD00DCA698 /* ImplementInventoryView.swift */; };
+		401CDE5C2871B82000DCA698 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5B2871B82000DCA698 /* TableModel.swift */; };
+		401CDE5E2871B8FF00DCA698 /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5D2871B8FF00DCA698 /* TableViewModel.swift */; };
 		402985FA27C7ADDA007A70C2 /* AproPOS_UIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402985F927C7ADDA007A70C2 /* AproPOS_UIApp.swift */; };
 		402985FE27C7ADDC007A70C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402985FD27C7ADDC007A70C2 /* Assets.xcassets */; };
 		4029860127C7ADDC007A70C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4029860027C7ADDC007A70C2 /* Preview Assets.xcassets */; };
@@ -43,7 +45,6 @@
 		40E7A08C2863D11100871A48 /* BillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7A08B2863D11100871A48 /* BillingViewModel.swift */; };
 		40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */; };
 		5E323E5D286291E200C48313 /* BillingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E323E5C286291E200C48313 /* BillingModel.swift */; };
-		5E323E5F2862927E00C48313 /* ReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E323E5E2862927E00C48313 /* ReservationModel.swift */; };
 		BB5099C538EBC8A84617709E /* Pods_AproPOS_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51CF6483D3148CF20729988F /* Pods_AproPOS_UI.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,8 @@
 		401CDE5528713EE200DCA698 /* IngredientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientModel.swift; sourceTree = "<group>"; };
 		401CDE5728714B3400DCA698 /* InventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewModel.swift; sourceTree = "<group>"; };
 		401CDE5928714DCD00DCA698 /* ImplementInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementInventoryView.swift; sourceTree = "<group>"; };
+		401CDE5B2871B82000DCA698 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
+		401CDE5D2871B8FF00DCA698 /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
 		402985F627C7ADDA007A70C2 /* AproPOS UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AproPOS UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		402985F927C7ADDA007A70C2 /* AproPOS_UIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AproPOS_UIApp.swift; sourceTree = "<group>"; };
 		402985FD27C7ADDC007A70C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,7 +91,6 @@
 		40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		51CF6483D3148CF20729988F /* Pods_AproPOS_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AproPOS_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E323E5C286291E200C48313 /* BillingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingModel.swift; sourceTree = "<group>"; };
-		5E323E5E2862927E00C48313 /* ReservationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationModel.swift; sourceTree = "<group>"; };
 		E4C6F744FAD4140DDB3B83C1 /* Pods-AproPOS UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AproPOS UI.release.xcconfig"; path = "Target Support Files/Pods-AproPOS UI/Pods-AproPOS UI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,7 +199,7 @@
 				401866F3283CFDFF0046BFBC /* MenuItemModel.swift */,
 				5E323E5C286291E200C48313 /* BillingModel.swift */,
 				401CDE5528713EE200DCA698 /* IngredientModel.swift */,
-				5E323E5E2862927E00C48313 /* ReservationModel.swift */,
+				401CDE5B2871B82000DCA698 /* TableModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -210,6 +212,7 @@
 				401866F5283CFE130046BFBC /* MenuViewModel.swift */,
 				401CDE5728714B3400DCA698 /* InventoryViewModel.swift */,
 				40E7A08B2863D11100871A48 /* BillingViewModel.swift */,
+				401CDE5D2871B8FF00DCA698 /* TableViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -355,9 +358,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4029860E27C7AF1A007A70C2 /* MenuView.swift in Sources */,
-				5E323E5F2862927E00C48313 /* ReservationModel.swift in Sources */,
 				40E7A08C2863D11100871A48 /* BillingViewModel.swift in Sources */,
 				407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */,
+				401CDE5E2871B8FF00DCA698 /* TableViewModel.swift in Sources */,
 				4029861A27C7AF9D007A70C2 /* InventoryView.swift in Sources */,
 				40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */,
 				409B2077282E6FAD0014CB54 /* AuthViewModel.swift in Sources */,
@@ -384,6 +387,7 @@
 				407C0F452838AFF100052389 /* UserModel.swift in Sources */,
 				4016CAF427C8F27700A97867 /* ManagementView.swift in Sources */,
 				401CDE522871305E00DCA698 /* ImplementMenuView.swift in Sources */,
+				401CDE5C2871B82000DCA698 /* TableModel.swift in Sources */,
 				5E323E5D286291E200C48313 /* BillingModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

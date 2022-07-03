@@ -34,7 +34,7 @@ final class OrderViewModel: ObservableObject {
         } else {
             // TODO: Refresh subtotalPrice when ordering
             orderRepository.reduceInventory(menuItems: menuItemsInput)
-            message = orderRepository.addOrder(id: tableNumberInput, menuItems: menuItemsInput)
+            orderRepository.addOrder(id: tableNumberInput, menuItems: menuItemsInput)
         }
     }
     
@@ -47,13 +47,17 @@ final class OrderViewModel: ObservableObject {
         orderRepository.removeOrder(tableNumber: tableNumber)
     }
     
-    func editOrder(tableNumber: String) { // should be same logic as addOrder() except without reducing inventory
+    func editOrder() { // should be same logic as addOrder() except without reducing inventory
         if tableNumberInput == "0" {
             message = "Invalid table number"
         } else if orders.firstIndex(where: { $0.id == tableNumberInput }) == nil {            // orders needs to update beforehand
             message = "Order does not exist"
         } else {
-            message = orderRepository.addOrder(id: tableNumberInput, menuItems: menuItemsInput)
+            orderRepository.editOrder(id: tableNumberInput, newMenuItems: menuItemsInput)
         }
+    }
+    
+    func generateBill(tableNumber: String) {
+        orderRepository.generateBill(tableNumber: tableNumber)
     }
 }
