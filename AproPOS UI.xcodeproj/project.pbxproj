@@ -12,8 +12,8 @@
 		401866F4283CFDFF0046BFBC /* MenuItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401866F3283CFDFF0046BFBC /* MenuItemModel.swift */; };
 		401866F6283CFE130046BFBC /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401866F5283CFE130046BFBC /* MenuViewModel.swift */; };
 		401CDE4E28708C7E00DCA698 /* ImplementBillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */; };
-		401CDE502871261C00DCA698 /* InventoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE4F2871261C00DCA698 /* InventoryModel.swift */; };
 		401CDE522871305E00DCA698 /* ImplementMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE512871305E00DCA698 /* ImplementMenuView.swift */; };
+		401CDE5628713EE200DCA698 /* IngredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5528713EE200DCA698 /* IngredientModel.swift */; };
 		402985FA27C7ADDA007A70C2 /* AproPOS_UIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402985F927C7ADDA007A70C2 /* AproPOS_UIApp.swift */; };
 		402985FE27C7ADDC007A70C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402985FD27C7ADDC007A70C2 /* Assets.xcassets */; };
 		4029860127C7ADDC007A70C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4029860027C7ADDC007A70C2 /* Preview Assets.xcassets */; };
@@ -52,8 +52,8 @@
 		401866F3283CFDFF0046BFBC /* MenuItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemModel.swift; sourceTree = "<group>"; };
 		401866F5283CFE130046BFBC /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementBillingView.swift; sourceTree = "<group>"; };
-		401CDE4F2871261C00DCA698 /* InventoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryModel.swift; sourceTree = "<group>"; };
 		401CDE512871305E00DCA698 /* ImplementMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementMenuView.swift; sourceTree = "<group>"; };
+		401CDE5528713EE200DCA698 /* IngredientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientModel.swift; sourceTree = "<group>"; };
 		402985F627C7ADDA007A70C2 /* AproPOS UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AproPOS UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		402985F927C7ADDA007A70C2 /* AproPOS_UIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AproPOS_UIApp.swift; sourceTree = "<group>"; };
 		402985FD27C7ADDC007A70C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 				407BCC3B282D0F9700F8D93E /* OrderModel.swift */,
 				401866F3283CFDFF0046BFBC /* MenuItemModel.swift */,
 				5E323E5C286291E200C48313 /* BillingModel.swift */,
-				401CDE4F2871261C00DCA698 /* InventoryModel.swift */,
+				401CDE5528713EE200DCA698 /* IngredientModel.swift */,
 				5E323E5E2862927E00C48313 /* ReservationModel.swift */,
 			);
 			path = Models;
@@ -354,8 +354,8 @@
 				407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */,
 				4029861A27C7AF9D007A70C2 /* InventoryView.swift in Sources */,
 				40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */,
-				401CDE502871261C00DCA698 /* InventoryModel.swift in Sources */,
 				409B2077282E6FAD0014CB54 /* AuthViewModel.swift in Sources */,
+				401CDE5628713EE200DCA698 /* IngredientModel.swift in Sources */,
 				4029861227C7AF41007A70C2 /* ReservationView.swift in Sources */,
 				4029861827C7AF8F007A70C2 /* AnalyticsView.swift in Sources */,
 				4029860C27C7AEF7007A70C2 /* MainView.swift in Sources */,

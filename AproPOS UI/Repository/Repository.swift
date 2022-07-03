@@ -57,27 +57,6 @@ class OrderRepository: ObservableObject {
         return orders
     }
     
-    /*
-    func fetchData2() -> String {
-        var message = "works?"
-        
-        
-        db.collection("orders").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                message = "Error getting documents: \(err)"
-            } else {
-                for document in querySnapshot!.documents {
-                    message += "\(document.documentID) => \(document.data())"
-                }
-                message = "nothing"
-            }
-        }
-        
-        return message
-    }
-    */
-    
-    
     func addOrder(order: OrderModel) -> String {
         let docRef = db.collection("orders").document(order.id!)
         
@@ -162,7 +141,7 @@ class MenuRepository: ObservableObject {
     
 }
 
-
+/*
 class BillingRepository: ObservableObject {
     
     private let db = Firestore.firestore()
@@ -202,3 +181,4 @@ class BillingRepository: ObservableObject {
     }
     
 }
+*/

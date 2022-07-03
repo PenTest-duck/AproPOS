@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import UIKit
 
+/*
 struct BillingModel: Identifiable, Codable {
     @DocumentID public var id: String?
     //var orderID: DocumentReference
@@ -29,3 +30,4 @@ struct BillingModel: Identifiable, Codable {
         self.totalPrice = totalPrice
     }
 }
+*/

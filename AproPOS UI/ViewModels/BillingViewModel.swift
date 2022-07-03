@@ -9,6 +9,7 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 
+/*
 final class BillingViewModel: ObservableObject {
     @Published var bills = [BillingModel]()
     @Published var billingRepository = BillingRepository()
@@ -30,3 +31,4 @@ final class BillingViewModel: ObservableObject {
     }
     
 }
+*/

@@ -12,7 +12,6 @@ import FirebaseFirestore
 final class OrderViewModel: ObservableObject {
     @Published var orders = [OrderModel]()
     @Published var orderRepository = OrderRepository()
-    //@Published var dataRepository = DataRepository()
     
     @Published var tableNumberInput: String = ""
     @Published var orderedMenuItemsInput: [String: Int] = [:]
@@ -26,12 +25,13 @@ final class OrderViewModel: ObservableObject {
     }*/
     
     func addOrder() { // Convert tableNumber from String to Int
-        let newOrder = OrderModel(tableNumber: (Int(tableNumberInput) ?? 0), orderedMenuItems: orderedMenuItemsInput)
-        if newOrder.tableNumber == 0 {
+        let validatedTableNumberInput = Int(tableNumberInput) ?? 0
+        
+        if validatedTableNumberInput == 0 {
             message = "Invalid table number"
         } else {
+            let newOrder = OrderModel(tableNumber: validatedTableNumberInput, orderedMenuItems: orderedMenuItemsInput)
             message = orderRepository.addOrder(order: newOrder)
-            //message = dataRepository.addItem(category: "orders", item: newOrder)
         }
     }
     
@@ -39,5 +39,7 @@ final class OrderViewModel: ObservableObject {
         orders = orderRepository.fetchOrders() // first time it doesn't fill it up?
         print(orders) // for debugging
     }
+    
+    // TODO: Calculate subtotalPrice
 
 }

@@ -26,10 +26,10 @@ struct ImplementMenuView: View {
                 )
             
             Button(action: {
+                menuVM.getMenu()
                 testMenuItem()
                 menuVM.addMenuItem()
                 menuVM.getMenu()
-                
             }) {
                 Text("Add Menu Item")
             }

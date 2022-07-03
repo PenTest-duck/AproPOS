@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ImplementBillingView: View {
     
-    @StateObject private var billingVM = BillingViewModel()
+    // @StateObject private var billingVM = BillingViewModel()
     
     var body: some View {
         VStack {
