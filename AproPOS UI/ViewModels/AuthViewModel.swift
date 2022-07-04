@@ -25,8 +25,6 @@ final class AuthViewModel: ObservableObject {
     @Published var newEmail = ""
     @Published var newPassword = ""
     @Published var verifyPassword = ""
-    //@Published var securityQuestion = ""
-    //@Published var securityAnswer = ""
     @Published var createAccountSuccess = false
     @Published var createAccountError = "" // Contains create account error message
     

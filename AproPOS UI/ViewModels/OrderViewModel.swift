@@ -18,8 +18,6 @@ final class OrderViewModel: ObservableObject {
     
     @Published var message = ""
 
-    private let db = Firestore.firestore()
-
     /*func getStartTime() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
@@ -46,7 +44,7 @@ final class OrderViewModel: ObservableObject {
         orderRepository.removeOrder(tableNumber: tableNumber)
     }
     
-    func editOrder() { // should be same logic as addOrder() except without reducing inventory
+    func editOrder() { 
         if tableNumberInput == "0" {
             message = "Invalid table number"
         } else if orders.firstIndex(where: { $0.id == tableNumberInput }) == nil {            // orders needs to update beforehand
