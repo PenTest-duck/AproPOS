@@ -40,7 +40,6 @@ final class OrderViewModel: ObservableObject {
     
     func getOrders() {
         orders = orderRepository.fetchOrders() // first time it doesn't fill it up?
-        print(orders) // for debugging
     }
     
     func removeOrder(tableNumber: String) {
@@ -57,7 +56,7 @@ final class OrderViewModel: ObservableObject {
         }
     }
     
-    func generateBill(tableNumber: String) {
-        orderRepository.generateBill(tableNumber: tableNumber)
+    func changeOrderStatus(tableNumber: String, status: String) {
+        orderRepository.changeOrderStatus(tableNumber: tableNumber, status: status)
     }
 }

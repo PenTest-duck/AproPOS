@@ -10,17 +10,29 @@ import FirebaseFirestoreSwift
 
 struct OrderModel: Identifiable, Codable {
     @DocumentID public var id: String? // table number
-    var startTimeEvent: Date
+    var orderTime: Date
     var status: String // preparing, served, paid
-    var menuItems: [String: Int]
+    var menuItems: [OrderedMenuItem]
     var subtotalPrice: Decimal
     
-    init(id: String = UUID().uuidString, startTimeEvent: Date = Date(), status: String = "preparing", menuItems: [String: Int], subtotalPrice: Decimal = 0.00) {
+    init(id: String = UUID().uuidString, orderTime: Date = Date(), status: String = "preparing", menuItems: [OrderedMenuItem], subtotalPrice: Decimal = 0.00) {
         self.id = id
-        self.startTimeEvent = startTimeEvent
+        self.orderTime = orderTime
         self.status = status
         self.menuItems = menuItems
         self.subtotalPrice = subtotalPrice
     }
 
+}
+
+struct OrderedMenuItem: Codable {
+    var name: String
+    var quantity: Int
+    var price: Decimal
+    
+    init(name: String, quantity: Int, price: Decimal) {
+        self.name = name
+        self.quantity = quantity
+        self.price = price
+    }
 }

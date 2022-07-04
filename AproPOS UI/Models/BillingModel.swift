@@ -6,28 +6,24 @@
 //
 
 import Foundation
-import FirebaseCore
-import FirebaseFirestore
 import FirebaseFirestoreSwift
-import UIKit
 
-/*
 struct BillingModel: Identifiable, Codable {
     @DocumentID public var id: String?
-    //var orderID: DocumentReference
-    var orderID: String
-    var startTimeEvent: Date
-    var subtotalPrice: Decimal
+    var tableNumber: String
+    var order: OrderModel
     var discount: Decimal
     var totalPrice: Decimal
+    var billingTime: Date
+    var server: String
     
-    init(id: String = UUID().uuidString, orderID: String, startTimeEvent: Date = Date(), subtotalPrice: Decimal, discount: Decimal, totalPrice: Decimal) {
+    init(id: String = UUID().uuidString, tableNumber: String, order: OrderModel, discount: Decimal, totalPrice: Decimal, billingTime: Date = Date(), server: String) {
         self.id = id
-        self.orderID = orderID
-        self.startTimeEvent = startTimeEvent
-        self.subtotalPrice = subtotalPrice
+        self.tableNumber = tableNumber
+        self.order = order
         self.discount = discount
         self.totalPrice = totalPrice
+        self.billingTime = billingTime
+        self.server = server
     }
 }
-*/

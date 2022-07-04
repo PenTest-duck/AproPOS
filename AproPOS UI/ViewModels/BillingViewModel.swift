@@ -9,26 +9,25 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 
-/*
 final class BillingViewModel: ObservableObject {
-    @Published var bills = [BillingModel]()
-    @Published var billingRepository = BillingRepository()
+    @Published var billOrders = [OrderModel]()
+    @Published var billsHistory = [BillingModel]()
+    @Published var orderRepository = OrderRepository()
     
-    @Published var discountInput: Decimal = 0
-    /*
-    func addBill() {
-        let newBill = BillingModel(orderID: <#T##String#>, subtotalPrice: <#T##Decimal#>, discount: discountInput, totalPrice: <#T##Decimal#>)
-        if newOrder.tableNumber == 0 {
-            message = "Invalid table number"
-        } else {
-            message = billingRepository.addBill(bill: newBill)
-        }
-    }*/
+    @Published var tableNumberInput: String = ""
+    @Published var discountInput: Decimal = 0.00
+    @Published var serverInput: String = "" // TODO: current user auth features
     
-    func getBills() {
-        bills = billingRepository.fetchBills() // first time it doesn't fill it up?
-        print(bills) // for debugging
+    func getOrders() {
+        billOrders = orderRepository.fetchOrders() // first time it doesn't fill it up?
     }
     
+    func processBill() {
+        orderRepository.processBill(tableNumber: tableNumberInput, discount: discountInput, server: serverInput)
+    }
+    
+    func getBillsHistory() {
+        billsHistory = orderRepository.fetchBills()
+    }
 }
-*/
+

@@ -21,7 +21,8 @@ struct AproPOS_UIApp: App {
         WindowGroup {
             //LoginView()
             //ImplementOrderView()
-            ImplementMenuView()
+            ImplementBillingView()
+            //ImplementMenuView()
             //ImplementInventoryView()
         }
     }

@@ -50,13 +50,17 @@ class OrderRepository: ObservableObject {
                 let data = queryDocumentSnapshot.data()
                 
                 let id = queryDocumentSnapshot.documentID
-                let startTimeEvent = data["startTimeEvent"] as? Date ?? Date() // nil
+                let orderTime = (data["orderTime"] as? Timestamp)?.dateValue() ?? Date()
                 let status = data["status"] as? String ?? ""
-                let menuItems = data["menuItems"] as? [String: Int] ?? [:]
+                let menuItems = data["menuItems"] as? [[String: Any]] ?? []
                 let subtotalPrice = data["subtotalPrice"] as? Double ?? 0.00
+                
+                let convertedMenuItems = self.convertMenuItems(menuItems: menuItems)
 
-                return OrderModel(id: id, startTimeEvent: startTimeEvent, status: status, menuItems: menuItems, subtotalPrice: Decimal(subtotalPrice))
+                return OrderModel(id: id, orderTime: orderTime, status: status, menuItems: convertedMenuItems, subtotalPrice: Decimal(subtotalPrice))
             }
+            
+            print(self.orders)
         }
         
         return orders
@@ -74,28 +78,32 @@ class OrderRepository: ObservableObject {
     }*/
     
     func addOrder(id: String, menuItems: [String: Int]) {
-        db.collection("menu").addSnapshotListener { (querySnapshot, error) in
+        db.collection("menu").getDocuments() { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return
             }
+            
+            // TODO: Limit order availability
 
             self.menuPrices = documents.map { queryDocumentSnapshot -> [String: Decimal] in
                 let data = queryDocumentSnapshot.data()
-                
                 let id = queryDocumentSnapshot.documentID
                 let price = data["price"] as? Double ?? 0.00
 
                 return [id: Decimal(price)]
             }
             
+            var orderedMenuItems: [OrderedMenuItem] = []
+            
             for menuItem in menuItems {
                 let menuItemPrice = (self.menuPrices.compactMap { $0[menuItem.key] })[0]
+                orderedMenuItems.append(OrderedMenuItem(name: menuItem.key, quantity: menuItem.value, price: menuItemPrice * Decimal(menuItem.value)))
                 self.subtotalPrice += menuItemPrice * Decimal(menuItem.value)
             }
             
             // Add Order:
-            let newOrder = OrderModel(id: id, menuItems: menuItems, subtotalPrice: self.subtotalPrice)
+            let newOrder = OrderModel(id: id, menuItems: orderedMenuItems, subtotalPrice: self.subtotalPrice)
             let docRef = self.db.collection("orders").document(newOrder.id!)
             
             do {
@@ -104,12 +112,11 @@ class OrderRepository: ObservableObject {
             } catch {
                 print(error.localizedDescription)
             }
-            
         }
     }
     
     func reduceInventory(menuItems: [String: Int]) {
-        db.collection("menu").addSnapshotListener { (querySnapshot, error) in
+        db.collection("menu").getDocuments() { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return
@@ -132,30 +139,10 @@ class OrderRepository: ObservableObject {
         }
     }
     
+
     func editOrder(id: String, newMenuItems: [String: Int]) {
-        db.collection("orders").document(id).getDocument { (document, error) in
-            guard let document = document, document.exists else {
-                print("Document does not exist")
-                return
-            }
-            let data = document.data()
-            let newMenuItemKeys = Array(newMenuItems.keys)
-            let existingMenuItems = data?["menuItems"] as? [String: Int]
-            let existingMenuItemKeys = Array(existingMenuItems!.keys)
-            
-            for existingMenuItem in existingMenuItems! {
-                if !newMenuItemKeys.contains(existingMenuItem.key) {
-                    
-                }
-            }
-            
-            for newMenuItem in newMenuItems {
-                if !existingMenuItemKeys.contains(newMenuItem.key) {
-                    
-                }
-            }
-            
-        }
+        // TODO: Edit order with checking availability
+        
     }
     
     func removeOrder(tableNumber: String) {
@@ -170,35 +157,102 @@ class OrderRepository: ObservableObject {
         }
     }
     
-    func generateBill(tableNumber: String) {
-        
+    func changeOrderStatus(tableNumber: String, status: String) {
+        db.collection("orders").document(tableNumber).updateData(["status": status]) { err in // function doesn't throw?
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated!")
+            }
+        }
     }
-
-}
-
-/*
-class DataRepository: ObservableObject {
-    private let db = Firestore.firestore()
     
-    func addItem(category: String, item: AnyObject) -> String {
-        
-        var orderItem: OrderModel
-        
-        if category == "orders" {
-            orderItem = item as! OrderModel
+    func convertMenuItems(menuItems: [[String: Any]]) -> [OrderedMenuItem] {
+        var convertedMenuItems: [OrderedMenuItem] = []
+        for menuItem in menuItems {
+            let menuItemName = menuItem["name"] as? String ?? ""
+            let menuItemQuantity = menuItem["quantity"] as? Int ?? 0
+            let menuItemPrice = menuItem["price"] as? Double ?? 0.00
+            
+            let convertedMenuItem = OrderedMenuItem(name: menuItemName, quantity: menuItemQuantity, price: Decimal(menuItemPrice))
+            convertedMenuItems.append(convertedMenuItem)
         }
         
-        let docRef = db.collection(category).document(orderItem.id!)
+        return convertedMenuItems
+    }
+    
+    // Billing
+    var billsHistory = [BillingModel]()
+    
+    func processBill(tableNumber: String, discount: Decimal, server: String) {
+        db.collection("orders").document(tableNumber).getDocument { (document, error) in
+            guard let document = document, document.exists else {
+                print("No documents")
+                return
+            }
+
+            let data = document.data()
+            let orderTime = (data!["orderTime"] as? Timestamp)?.dateValue() ?? Date()
+            let status = data!["status"] as? String ?? ""
+            let menuItems = data!["menuItems"] as? [[String: Any]] ?? []
+            let subtotalPrice = data!["subtotalPrice"] as? Double ?? 0.00
+            
+            let convertedMenuItems = self.convertMenuItems(menuItems: menuItems)
+            let order = OrderModel(id: tableNumber, orderTime: orderTime, status: status, menuItems: convertedMenuItems, subtotalPrice: Decimal(subtotalPrice))
         
-        do {
-            try docRef.setData(from: orderItem)
-            return "success"
-        } catch {
-            return error.localizedDescription
+            let totalPrice = order.subtotalPrice - discount
+            
+            let newBill = BillingModel(tableNumber: tableNumber, order: order, discount: discount, totalPrice: totalPrice, server: server)
+            let docRef = self.db.collection("billsHistory").document(newBill.id!)
+            
+            do {
+                try docRef.setData(from: newBill)
+                print("success")
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+            self.removeOrder(tableNumber: tableNumber)
         }
     }
+    
+    func fetchBills() -> [BillingModel] {                                                               // Possibly don't need to return?
+        db.collection("billsHistory").getDocuments() { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            self.billsHistory = documents.map { queryDocumentSnapshot -> BillingModel in
+                let data = queryDocumentSnapshot.data()
+                let id = queryDocumentSnapshot.documentID
+                let tableNumber = data["tableNumber"] as? String ?? ""
+                let order = data["order"] as? [String: Any] ?? [:]
+                let discount = data["discount"] as? Double ?? 0.00
+                let totalPrice = data["totalPrice"] as? Double ?? 0.00
+                let billingTime = (data["billingTime"] as? Timestamp)?.dateValue() ?? Date()
+                let server = data["server"] as? String ?? ""
+                
+                let orderOrderTime = (order["orderTime"] as? Timestamp)?.dateValue() ?? Date()
+                let orderStatus = order["status"] as? String ?? ""
+                let orderMenuItems = order["menuItems"] as? [[String: Any]] ?? []
+                let orderSubtotalPrice = order["subtotalPrice"] as? Double ?? 0.00
+                
+                let convertedOrderMenuItems = self.convertMenuItems(menuItems: orderMenuItems)
+                
+                let convertedOrder = OrderModel(id: tableNumber, orderTime: orderOrderTime, status: orderStatus, menuItems: convertedOrderMenuItems, subtotalPrice: Decimal(orderSubtotalPrice))
+                
+                return BillingModel(id: id, tableNumber: tableNumber, order: convertedOrder, discount: Decimal(discount), totalPrice: Decimal(totalPrice), billingTime: billingTime, server: server)
+                
+            }
+            
+            print(self.billsHistory)
+        }
+        
+        return billsHistory
+    }
+    
 }
- */
 
 class MenuRepository: ObservableObject {
     
@@ -323,12 +377,33 @@ class InventoryRepository: ObservableObject {
                 let costPerUnit = data["costPerUnit"] as? Double ?? 0.00
                 let warnings = data["warnings"] as? [String] ?? []
                 let comment = data["comment"] as? String ?? ""
+                let status = data["status"] as? String ?? "available"
 
-                return IngredientModel(id: id, units: units, currentStock: Decimal(currentStock), minimumThreshold: Decimal(minimumThreshold), costPerUnit: Decimal(costPerUnit), warnings: warnings, comment: comment)
+                return IngredientModel(id: id, units: units, currentStock: Decimal(currentStock), minimumThreshold: Decimal(minimumThreshold), costPerUnit: Decimal(costPerUnit), warnings: warnings, comment: comment, status: status)
             }
+            
+            // Monitor inventory status
+            self.monitorInventory()
         }
         
         return inventory
+    }
+    
+    func monitorInventory() {
+        for ingredient in self.inventory {
+            var currentStatus: String
+            if ingredient.currentStock <= 0 {
+                currentStatus = "unavailable"
+            } else if ingredient.currentStock < ingredient.minimumThreshold {
+                currentStatus = "low"
+            } else {
+                currentStatus = "available"
+            }
+            
+            if currentStatus != ingredient.status {
+                db.collection("inventory").document(ingredient.id!).updateData(["status": currentStatus])
+            }
+        }
     }
     
     func addIngredient(ingredient: IngredientModel) -> String {

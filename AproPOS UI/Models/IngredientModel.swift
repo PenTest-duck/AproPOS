@@ -16,8 +16,9 @@ struct IngredientModel: Identifiable, Codable {
     var costPerUnit: Decimal
     var warnings: [String]
     var comment: String
+    var status: String // unavailable, low, available
     
-    init(id: String = UUID().uuidString, units: String, currentStock: Decimal = 0, minimumThreshold: Decimal, costPerUnit: Decimal = 0, warnings: [String] = [], comment: String = "") {
+    init(id: String = UUID().uuidString, units: String, currentStock: Decimal = 0, minimumThreshold: Decimal, costPerUnit: Decimal = 0, warnings: [String] = [], comment: String = "", status: String = "available") {
         self.id = id
         self.units = units
         self.currentStock = currentStock
@@ -25,5 +26,6 @@ struct IngredientModel: Identifiable, Codable {
         self.costPerUnit = costPerUnit
         self.warnings = warnings
         self.comment = comment
+        self.status = status
     }
 }
