@@ -39,6 +39,12 @@ struct ImplementMenuView: View {
             }) {
                 Text("Get Menu")
             }
+            
+            Button(action: {
+                menuVM.checkUnavailableMenuItems()
+            }) {
+                Text("Check Unavailable")
+            }
         }
         .onAppear {
             menuVM.getMenu()

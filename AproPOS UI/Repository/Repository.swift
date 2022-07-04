@@ -261,23 +261,26 @@ class MenuRepository: ObservableObject {
                 return [id: currentStock]
             }
             
-            // TODO: Complete this
             for menuItem in menu {
+                var lowIngredients = menuItem.status["unavailable"] ?? [] // hopefully should be [] for "available"
                 if Array(menuItem.status.keys)[0] == "available" {
                     for ingredient in menuItem.ingredients {
                         let stock = (self.ingredientStock.compactMap { $0[ingredient.key] })[0]
                         if stock < Double(ingredient.value) {
-                            self.db.collection("menu").document(menuItem.id!).updateData(["status": ["unavailable": [ingredient.key]]])
+                            lowIngredients.append(ingredient.key)
+                            self.db.collection("menu").document(menuItem.id!).updateData(["status": ["unavailable": lowIngredients]])
                         }
                     }
                 } else {
-                    var lowIngredients = menuItem.status["unavailable"]
-                    for ingredient in lowIngredients! {
+                    for ingredient in lowIngredients {
                         let stock = (self.ingredientStock.compactMap { $0[ingredient] })[0]
                         if stock >= Double(menuItem.ingredients[ingredient]!) {
-                            //lowIngredients.remove(at: lowIngredients.firstIndex(of: ingredient))
-                            //lowIngredients.remove(ingredient)
-                            self.db.collection("menu").document(menuItem.id!).updateData(["status": []])    // depends
+                            lowIngredients.removeAll(where: { $0 == ingredient })
+                            if lowIngredients.isEmpty {
+                                self.db.collection("menu").document(menuItem.id!).updateData(["status": ["available": lowIngredients]])
+                            } else {
+                                self.db.collection("menu").document(menuItem.id!).updateData(["status": ["unavailable": lowIngredients]])
+                            }
                         }
                     }
                 }

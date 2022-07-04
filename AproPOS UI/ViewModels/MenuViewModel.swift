@@ -61,11 +61,6 @@ final class MenuViewModel: ObservableObject {
     }
     
     func checkUnavailableMenuItems() {
-        getMenu()
-        for menuItem in menu {
-            for ingredient in menuItem.ingredients {
-                ingredient.value
-            }
-        }
+        menuRepository.checkUnavailableMenuItems()
     }
 }
