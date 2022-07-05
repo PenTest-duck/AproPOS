@@ -40,8 +40,8 @@ final class OrderViewModel: ObservableObject {
         orders = orderRepository.fetchOrders() // first time it doesn't fill it up?
     }
     
-    func removeOrder(tableNumber: String) {
-        orderRepository.removeOrder(tableNumber: tableNumber)
+    func removeOrder() {
+        orderRepository.removeOrder(tableNumber: tableNumberInput)
     }
     
     func editOrder() { 

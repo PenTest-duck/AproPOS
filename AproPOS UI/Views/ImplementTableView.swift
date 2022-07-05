@@ -1,20 +1,19 @@
 //
-//  ImplementOrderView.swift
+//  ImplementTableView.swift
 //  AproPOS UI
 //
-//  Created by Chris Yoo on 12/5/22.
+//  Created by Kushaagra Kesarwani on 5/7/2022.
 //
 
 import SwiftUI
 
-struct ImplementOrderView: View {
-    @StateObject private var orderVM = OrderViewModel()
+struct ImplementTableView: View {
+    @StateObject private var tableVM = TableViewModel()
     
     var body: some View {
         VStack {
-            Text("Message: \(orderVM.message)")
             
-            TextField(" Table Number", text: $orderVM.tableNumberInput)
+            TextField(" Table Number", text: $tableVM.tableNumberInput)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .frame(width: 300)
@@ -27,33 +26,33 @@ struct ImplementOrderView: View {
             
             
             Button(action: {
-                orderVM.menuItemsInput = ["Noodles" : 2, "Fried Rice" : 3]
-                orderVM.addOrder()
-                
+                tableVM.seatsInput = 4
+                tableVM.addTable()
             }) {
-                Text("Add Order")
+                Text("Add Table")
             }
             
             Button(action: {
-                orderVM.getOrders()
+                tableVM.getTables()
             }) {
-                Text("Get Orders")
+                Text("Get Tables")
             }
             
             Button(action: {
-                orderVM.removeOrder()
+                tableVM.removeTable()
             }) {
-                Text("Remove Order")
+                Text("Remove Table")
             }
         }
         .onAppear {
-            orderVM.getOrders()
+            tableVM.getTables()
         }
+    }
+    
+}
+struct ImplementTableView_Previews: PreviewProvider {
+    static var previews: some View {
+        ImplementTableView().previewInterfaceOrientation(.landscapeLeft)
     }
 }
 
-struct ImplementOrderView_Previews: PreviewProvider {
-    static var previews: some View {
-        ImplementOrderView().previewInterfaceOrientation(.landscapeLeft)
-    }
-}

@@ -41,9 +41,9 @@ struct ImplementInventoryView: View {
             }
             
             Button(action: {
-                inventoryVM.removeIngredient(name: "eggs")
+                inventoryVM.removeIngredient()
             }) {
-                Text("Remove eggs")
+                Text("Remove")
             }
         }
         .onAppear {

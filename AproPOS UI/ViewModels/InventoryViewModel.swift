@@ -38,8 +38,8 @@ final class InventoryViewModel: ObservableObject {
         print(inventory) // for debugging
     }
     
-    func removeIngredient(name: String) {
-        inventoryRepository.removeIngredient(name: name)
+    func removeIngredient() {
+        inventoryRepository.removeIngredient(name: ingredientNameInput)
     }
     
 }

@@ -56,7 +56,7 @@ final class MenuViewModel: ObservableObject {
         }
     }
     
-    func removeMenuItem(name: String) {
+    func removeMenuItem() {
         menuRepository.removeMenuItem(name: menuItemNameInput)
     }
     
