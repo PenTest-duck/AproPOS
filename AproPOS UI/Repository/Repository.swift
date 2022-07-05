@@ -135,7 +135,6 @@ class OrderRepository: ObservableObject {
                     self.db.collection("inventory").document(ingredient.key).updateData(["currentStock": FieldValue.increment(-Double(ingredient.value * menuItem.value))])
                 }
             }
-            
         }
     }
     
@@ -145,7 +144,7 @@ class OrderRepository: ObservableObject {
         
     }
     
-    func removeOrder(tableNumber: String) {
+    func removeOrder(tableNumber: String) { // TODO: ingredients should be replaced?
         db.collection("orders").document(tableNumber).delete() { err in // function doesn't throw?
             if let err = err {
                 //return err
@@ -467,7 +466,7 @@ class TableRepository: ObservableObject { // for the table view and status etc
             return error.localizedDescription
         }
     }
-    
+
     func removeTable(tableNumber: String) {
         db.collection("tables").document(tableNumber).delete() { err in // function doesn't throw?
             if let err = err {
