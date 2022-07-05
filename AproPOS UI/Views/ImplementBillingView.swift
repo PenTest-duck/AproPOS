@@ -54,6 +54,10 @@ struct ImplementBillingView: View {
                 Text("Get orders")
             }
         }
+        .onAppear {
+            orderVM.getOrders()
+            billingVM.getBillsHistory()
+        }
     }
 }
 

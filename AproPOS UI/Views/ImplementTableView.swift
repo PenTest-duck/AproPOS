@@ -23,8 +23,6 @@ struct ImplementTableView: View {
                         .stroke(Color.black, lineWidth: 1)
                 )
             
-            
-            
             Button(action: {
                 tableVM.seatsInput = 4
                 tableVM.addTable()
@@ -44,9 +42,12 @@ struct ImplementTableView: View {
                 Text("Remove Table")
             }
         }
+        .onAppear {
+            tableVM.getTables()
+        }
     }
-    
 }
+
 struct ImplementTableView_Previews: PreviewProvider {
     static var previews: some View {
         ImplementTableView().previewInterfaceOrientation(.landscapeLeft)

@@ -18,7 +18,7 @@ class MenuRepository: ObservableObject {
     var menu = [MenuItemModel]()
     var ingredientStock = [[String: Double]]()
     
-    func fetchMenu() -> [MenuItemModel] {
+    func fetchMenu(completion: @escaping ([MenuItemModel]) -> Void) {
         db.collection("menu").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
@@ -41,9 +41,10 @@ class MenuRepository: ObservableObject {
 
                 return MenuItemModel(id: id, price: Decimal(price), estimatedServingTime: estimatedServingTime, warnings: warnings, ingredients: ingredients, image: deserialisedImage, status: status)
             }
+            
+            print(self.menu)
+            completion(self.menu)
         }
-        
-        return menu
     }
     
     func addMenuItem(menuItem: MenuItemModel) -> String {
@@ -62,8 +63,6 @@ class MenuRepository: ObservableObject {
     }
     
     func checkUnavailableMenuItems() {
-        let menu = fetchMenu() // should refresh menu?
-        
         db.collection("inventory").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
@@ -77,7 +76,7 @@ class MenuRepository: ObservableObject {
                 return [id: currentStock]
             }
             
-            for menuItem in menu {
+            for menuItem in self.menu {
                 var lowIngredients = menuItem.status["unavailable"] ?? [] // hopefully should be [] for "available"
                 if Array(menuItem.status.keys)[0] == "available" {
                     for ingredient in menuItem.ingredients {

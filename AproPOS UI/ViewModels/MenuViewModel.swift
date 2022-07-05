@@ -39,8 +39,9 @@ final class MenuViewModel: ObservableObject {
     }
     
     func getMenu() {
-        menu = menuRepository.fetchMenu() // first time it doesn't fill it up?
-        print(menu) // for debugging
+        menuRepository.fetchMenu() { (fetchedMenu) -> Void in
+            self.menu = fetchedMenu
+        }
     }
     
     func editMenuItem() { // should be the same logic as addMenuItem() without checking for already existing menu items

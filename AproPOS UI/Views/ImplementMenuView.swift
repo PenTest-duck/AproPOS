@@ -26,10 +26,10 @@ struct ImplementMenuView: View {
                 )
             
             Button(action: {
-                menuVM.getMenu()
-                testMenuItem()
+                menuVM.menuItemPriceInput = 4.50
+                menuVM.menuItemEstimatedServingTimeInput = 25
+                menuVM.menuItemIngredientsInput = ["eggs" : 5, "bread" : 2]
                 menuVM.addMenuItem()
-                menuVM.getMenu()
             }) {
                 Text("Add Menu Item")
             }
@@ -49,13 +49,6 @@ struct ImplementMenuView: View {
         .onAppear {
             menuVM.getMenu()
         }
-    }
-    
-    func testMenuItem() {
-        menuVM.menuItemPriceInput = 4.50
-        menuVM.menuItemEstimatedServingTimeInput = 25
-        menuVM.menuItemIngredientsInput = ["eggs" : 5, "bread" : 2]
-        
     }
 }
 

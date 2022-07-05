@@ -34,8 +34,9 @@ final class InventoryViewModel: ObservableObject {
     }
     
     func getInventory() {
-        inventory = inventoryRepository.fetchInventory() // first time it doesn't fill it up?
-        print(inventory) // for debugging
+        inventoryRepository.fetchInventory() { (fetchedInventory) -> Void in
+            self.inventory = fetchedInventory
+        }
     }
     
     func removeIngredient() {

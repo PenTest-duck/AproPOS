@@ -17,7 +17,7 @@ class TableRepository: ObservableObject { // for the table view and status etc
     private let db = Firestore.firestore() // get the db
     var tables = [TableModel]()  // referring to the table model file
 
-    func fetchTables() -> [TableModel] { // gets info from table models
+    func fetchTables(completion: @escaping ([TableModel]) -> Void) { // gets info from table models
         db.collection("tables").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
@@ -35,8 +35,8 @@ class TableRepository: ObservableObject { // for the table view and status etc
             }
             
             print(self.tables)
+            completion(self.tables)
         }
-        return tables
     }
     
     func addTable(table: TableModel) {

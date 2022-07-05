@@ -17,7 +17,7 @@ class InventoryRepository: ObservableObject {
     private let db = Firestore.firestore()
     var inventory = [IngredientModel]()
     
-    func fetchInventory() -> [IngredientModel] {
+    func fetchInventory(completion: @escaping ([IngredientModel]) -> Void) {
         db.collection("inventory").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
@@ -41,9 +41,10 @@ class InventoryRepository: ObservableObject {
             
             // Monitor inventory status
             self.monitorInventory()
+            
+            print(self.inventory)
+            completion(self.inventory)
         }
-        
-        return inventory
     }
     
     func monitorInventory() {

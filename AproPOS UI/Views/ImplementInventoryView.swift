@@ -26,10 +26,7 @@ struct ImplementInventoryView: View {
                 )
             
             Button(action: {
-                inventoryVM.getInventory()
-                //testIngredient()
                 inventoryVM.addIngredient()
-                inventoryVM.getInventory()
             }) {
                 Text("Add Ingredient")
             }

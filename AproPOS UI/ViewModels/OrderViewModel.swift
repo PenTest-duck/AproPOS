@@ -37,7 +37,9 @@ final class OrderViewModel: ObservableObject {
     }
     
     func getOrders() {
-        orders = orderRepository.fetchOrders() // first time it doesn't fill it up?
+        orderRepository.fetchOrders() { (fetchedOrders) -> Void in
+            self.orders = fetchedOrders
+        }
     }
     
     func removeOrder() {
