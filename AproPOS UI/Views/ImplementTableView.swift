@@ -44,9 +44,6 @@ struct ImplementTableView: View {
                 Text("Remove Table")
             }
         }
-        .onAppear {
-            tableVM.getTables()
-        }
     }
     
 }

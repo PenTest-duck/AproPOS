@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4016CAF427C8F27700A97867 /* ManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4016CAF327C8F27700A97867 /* ManagementView.swift */; };
-		401866EA283CEA0D0046BFBC /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401866E9283CEA0D0046BFBC /* Repository.swift */; };
+		401866EA283CEA0D0046BFBC /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401866E9283CEA0D0046BFBC /* UserRepository.swift */; };
 		401866F4283CFDFF0046BFBC /* MenuItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401866F3283CFDFF0046BFBC /* MenuItemModel.swift */; };
 		401866F6283CFE130046BFBC /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401866F5283CFE130046BFBC /* MenuViewModel.swift */; };
 		401CDE4E28708C7E00DCA698 /* ImplementBillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */; };
@@ -30,6 +30,10 @@
 		4029861827C7AF8F007A70C2 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029861727C7AF8F007A70C2 /* AnalyticsView.swift */; };
 		4029861A27C7AF9D007A70C2 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029861927C7AF9D007A70C2 /* InventoryView.swift */; };
 		4038921E27E0923500B9FDFB /* StaffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4038921D27E0923500B9FDFB /* StaffView.swift */; };
+		403BE4E128745264005A1C54 /* TableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E028745264005A1C54 /* TableRepository.swift */; };
+		403BE4E3287452E4005A1C54 /* InventoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E2287452E4005A1C54 /* InventoryRepository.swift */; };
+		403BE4E528745313005A1C54 /* MenuRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E428745313005A1C54 /* MenuRepository.swift */; };
+		403BE4E72874534C005A1C54 /* OrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E62874534C005A1C54 /* OrderRepository.swift */; };
 		4065B3FD27C8A54B00B1D55A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */; };
 		406BFEBE2836F7E700FEA7B9 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406BFEBD2836F7E700FEA7B9 /* ForgotPasswordView.swift */; };
 		407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */; };
@@ -53,7 +57,7 @@
 /* Begin PBXFileReference section */
 		0F612E47BE5F733E9FDE30AD /* Pods-AproPOS UI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AproPOS UI.debug.xcconfig"; path = "Target Support Files/Pods-AproPOS UI/Pods-AproPOS UI.debug.xcconfig"; sourceTree = "<group>"; };
 		4016CAF327C8F27700A97867 /* ManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementView.swift; sourceTree = "<group>"; };
-		401866E9283CEA0D0046BFBC /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		401866E9283CEA0D0046BFBC /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		401866F3283CFDFF0046BFBC /* MenuItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemModel.swift; sourceTree = "<group>"; };
 		401866F5283CFE130046BFBC /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementBillingView.swift; sourceTree = "<group>"; };
@@ -76,6 +80,10 @@
 		4029861727C7AF8F007A70C2 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		4029861927C7AF9D007A70C2 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		4038921D27E0923500B9FDFB /* StaffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffView.swift; sourceTree = "<group>"; };
+		403BE4E028745264005A1C54 /* TableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableRepository.swift; sourceTree = "<group>"; };
+		403BE4E2287452E4005A1C54 /* InventoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryRepository.swift; sourceTree = "<group>"; };
+		403BE4E428745313005A1C54 /* MenuRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRepository.swift; sourceTree = "<group>"; };
+		403BE4E62874534C005A1C54 /* OrderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRepository.swift; sourceTree = "<group>"; };
 		4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		406BFEBD2836F7E700FEA7B9 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementOrderView.swift; sourceTree = "<group>"; };
@@ -110,12 +118,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		401866EB283CEA100046BFBC /* Repository */ = {
+		401866EB283CEA100046BFBC /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				401866E9283CEA0D0046BFBC /* Repository.swift */,
+				401866E9283CEA0D0046BFBC /* UserRepository.swift */,
+				403BE4E62874534C005A1C54 /* OrderRepository.swift */,
+				403BE4E428745313005A1C54 /* MenuRepository.swift */,
+				403BE4E2287452E4005A1C54 /* InventoryRepository.swift */,
+				403BE4E028745264005A1C54 /* TableRepository.swift */,
 			);
-			path = Repository;
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		401866EC283CF1DD0046BFBC /* Frameworks */ = {
@@ -153,7 +165,7 @@
 				406BFEBC2836F6F100FEA7B9 /* Views */,
 				409B207A282F6C730014CB54 /* ViewModels */,
 				407BCC3A282D0F8500F8D93E /* Models */,
-				401866EB283CEA100046BFBC /* Repository */,
+				401866EB283CEA100046BFBC /* Repositories */,
 				40BD731327D5FE3200CBDA9A /* Fonts */,
 				4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */,
 				402985FD27C7ADDC007A70C2 /* Assets.xcassets */,
@@ -367,6 +379,7 @@
 				40E7A08C2863D11100871A48 /* BillingViewModel.swift in Sources */,
 				407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */,
 				401CDE5E2871B8FF00DCA698 /* TableViewModel.swift in Sources */,
+				403BE4E128745264005A1C54 /* TableRepository.swift in Sources */,
 				4029861A27C7AF9D007A70C2 /* InventoryView.swift in Sources */,
 				40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */,
 				409B2077282E6FAD0014CB54 /* AuthViewModel.swift in Sources */,
@@ -380,14 +393,17 @@
 				4029860A27C7AEDC007A70C2 /* OrderView.swift in Sources */,
 				401866F6283CFE130046BFBC /* MenuViewModel.swift in Sources */,
 				401CDE4E28708C7E00DCA698 /* ImplementBillingView.swift in Sources */,
+				403BE4E3287452E4005A1C54 /* InventoryRepository.swift in Sources */,
 				4029861027C7AF26007A70C2 /* BillingView.swift in Sources */,
 				40DD9E6727D8CF2000610DB2 /* BillingView2.swift in Sources */,
 				40BD731C27D606A200CBDA9A /* NewOrderView.swift in Sources */,
-				401866EA283CEA0D0046BFBC /* Repository.swift in Sources */,
+				401866EA283CEA0D0046BFBC /* UserRepository.swift in Sources */,
 				401866F4283CFDFF0046BFBC /* MenuItemModel.swift in Sources */,
 				409B2079282E72950014CB54 /* CreateAccountView.swift in Sources */,
 				4038921E27E0923500B9FDFB /* StaffView.swift in Sources */,
+				403BE4E72874534C005A1C54 /* OrderRepository.swift in Sources */,
 				401CDE60287336DC00DCA698 /* AnalyticsViewModel.swift in Sources */,
+				403BE4E528745313005A1C54 /* MenuRepository.swift in Sources */,
 				402985FA27C7ADDA007A70C2 /* AproPOS_UIApp.swift in Sources */,
 				401CDE5A28714DCD00DCA698 /* ImplementInventoryView.swift in Sources */,
 				406BFEBE2836F7E700FEA7B9 /* ForgotPasswordView.swift in Sources */,

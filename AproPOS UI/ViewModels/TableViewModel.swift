@@ -17,10 +17,10 @@ final class TableViewModel: ObservableObject {
     func getTables() {
         tables = tableRepository.fetchTables()
     }
-     //to add crud functionality
+
     func addTable() {
         let newTable = TableModel(id: tableNumberInput, seats: seatsInput)
-        _ = tableRepository.addTable(table: newTable)
+        tableRepository.addTable(table: newTable)
     }
     
     func removeTable() {

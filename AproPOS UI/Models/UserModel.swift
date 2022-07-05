@@ -14,6 +14,8 @@ struct UserModel: Identifiable, Codable {
     var firstName: String
     var lastName: String
     var role: String
+    //var wage: Decimal
+    //var comment: String
     
     init(id: String = UUID().uuidString, email: String, firstName: String, lastName: String, role: String) {
         self.id = id
