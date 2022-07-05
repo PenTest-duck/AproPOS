@@ -21,7 +21,7 @@ struct MainView: View {
                                     .navigationBarTitle("")
                             .navigationBarHidden(true)
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color(red: 246/255, green: 188/255, blue: 71/255))
+                        .background(Color(red: 237/255, green: 106/255, blue: 90/255))
                     
                     NavigationLink(destination: BillingView2()) {
                         Text("Billing")
@@ -30,7 +30,7 @@ struct MainView: View {
                             .navigationBarTitle("")
                             .navigationBarHidden(true)
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color(red: 105/255, green: 191/255, blue: 182/255))
+                        .background(Color(red: 160/255, green: 236/255, blue: 208/255))
                             
                 }
                 
@@ -42,7 +42,7 @@ struct MainView: View {
                             .navigationBarTitle("")
                             .navigationBarHidden(true)
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color(red: 0.5, green: 0.375, blue: 0.77))
+                        .background(Color(red: 202/255, green: 85/255, blue: 220/255))
                     
                     NavigationLink(destination: ManagementView()) {
                         Text("Management")
@@ -51,7 +51,7 @@ struct MainView: View {
                             .navigationBarTitle("")
                             .navigationBarHidden(true)
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color(red: 110/255, green: 179/255, blue: 90/255))
+                        .background(Color(red: 8/255, green: 61/255, blue: 119/255))
                 }
             }.ignoresSafeArea()
         }.navigationViewStyle(StackNavigationViewStyle())

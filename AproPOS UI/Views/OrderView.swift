@@ -18,12 +18,13 @@ struct OrderView: View {
                 VStack {
                     ZStack(alignment: .top) {
                         RoundedRectangle(cornerRadius: 25)
-                            .strokeBorder(.black, lineWidth: 2)
+                            .strokeBorder(Color(red: 237/255, green: 106/255, blue: 90/255), lineWidth: 2)
                             .frame(width: 450, height: 400)
                         VStack(alignment: .leading) {
                             ZStack {
                                 Text("Table 24")
                                     .fontWeight(.bold)
+                                    .foregroundColor(Color(red: 237/255, green: 106/255, blue: 90/255))
                                     .font(.system(size: 50))
                                     .padding(.bottom, 10)
                                     .padding(.leading, 60)
@@ -71,7 +72,7 @@ struct OrderView: View {
                     
                     ZStack(alignment: .top) {
                         RoundedRectangle(cornerRadius: 25)
-                            .strokeBorder(.orange, lineWidth: 4)
+                            .strokeBorder(Color(red: 237/255, green: 106/255, blue: 90/255), lineWidth: 4)
                             .frame(width: 450, height: 465)
                         VStack(alignment: .leading) {
                             Text("Table 17")
@@ -79,7 +80,7 @@ struct OrderView: View {
                                 .font(.system(size: 50))
                                 .padding(.bottom, 10)
                                 .padding(.leading, 50)
-                                .foregroundColor(.orange)
+                                .foregroundColor(Color(red: 237/255, green: 106/255, blue: 90/255))
                             Text("2  Mac N Cheese")
                                 .strikethrough()
                             VStack(alignment: .leading) {
@@ -131,7 +132,7 @@ struct OrderView: View {
                 VStack {
                     ZStack(alignment: .top) {
                         RoundedRectangle(cornerRadius: 25)
-                            .strokeBorder(.orange, lineWidth: 4)
+                            .strokeBorder(Color(red: 237/255, green: 106/255, blue: 90/255), lineWidth: 4)
                             .frame(width: 450, height: 530)
                         VStack(alignment: .leading) {
                             Text("Table 14")
@@ -139,7 +140,7 @@ struct OrderView: View {
                                 .font(.system(size: 50))
                                 .padding(.bottom, 10)
                                 .padding(.leading, 65)
-                                .foregroundColor(.orange)
+                                .foregroundColor(Color(red: 237/255, green: 106/255, blue: 90/255))
                             Text("1  Garlic Mashed Potato")
                                 .strikethrough()
                             HStack {
@@ -197,11 +198,12 @@ struct OrderView: View {
                     
                     ZStack(alignment: .top) {
                         RoundedRectangle(cornerRadius: 25)
-                            .strokeBorder(.black, lineWidth: 2)
+                            .strokeBorder(Color(red: 237/255, green: 106/255, blue: 90/255), lineWidth: 2)
                             .frame(width: 450, height: 340)
                         VStack(alignment: .leading) {
                             Text("Table 12")
                                 .fontWeight(.bold)
+                                .foregroundColor(Color(red: 237/255, green: 106/255, blue: 90/255))
                                 .font(.system(size: 50))
                                 .padding(.bottom, 10)
                                 .padding(.leading, 60)
@@ -244,7 +246,7 @@ struct OrderView: View {
                     VStack {
                         Image(systemName: "plus.square.fill")
                             .font(.system(size: 100))
-                            .foregroundColor(Color.blue)
+                            .foregroundColor(Color(red: 32/255, green: 30/255, blue: 80/255))
                         Text("New Order")
                             .font(Font.custom("DIN Bold", size: 80))
                             .foregroundColor(Color.white)
@@ -253,7 +255,7 @@ struct OrderView: View {
                     }
                 }.navigationBarHidden(true)
                     .frame(maxWidth: 300, maxHeight: .infinity)
-                    .background(Color(red: 246/255, green: 188/255, blue: 71/255))
+                    .background(Color(red: 237/255, green: 106/255, blue: 90/255))
                 
                 
                 

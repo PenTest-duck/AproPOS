@@ -306,7 +306,7 @@ struct NewOrderView: View {
                 
                 
             }.frame(maxWidth: 450, maxHeight: .infinity)
-            .background(Color(red: 245/255, green: 245/255, blue: 220/255))
+                .background(Color(red: 237/255, green: 106/255, blue: 90/255))
             .font(.system(size: 30))
             
         }.navigationBarBackButtonHidden(true)
