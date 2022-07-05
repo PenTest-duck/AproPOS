@@ -25,6 +25,8 @@ struct ImplementMenuView: View {
                         .stroke(Color.black, lineWidth: 1)
                 )
             
+            ImagePicker(sourceType: .photoLibrary, selectedImage: $menuVM.menuItemImageInput)
+            
             Button(action: {
                 menuVM.menuItemPriceInput = 4.50
                 menuVM.menuItemEstimatedServingTimeInput = 25
@@ -41,9 +43,21 @@ struct ImplementMenuView: View {
             }
             
             Button(action: {
+                menuVM.editMenuItem()
+            }) {
+                Text("Edit menu item")
+            }
+            
+            Button(action: {
                 menuVM.checkUnavailableMenuItems()
             }) {
                 Text("Check Unavailable")
+            }
+            
+            Button(action: {
+                menuVM.removeMenuItem()
+            }) {
+                Text("Remove menu item")
             }
         }
         .onAppear {

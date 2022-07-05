@@ -133,12 +133,10 @@ class OrderRepository: ObservableObject {
     }
     
     func removeOrder(tableNumber: String) { // TODO: ingredients should be replaced?
-        db.collection("orders").document(tableNumber).delete() { err in // function doesn't throw?
+        db.collection("orders").document(tableNumber).delete() { err in
             if let err = err {
-                //return err
                 print("Error removing document: \(err)")
             } else {
-                //return "success"
                 print("Document successfully removed!")
             }
         }

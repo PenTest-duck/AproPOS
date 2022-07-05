@@ -45,6 +45,12 @@ struct ImplementOrderView: View {
             }) {
                 Text("Remove Order")
             }
+            
+            Button(action: {
+                orderVM.editOrder()
+            }) {
+                Text("Edit Order")
+            }
         }
         .onAppear {
             orderVM.getOrders()

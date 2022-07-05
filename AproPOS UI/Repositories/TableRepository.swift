@@ -51,12 +51,10 @@ class TableRepository: ObservableObject { // for the table view and status etc
     }
 
     func removeTable(tableNumber: String) {
-        db.collection("tables").document(tableNumber).delete() { err in // function doesn't throw?
+        db.collection("tables").document(tableNumber).delete() { err in
             if let err = err {
-                //return err
                 print("Error removing document: \(err)")
             } else {
-                //return "success"
                 print("Document successfully removed!")
             }
         }

@@ -23,6 +23,26 @@ struct ImplementTableView: View {
                         .stroke(Color.black, lineWidth: 1)
                 )
             
+            TextField(" Seats", value: $tableVM.seatsInput, formatter: NumberFormatter())
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .frame(width: 300)
+                .font(.system(size: 40))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.black, lineWidth: 1)
+                )
+            
+            TextField(" Table Status", text: $tableVM.statusInput)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .frame(width: 300)
+                .font(.system(size: 40))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.black, lineWidth: 1)
+                )
+            
             Button(action: {
                 tableVM.seatsInput = 4
                 tableVM.addTable()
@@ -40,6 +60,12 @@ struct ImplementTableView: View {
                 tableVM.removeTable()
             }) {
                 Text("Remove Table")
+            }
+            
+            Button(action: {
+                tableVM.editTable()
+            }) {
+                Text("Edit Table")
             }
         }
         .onAppear {

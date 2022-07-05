@@ -14,10 +14,8 @@ import UIKit // for UIImage
 
 
 class UserRepository: ObservableObject {
-    //@Published var createAccountSuccess = false
-    //@Published var createAccountError = "" // Contains create account error message
-    
     private let db = Firestore.firestore()
+    var users = [UserModel]()
     
     func addUser(user: UserModel) -> String {
         let docRef = db.collection("users").document(user.id!)
@@ -27,6 +25,42 @@ class UserRepository: ObservableObject {
             return "success"
         } catch {
             return error.localizedDescription
+        }
+    }
+    
+    func fetchUsers(completion: @escaping ([UserModel]) -> Void) {
+        db.collection("users").addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            self.users = documents.map { queryDocumentSnapshot -> UserModel in
+                let data = queryDocumentSnapshot.data()
+                
+                let id = queryDocumentSnapshot.documentID
+                let firstName = data["firstName"] as? String ?? ""
+                let lastName = data["lastName"] as? String ?? ""
+                let role = data["role"] as? String ?? "staff"
+                let wage = data["wage"] as? Double ?? 0.00
+                let phone = data["phone"] as? String ?? ""
+                let comment = data["comment"] as? String ?? ""
+
+                return UserModel(id: id, firstName: firstName, lastName: lastName, role: role, wage: Decimal(wage), phone: phone, comment: comment)
+            }
+            
+            print(self.users)
+            completion(self.users)
+        }
+    }
+    
+    func removeUser(email: String) {
+        db.collection("users").document(email).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
         }
     }
 }

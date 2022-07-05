@@ -35,6 +35,8 @@
 		403BE4E528745313005A1C54 /* MenuRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E428745313005A1C54 /* MenuRepository.swift */; };
 		403BE4E72874534C005A1C54 /* OrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E62874534C005A1C54 /* OrderRepository.swift */; };
 		403BE4E92874547F005A1C54 /* BillingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E82874547F005A1C54 /* BillingRepository.swift */; };
+		403BE4EB28745E29005A1C54 /* StaffViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4EA28745E29005A1C54 /* StaffViewModel.swift */; };
+		403BE4ED28748AA4005A1C54 /* ImplementStaffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4EC28748AA4005A1C54 /* ImplementStaffView.swift */; };
 		4065B3FD27C8A54B00B1D55A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */; };
 		406BFEBE2836F7E700FEA7B9 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406BFEBD2836F7E700FEA7B9 /* ForgotPasswordView.swift */; };
 		407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */; };
@@ -86,6 +88,8 @@
 		403BE4E428745313005A1C54 /* MenuRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRepository.swift; sourceTree = "<group>"; };
 		403BE4E62874534C005A1C54 /* OrderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRepository.swift; sourceTree = "<group>"; };
 		403BE4E82874547F005A1C54 /* BillingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingRepository.swift; sourceTree = "<group>"; };
+		403BE4EA28745E29005A1C54 /* StaffViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffViewModel.swift; sourceTree = "<group>"; };
+		403BE4EC28748AA4005A1C54 /* ImplementStaffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementStaffView.swift; sourceTree = "<group>"; };
 		4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		406BFEBD2836F7E700FEA7B9 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementOrderView.swift; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 				401CDE5928714DCD00DCA698 /* ImplementInventoryView.swift */,
 				4029861727C7AF8F007A70C2 /* AnalyticsView.swift */,
 				4038921D27E0923500B9FDFB /* StaffView.swift */,
+				403BE4EC28748AA4005A1C54 /* ImplementStaffView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 				401CDE5728714B3400DCA698 /* InventoryViewModel.swift */,
 				40E7A08B2863D11100871A48 /* BillingViewModel.swift */,
 				401CDE5D2871B8FF00DCA698 /* TableViewModel.swift */,
+				403BE4EA28745E29005A1C54 /* StaffViewModel.swift */,
 				401CDE5F287336DB00DCA698 /* AnalyticsViewModel.swift */,
 			);
 			path = ViewModels;
@@ -385,6 +391,7 @@
 				403BE4E128745264005A1C54 /* TableRepository.swift in Sources */,
 				4029861A27C7AF9D007A70C2 /* InventoryView.swift in Sources */,
 				40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */,
+				403BE4EB28745E29005A1C54 /* StaffViewModel.swift in Sources */,
 				409B2077282E6FAD0014CB54 /* AuthViewModel.swift in Sources */,
 				401CDE5628713EE200DCA698 /* IngredientModel.swift in Sources */,
 				4029861227C7AF41007A70C2 /* ReservationView.swift in Sources */,
@@ -404,6 +411,7 @@
 				401866F4283CFDFF0046BFBC /* MenuItemModel.swift in Sources */,
 				409B2079282E72950014CB54 /* CreateAccountView.swift in Sources */,
 				4038921E27E0923500B9FDFB /* StaffView.swift in Sources */,
+				403BE4ED28748AA4005A1C54 /* ImplementStaffView.swift in Sources */,
 				403BE4E72874534C005A1C54 /* OrderRepository.swift in Sources */,
 				401CDE60287336DC00DCA698 /* AnalyticsViewModel.swift in Sources */,
 				403BE4E92874547F005A1C54 /* BillingRepository.swift in Sources */,

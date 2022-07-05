@@ -46,14 +46,19 @@ final class OrderViewModel: ObservableObject {
         orderRepository.removeOrder(tableNumber: tableNumberInput)
     }
     
-    func editOrder() { 
-        if tableNumberInput == "0" {
-            message = "Invalid table number"
-        } else if orders.firstIndex(where: { $0.id == tableNumberInput }) == nil {            // orders needs to update beforehand
-            message = "Order does not exist"
-        } else {
-            orderRepository.editOrder(id: tableNumberInput, newMenuItems: menuItemsInput)
+    func editOrder() {
+        guard let originalOrder = orders.first(where: { $0.id == tableNumberInput }) else {
+            print("Order doesn't exist")
+            return
         }
+        
+        var originalMenuItems: [String: Int] = [:]
+        for menuItem in originalOrder.menuItems {
+            originalMenuItems[menuItem.name] = menuItem.quantity
+        }
+        let editedMenuItems = menuItemsInput == [:] ? originalMenuItems : menuItemsInput
+        
+        orderRepository.addOrder(id: tableNumberInput, menuItems: editedMenuItems)
     }
     
     func changeOrderStatus(tableNumber: String, status: String) {

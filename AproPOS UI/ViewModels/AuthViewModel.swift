@@ -79,7 +79,7 @@ final class AuthViewModel: ObservableObject {
         }
         
         // Create new Firestore document for user
-        let newUser = UserModel(email: newEmail, firstName: firstName, lastName: lastName, role: "staff")
+        let newUser = UserModel(id: newEmail, firstName: firstName, lastName: lastName)
         let createUserResult = userRepository.addUser(user: newUser)
         
         if createUserResult == "success" {

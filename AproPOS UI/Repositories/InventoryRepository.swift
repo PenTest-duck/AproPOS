@@ -64,14 +64,14 @@ class InventoryRepository: ObservableObject {
         }
     }
     
-    func addIngredient(ingredient: IngredientModel) -> String {
+    func addIngredient(ingredient: IngredientModel) {
         let docRef = db.collection("inventory").document(ingredient.id!)
         
         do {
             try docRef.setData(from: ingredient)
-            return "success"
+            print("success")
         } catch {
-            return error.localizedDescription
+            print(error.localizedDescription)
         }
     }
     
@@ -80,12 +80,10 @@ class InventoryRepository: ObservableObject {
     }
     
     func removeIngredient(name: String) {
-        db.collection("inventory").document(name).delete() { err in // function doesn't throw?
+        db.collection("inventory").document(name).delete() { err in
             if let err = err {
-                //return err
                 print("Error removing document: \(err)")
             } else {
-                //return "success"
                 print("Document successfully removed!")
             }
         }

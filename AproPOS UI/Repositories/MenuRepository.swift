@@ -29,7 +29,6 @@ class MenuRepository: ObservableObject {
                 let data = queryDocumentSnapshot.data()
                 
                 let id = queryDocumentSnapshot.documentID
-                //let price = data["price"] as? Decimal ?? 0.00
                 let price = data["price"] as? Double ?? 0.00
                 let estimatedServingTime = data["estimatedServingTime"] as? Int ?? 0
                 let warnings = data["warnings"] as? [String] ?? []
@@ -47,14 +46,14 @@ class MenuRepository: ObservableObject {
         }
     }
     
-    func addMenuItem(menuItem: MenuItemModel) -> String {
+    func addMenuItem(menuItem: MenuItemModel) {
         let docRef = db.collection("menu").document(menuItem.id!)
         
         do {
             try docRef.setData(from: menuItem)
-            return "success"
+            print("success")
         } catch {
-            return error.localizedDescription
+            print(error.localizedDescription)
         }
     }
     
@@ -104,12 +103,10 @@ class MenuRepository: ObservableObject {
     }
     
     func removeMenuItem(name: String) {
-        db.collection("menu").document(name).delete() { err in // function doesn't throw?
+        db.collection("menu").document(name).delete() { err in
             if let err = err {
-                //return err
                 print("Error removing document: \(err)")
             } else {
-                //return "success"
                 print("Document successfully removed!")
             }
         }

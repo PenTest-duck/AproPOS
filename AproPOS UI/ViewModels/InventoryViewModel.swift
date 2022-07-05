@@ -13,9 +13,9 @@ final class InventoryViewModel: ObservableObject {
     @Published var inventoryRepository = InventoryRepository()
     
     @Published var message = ""
-    
+
     @Published var ingredientNameInput: String = ""
-    @Published var ingredientUnitInput: String = ""
+    @Published var ingredientUnitsInput: String = ""
     @Published var ingredientCurrentStockInput: Decimal = 0
     @Published var ingredientMinimumThresholdInput: Decimal = 0
     @Published var ingredientCostPerUnitInput: Decimal = 0.00
@@ -28,9 +28,26 @@ final class InventoryViewModel: ObservableObject {
         } else if inventory.firstIndex(where: { $0.id == ingredientNameInput }) != nil {
             message = "Ingredient already exists in inventory"
         } else {
-            let newIngredient = IngredientModel(id: ingredientNameInput, units: ingredientUnitInput, currentStock: ingredientCurrentStockInput, minimumThreshold: ingredientMinimumThresholdInput, costPerUnit: ingredientCostPerUnitInput, warnings: ingredientWarningsInput, comment: ingredientCommentInput)
-            message = inventoryRepository.addIngredient(ingredient: newIngredient)
+            let newIngredient = IngredientModel(id: ingredientNameInput, units: ingredientUnitsInput, currentStock: ingredientCurrentStockInput, minimumThreshold: ingredientMinimumThresholdInput, costPerUnit: ingredientCostPerUnitInput, warnings: ingredientWarningsInput, comment: ingredientCommentInput)
+            inventoryRepository.addIngredient(ingredient: newIngredient)
         }
+    }
+    
+    func editIngredient() {
+        guard let originalIngredient = inventory.first(where: { $0.id == ingredientNameInput }) else {
+            print("Ingredient doesn't exist")
+            return
+        }
+        
+        let editedUnits = ingredientUnitsInput == "" ? originalIngredient.units : ingredientUnitsInput
+        let editedCurrentStock = ingredientCurrentStockInput == 0 ? originalIngredient.currentStock : ingredientCurrentStockInput
+        let editedMinimumThreshold = ingredientMinimumThresholdInput == 0 ? originalIngredient.minimumThreshold : ingredientMinimumThresholdInput
+        let editedCostPerUnit = ingredientCostPerUnitInput == 0 ? originalIngredient.costPerUnit : ingredientCostPerUnitInput
+        let editedWarnings = ingredientWarningsInput == [] ? originalIngredient.warnings : ingredientWarningsInput
+        let editedComment = ingredientCommentInput == "" ? originalIngredient.comment : ingredientCommentInput
+        let editedIngredient = IngredientModel(id: ingredientNameInput, units: editedUnits, currentStock: editedCurrentStock, minimumThreshold: editedMinimumThreshold, costPerUnit: editedCostPerUnit, warnings: editedWarnings, comment: editedComment)
+        
+        inventoryRepository.addIngredient(ingredient: editedIngredient)
     }
     
     func getInventory() {

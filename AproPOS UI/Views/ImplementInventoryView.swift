@@ -25,6 +25,16 @@ struct ImplementInventoryView: View {
                         .stroke(Color.black, lineWidth: 1)
                 )
             
+            TextField(" Units", text: $inventoryVM.ingredientUnitsInput)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .frame(width: 300)
+                .font(.system(size: 40))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.black, lineWidth: 1)
+                )
+            
             Button(action: {
                 inventoryVM.addIngredient()
             }) {
@@ -41,6 +51,12 @@ struct ImplementInventoryView: View {
                 inventoryVM.removeIngredient()
             }) {
                 Text("Remove")
+            }
+            
+            Button(action: {
+                inventoryVM.editIngredient()
+            }) {
+                Text("Edit")
             }
         }
         .onAppear {

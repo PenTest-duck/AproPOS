@@ -34,8 +34,25 @@ final class MenuViewModel: ObservableObject {
             message = "Menu item already exists"
         } else {
             let newMenuItem = MenuItemModel(id: menuItemNameInput, price: menuItemPriceInput, estimatedServingTime: menuItemEstimatedServingTimeInput, warnings: menuItemWarningsInput, ingredients: menuItemIngredientsInput, image: menuItemImageInput)
-            message = menuRepository.addMenuItem(menuItem: newMenuItem)
+            menuRepository.addMenuItem(menuItem: newMenuItem)
         }
+    }
+    
+    func editMenuItem() {
+        guard let originalMenuItem = menu.first(where: { $0.id == menuItemNameInput }) else {
+            print("Menu item doesn't exist")
+            return
+        }
+        
+        let editedMenuItemPrice = menuItemPriceInput == 0.00 ? originalMenuItem.price : menuItemPriceInput
+        let editedMenuItemEstimatedServingTime = menuItemEstimatedServingTimeInput == 0 ? originalMenuItem.estimatedServingTime : menuItemEstimatedServingTimeInput
+        let editedWarnings = menuItemWarningsInput == [] ? originalMenuItem.warnings : menuItemWarningsInput
+        let editedIngredients = menuItemIngredientsInput == [:] ? originalMenuItem.ingredients : menuItemIngredientsInput
+        let editedImage = menuItemImageInput == UIImage(named: "defaultMenuItemImage") ? UIImage(data: originalMenuItem.image)! : menuItemImageInput
+        
+        let editedMenuItem = MenuItemModel(id: menuItemNameInput, price: editedMenuItemPrice, estimatedServingTime: editedMenuItemEstimatedServingTime, warnings: editedWarnings, ingredients: editedIngredients, image: editedImage)
+        
+        menuRepository.addMenuItem(menuItem: editedMenuItem)
     }
     
     func getMenu() {
@@ -43,20 +60,7 @@ final class MenuViewModel: ObservableObject {
             self.menu = fetchedMenu
         }
     }
-    
-    func editMenuItem() { // should be the same logic as addMenuItem() without checking for already existing menu items
-        if menuItemNameInput == "" {
-            message = "Please enter a name"
-        } else if menuItemPriceInput == 0.00 {
-            message = "Please enter a price"
-        } else if menuItemEstimatedServingTimeInput == 0 {
-            message = "Please enter an estimated serving time"
-        } else {
-            let newMenuItem = MenuItemModel(id: menuItemNameInput, price: menuItemPriceInput, estimatedServingTime: menuItemEstimatedServingTimeInput, warnings: menuItemWarningsInput, ingredients: menuItemIngredientsInput, image: menuItemImageInput)
-            message = menuRepository.addMenuItem(menuItem: newMenuItem)
-        }
-    }
-    
+
     func removeMenuItem() {
         menuRepository.removeMenuItem(name: menuItemNameInput)
     }
