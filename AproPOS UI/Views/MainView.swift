@@ -37,8 +37,8 @@ struct MainView: View {
                 }
                 
                 HStack (spacing: 0) {
-                    NavigationLink(destination: ReservationView()) {
-                        Text("Reservations")
+                    NavigationLink(destination: TableView()) {
+                        Text("Tables")
                             .font(Font.custom("DIN Bold", size: 100))
                             .foregroundColor(Color.white)
                             .navigationBarTitle("")

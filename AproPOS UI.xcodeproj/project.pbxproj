@@ -39,6 +39,7 @@
 		403BE4ED28748AA4005A1C54 /* ImplementStaffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4EC28748AA4005A1C54 /* ImplementStaffView.swift */; };
 		403BE4F0287549C9005A1C54 /* IndividualTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4EF287549C9005A1C54 /* IndividualTableView.swift */; };
 		403BE4F2287567B4005A1C54 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4F1287567B4005A1C54 /* TableView.swift */; };
+		403BE4F42875A3B1005A1C54 /* DropDownInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4F32875A3B1005A1C54 /* DropDownInputView.swift */; };
 		4065B3FD27C8A54B00B1D55A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */; };
 		406BFEBE2836F7E700FEA7B9 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406BFEBD2836F7E700FEA7B9 /* ForgotPasswordView.swift */; };
 		407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */; };
@@ -94,6 +95,7 @@
 		403BE4EC28748AA4005A1C54 /* ImplementStaffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementStaffView.swift; sourceTree = "<group>"; };
 		403BE4EF287549C9005A1C54 /* IndividualTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualTableView.swift; sourceTree = "<group>"; };
 		403BE4F1287567B4005A1C54 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		403BE4F32875A3B1005A1C54 /* DropDownInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownInputView.swift; sourceTree = "<group>"; };
 		4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		406BFEBD2836F7E700FEA7B9 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementOrderView.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				403BE4EF287549C9005A1C54 /* IndividualTableView.swift */,
+				403BE4F32875A3B1005A1C54 /* DropDownInputView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				403BE4E92874547F005A1C54 /* BillingRepository.swift in Sources */,
 				403BE4F2287567B4005A1C54 /* TableView.swift in Sources */,
 				403BE4E528745313005A1C54 /* MenuRepository.swift in Sources */,
+				403BE4F42875A3B1005A1C54 /* DropDownInputView.swift in Sources */,
 				402985FA27C7ADDA007A70C2 /* AproPOS_UIApp.swift in Sources */,
 				401CDE5A28714DCD00DCA698 /* ImplementInventoryView.swift in Sources */,
 				406BFEBE2836F7E700FEA7B9 /* ForgotPasswordView.swift in Sources */,
