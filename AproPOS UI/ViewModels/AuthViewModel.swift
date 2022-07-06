@@ -45,6 +45,16 @@ final class AuthViewModel: ObservableObject {
         }
     }
     
+    // Log out of current user
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            print("Logged out")
+        } catch {
+            print("Failed to logout")
+        }
+    }
+    
     // Create new user account
     func createAccount() {
         

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 final class StaffViewModel: ObservableObject {
     @Published var users = [UserModel]()
@@ -22,10 +23,13 @@ final class StaffViewModel: ObservableObject {
     func getUsers() {
         userRepository.fetchUsers() { (fetchedUsers) -> Void in
             self.users = fetchedUsers
+            if !self.isUserAllowedInView(view: "ManagementView") {
+                print("User not allowed in view")
+            }
         }
     }
     
-    /*func editUser() {
+    func editUser() {
         guard let originalUser = users.first(where: { $0.id == userEmailInput }) else {
             print("User doesn't exist")
             return
@@ -41,12 +45,15 @@ final class StaffViewModel: ObservableObject {
         let editedUser = UserModel(id: userEmailInput, firstName: editedFirstName, lastName: editedLastName, role: editedRole, wage: editedWage, phone: editedPhone, comment: editedComment)
         
         _ = userRepository.addUser(user: editedUser)
-    }*/
-    
-    // TODO: Staff RBAC
+    }
     
     func removeUser(email: String) {
-        // TODO: delete from FirebaseAuth
+        // TODO: delete from FirebaseAuth (owner)
         userRepository.removeUser(email: email)
+    }
+    
+    // TODO: Staff RBAC
+    func isUserAllowedInView(view: String) -> Bool {
+        return userRepository.staffRBAC(email: Auth.auth().currentUser!.email!, view: view)
     }
 }

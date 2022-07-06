@@ -63,4 +63,23 @@ class UserRepository: ObservableObject {
             }
         }
     }
+    
+    func staffRBAC(email: String, view: String) -> Bool {
+        let staffDisallowed = ["ManagementView", "MenuView", "InventoryView", "StaffView", "AnalyticsView"]
+        let managerDisallowed = ["StaffView", "AnalyticsView"]
+        
+        let user = users.first(where: { $0.id == email } )
+        var isAllowed: Bool
+        
+        switch user!.role {
+            case "staff":
+                isAllowed = staffDisallowed.contains(view) ? false : true
+            case "manager":
+                isAllowed = managerDisallowed.contains(view) ? false : true
+            default: // owner
+                isAllowed = true
+        }
+        
+        return isAllowed
+    }
 }

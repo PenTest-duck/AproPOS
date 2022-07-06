@@ -25,6 +25,7 @@ struct AproPOS_UIApp: App {
             //ImplementMenuView()
             //ImplementInventoryView()
             //ImplementTableView()
+            //ImplementStaffView()
         }
     }
 }

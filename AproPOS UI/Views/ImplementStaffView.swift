@@ -23,6 +23,26 @@ struct ImplementStaffView: View {
                         .stroke(Color.black, lineWidth: 1)
                 )
             
+            TextField(" First name", text: $staffVM.userFirstNameInput)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .frame(width: 300)
+                .font(.system(size: 40))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.black, lineWidth: 1)
+                )
+            
+            TextField(" Last name", text: $staffVM.userLastNameInput)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .frame(width: 300)
+                .font(.system(size: 40))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.black, lineWidth: 1)
+                )
+            
             Button(action: {
                 staffVM.editUser()
             }) {

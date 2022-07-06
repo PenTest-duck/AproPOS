@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     
+    @StateObject private var staffVM = StaffViewModel()
+    
     var body: some View {
         NavigationView {
                     VStack (spacing: 0) {
@@ -56,6 +58,9 @@ struct MainView: View {
             }.ignoresSafeArea()
         }.navigationViewStyle(StackNavigationViewStyle())
             .navigationBarHidden(true)
+            .onAppear {
+                staffVM.getUsers()
+            }
     }
 }
 

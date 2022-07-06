@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ImplementOrderView: View {
     @StateObject private var orderVM = OrderViewModel()
+    @StateObject private var authVM = AuthViewModel()
     
     var body: some View {
         VStack {
@@ -50,6 +51,12 @@ struct ImplementOrderView: View {
                 orderVM.editOrder()
             }) {
                 Text("Edit Order")
+            }
+            
+            Button(action: {
+                authVM.logout()
+            }) {
+                Text("Logout")
             }
         }
         .onAppear {

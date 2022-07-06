@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 struct OrderModel: Identifiable, Codable {
     @DocumentID public var id: String? // table number
     var orderTime: Date
-    var status: String // preparing, served, paid
+    var status: String // preparing, served
     var menuItems: [OrderedMenuItem]
     var subtotalPrice: Decimal
     
