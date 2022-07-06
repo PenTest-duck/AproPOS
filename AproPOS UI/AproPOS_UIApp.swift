@@ -19,11 +19,12 @@ struct AproPOS_UIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            //LoginView()
             //ImplementOrderView()
             //ImplementBillingView()
             //ImplementMenuView()
             //ImplementInventoryView()
+            TableView()
             //ImplementTableView()
             //ImplementStaffView()
         }

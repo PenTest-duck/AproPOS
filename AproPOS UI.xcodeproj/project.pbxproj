@@ -37,6 +37,8 @@
 		403BE4E92874547F005A1C54 /* BillingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E82874547F005A1C54 /* BillingRepository.swift */; };
 		403BE4EB28745E29005A1C54 /* StaffViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4EA28745E29005A1C54 /* StaffViewModel.swift */; };
 		403BE4ED28748AA4005A1C54 /* ImplementStaffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4EC28748AA4005A1C54 /* ImplementStaffView.swift */; };
+		403BE4F0287549C9005A1C54 /* IndividualTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4EF287549C9005A1C54 /* IndividualTableView.swift */; };
+		403BE4F2287567B4005A1C54 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4F1287567B4005A1C54 /* TableView.swift */; };
 		4065B3FD27C8A54B00B1D55A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */; };
 		406BFEBE2836F7E700FEA7B9 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406BFEBD2836F7E700FEA7B9 /* ForgotPasswordView.swift */; };
 		407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */; };
@@ -90,6 +92,8 @@
 		403BE4E82874547F005A1C54 /* BillingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingRepository.swift; sourceTree = "<group>"; };
 		403BE4EA28745E29005A1C54 /* StaffViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffViewModel.swift; sourceTree = "<group>"; };
 		403BE4EC28748AA4005A1C54 /* ImplementStaffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementStaffView.swift; sourceTree = "<group>"; };
+		403BE4EF287549C9005A1C54 /* IndividualTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualTableView.swift; sourceTree = "<group>"; };
+		403BE4F1287567B4005A1C54 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		406BFEBD2836F7E700FEA7B9 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementOrderView.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 				40D33A42282BD12100D34B95 /* GoogleService-Info.plist */,
 				402985F927C7ADDA007A70C2 /* AproPOS_UIApp.swift */,
 				406BFEBC2836F6F100FEA7B9 /* Views */,
+				403BE4EE28754931005A1C54 /* ComponentViews */,
 				409B207A282F6C730014CB54 /* ViewModels */,
 				407BCC3A282D0F8500F8D93E /* Models */,
 				401866EB283CEA100046BFBC /* Repositories */,
@@ -189,6 +194,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		403BE4EE28754931005A1C54 /* ComponentViews */ = {
+			isa = PBXGroup;
+			children = (
+				403BE4EF287549C9005A1C54 /* IndividualTableView.swift */,
+			);
+			path = ComponentViews;
+			sourceTree = "<group>";
+		};
 		406BFEBC2836F6F100FEA7B9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +216,7 @@
 				40DD9E6627D8CF2000610DB2 /* BillingView2.swift */,
 				401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */,
 				4029861127C7AF41007A70C2 /* ReservationView.swift */,
+				403BE4F1287567B4005A1C54 /* TableView.swift */,
 				5E32B4AC2873BEB700D60B4B /* ImplementTableView.swift */,
 				4016CAF327C8F27700A97867 /* ManagementView.swift */,
 				4029860D27C7AF1A007A70C2 /* MenuView.swift */,
@@ -386,6 +400,7 @@
 			files = (
 				4029860E27C7AF1A007A70C2 /* MenuView.swift in Sources */,
 				40E7A08C2863D11100871A48 /* BillingViewModel.swift in Sources */,
+				403BE4F0287549C9005A1C54 /* IndividualTableView.swift in Sources */,
 				407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */,
 				401CDE5E2871B8FF00DCA698 /* TableViewModel.swift in Sources */,
 				403BE4E128745264005A1C54 /* TableRepository.swift in Sources */,
@@ -415,6 +430,7 @@
 				403BE4E72874534C005A1C54 /* OrderRepository.swift in Sources */,
 				401CDE60287336DC00DCA698 /* AnalyticsViewModel.swift in Sources */,
 				403BE4E92874547F005A1C54 /* BillingRepository.swift in Sources */,
+				403BE4F2287567B4005A1C54 /* TableView.swift in Sources */,
 				403BE4E528745313005A1C54 /* MenuRepository.swift in Sources */,
 				402985FA27C7ADDA007A70C2 /* AproPOS_UIApp.swift in Sources */,
 				401CDE5A28714DCD00DCA698 /* ImplementInventoryView.swift in Sources */,

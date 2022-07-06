@@ -42,15 +42,16 @@ struct ImplementTableView: View {
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(Color.black, lineWidth: 1)
                 )
+
             TextField(" New Table Number", text: $tableVM.newTableNumberInput)
-                            .disableAutocorrection(true)
-                            .autocapitalization(.none)
-                            .frame(width: 300)
-                            .font(.system(size: 40))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .stroke(Color.black, lineWidth: 1)
-                            )
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .frame(width: 300)
+                .font(.system(size: 40))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.black, lineWidth: 1)
+                )
             
             Button(action: {
                 tableVM.seatsInput = 4
@@ -78,10 +79,10 @@ struct ImplementTableView: View {
             }
             
             Button(action: {
-                            tableVM.editTableNumber()
-                        }) {
-                            Text("Edit Table Number")
-                        }
+                tableVM.editTableNumber()
+            }) {
+                Text("Edit Table Number")
+            }
         }
         .onAppear {
             tableVM.getTables()

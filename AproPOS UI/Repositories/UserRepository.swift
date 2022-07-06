@@ -1,5 +1,5 @@
 //
-//  Repository.swift
+//  UserRepository.swift
 //  AproPOS UI
 //
 //  Created by Chris Yoo on 24/5/22.
