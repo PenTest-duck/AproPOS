@@ -18,9 +18,23 @@ struct IndividualTableView: View {
             RoundedRectangle(cornerRadius: 20)
                 .fill(tableVM.tableColor(status: table.status))
             
-            Text("Table \(table.id!)")
-                .font(.title)
-                .fontWeight(.bold)
+            VStack {
+                ZStack {
+                    HStack {
+                        Text("Table \(table.id!)")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    }
+                    
+                    HStack {
+                        Spacer()
+                        
+                        Text("\(table.seats)")
+                            .font(.title)
+                            .foregroundColor(Color(red: 230/255, green: 230/255, blue: 230/255))
+                    }.padding(.trailing, 25)
+                }
+            }
         }
     }
 }
@@ -30,6 +44,6 @@ struct IndividualTableView_Previews: PreviewProvider {
     
     static var previews: some View {
         IndividualTableView(table: sampleTable)
-            .frame(width: 200, height: 200)
+            .frame(width: 600, height: 40)
     }
 }

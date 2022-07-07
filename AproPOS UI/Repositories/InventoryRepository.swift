@@ -75,10 +75,6 @@ class InventoryRepository: ObservableObject {
         }
     }
     
-    func editIngredient(name: String) {
-        
-    }
-    
     func removeIngredient(name: String) {
         db.collection("inventory").document(name).delete() { err in
             if let err = err {

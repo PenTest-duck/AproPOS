@@ -7,10 +7,13 @@
 
 import Foundation
 import SwiftUI
+import grpc
 
 final class TableViewModel: ObservableObject {
     @Published var tables = [TableModel]()
     @Published var tableRepository = TableRepository()
+    
+    @Published var error: String = ""
     
     @Published var tableNumberInput: String = ""
     @Published var seatsInput: Int = 0
@@ -20,13 +23,22 @@ final class TableViewModel: ObservableObject {
     
     func getTables() {
         tableRepository.fetchTables() { (fetchedTables) -> Void in
-            self.tables = fetchedTables
+            self.tables = fetchedTables.sorted { (lhs: TableModel, rhs: TableModel) -> Bool in
+                return Int(lhs.id!)! < Int(rhs.id!)!
+            }
         }
     }
 
     func addTable() {
-        let newTable = TableModel(id: tableNumberInput, seats: seatsInput)
-        tableRepository.addTable(table: newTable)
+        if tableNumberInput.hasPrefix("0") || tableNumberInput == "" {
+            error = "Invalid table number"
+        } else if tables.firstIndex(where: { $0.id == tableNumberInput }) != nil {
+            error = "Table already exists"
+        } else {
+            let newTable = TableModel(id: tableNumberInput, seats: seatsInput)
+            tableRepository.addTable(table: newTable)
+            error = ""
+        }
     }
 
     func editTable() {
@@ -44,6 +56,11 @@ final class TableViewModel: ObservableObject {
     
     // TODO: editTableNumber()
     func editTableNumber() {
+        if newTableNumberInput.hasPrefix("0") || newTableNumberInput == "" {
+            error = "Invalid table number"
+        } else if tables.firstIndex(where: { $0.id == newTableNumberInput }) != nil {
+            error = "Table already exists"
+        } else {
             let existingTable = tables.first(where: { $0.id == tableNumberInput } )
 
             let existingSeats = existingTable!.seats
@@ -51,8 +68,10 @@ final class TableViewModel: ObservableObject {
 
             let editedTable = TableModel(id: newTableNumberInput, seats: existingSeats, status: existingStatus)
             tableRepository.addTable(table: editedTable)
-
+            
             tableRepository.removeTable(tableNumber: tableNumberInput)
+            error = ""
+        }
     }
     
     func removeTable() {

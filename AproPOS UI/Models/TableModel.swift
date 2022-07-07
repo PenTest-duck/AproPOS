@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct TableModel: Identifiable, Codable {
+struct TableModel: Identifiable, Codable, Equatable {
     @DocumentID public var id: String? // table number
     var seats: Int
     var status: String

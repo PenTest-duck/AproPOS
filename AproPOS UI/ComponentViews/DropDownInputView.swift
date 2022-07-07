@@ -51,7 +51,7 @@ struct Dropdown: View {
                 }
             }
         }
-        .frame(minHeight: CGFloat(options.count) * 30, maxHeight: 250)
+        .frame(minHeight: CGFloat(options.count) * 17, maxHeight: 250)
         .padding(.vertical, 5)
         .background(Color.white)
         .cornerRadius(5)
@@ -90,7 +90,7 @@ struct DropdownSelector: View {
         }
         .padding(.horizontal)
         .cornerRadius(5)
-        .frame(width: .infinity, height: self.buttonHeight)
+        .frame(width: nil, height: self.buttonHeight)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
                 .stroke(Color.gray, lineWidth: 1)
