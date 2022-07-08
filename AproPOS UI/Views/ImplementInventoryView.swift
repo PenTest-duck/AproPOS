@@ -13,9 +13,9 @@ struct ImplementInventoryView: View {
     
     var body: some View {
         VStack {
-            Text("Message: \(inventoryVM.message)")
+            Text("Message: \(inventoryVM.error)")
             
-            TextField(" Name", text: $inventoryVM.ingredientNameInput)
+            TextField(" Name", text: $inventoryVM.nameInput)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .frame(width: 300)
@@ -25,7 +25,7 @@ struct ImplementInventoryView: View {
                         .stroke(Color.black, lineWidth: 1)
                 )
             
-            TextField(" Units", text: $inventoryVM.ingredientUnitsInput)
+            TextField(" Units", text: $inventoryVM.unitsInput)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .frame(width: 300)

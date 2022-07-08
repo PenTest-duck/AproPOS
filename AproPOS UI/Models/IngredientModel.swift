@@ -8,13 +8,13 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct IngredientModel: Identifiable, Codable {
+struct IngredientModel: Identifiable, Codable, Equatable {
     @DocumentID public var id: String? // name
     var units: String
     var currentStock: Decimal
     var minimumThreshold: Decimal
     var costPerUnit: Decimal
-    var warnings: [String]
+    var warnings: [String] // 
     var comment: String
     var status: String // unavailable, low, available
     

@@ -15,7 +15,6 @@ struct TableView: View {
     @State private var addingTable: Bool = false
     @State private var confirmingDelete: Bool = false
     @State private var editingTableNumber: Bool = false
-    //@State private var error: String = ""
     
     static var uniqueKey: String {
         UUID().uuidString
@@ -222,7 +221,7 @@ struct TableView: View {
                             HStack {
                                 Spacer()
                                 
-                                Text("Remove table")
+                                Text("Remove Table")
                                     .fontWeight(.bold)
                                 
                                 Button(action: {
@@ -256,7 +255,7 @@ struct TableView: View {
                             }
                             
                         } else {
-                            Text("Select a Table")
+                            Text("Select a table")
                                 .font(Font.custom("DIN Bold", size: 60))
                         }
                         

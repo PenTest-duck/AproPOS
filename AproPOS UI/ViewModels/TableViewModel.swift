@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import SwiftUI
-import grpc
+import SwiftUI // for Color
 
 final class TableViewModel: ObservableObject {
     @Published var tables = [TableModel]()
@@ -50,7 +49,6 @@ final class TableViewModel: ObservableObject {
         let editedSeats = seatsInput == 0 ? originalTable.seats : seatsInput
         let editedStatus = statusInput == "" ? originalTable.status : statusInput
         let editedTable = TableModel(id: tableNumberInput, seats: editedSeats, status: editedStatus)
-        
         tableRepository.addTable(table: editedTable)
     }
     
