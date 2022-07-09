@@ -16,7 +16,7 @@ struct MenuView: View {
     @State private var addingMenuItem: Bool = false
     @State private var confirmingDelete: Bool = false
     @State private var editingMenuItemName: Bool = false
-    
+
     var body: some View {
         if !confirmingDelete && !editingMenuItemName {
             HStack (spacing: 0) {
@@ -167,6 +167,9 @@ struct MenuView: View {
                             // TODO: Warnings
                             
                             // TODO: Ingredients
+                            IngredientDropDownInputView(ingredients: menuVM.ingredientsInput)
+                                .padding(.horizontal, 20)
+                                .frame(height: 500)
                             
                             VStack {
                                 Text("Image")
@@ -265,6 +268,9 @@ struct MenuView: View {
                                 // TODO: Warnings
                                 
                                 // TODO: Ingredients
+                                IngredientDropDownInputView(ingredients: menuVM.ingredientsInput)
+                                    .padding(.horizontal, 20)
+                                    .frame(height: 500)
                                 
                                 VStack {
                                     Text("Image")

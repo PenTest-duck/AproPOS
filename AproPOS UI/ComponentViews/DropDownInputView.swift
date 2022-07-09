@@ -29,7 +29,7 @@ struct DropdownRow: View {
         }) {
             HStack {
                 Text(self.option.value)
-                    .font(.system(size: 30))
+                    .font(.system(size: 20))
                     .foregroundColor(Color.black)
                 Spacer()
             }
@@ -76,7 +76,7 @@ struct DropdownSelector: View {
         }) {
             HStack {
                 Text(selectedOption == nil ? placeholder : selectedOption!.value)
-                    .font(.system(size: 30))
+                    .font(.system(size: 20))
                     .foregroundColor(selectedOption == nil ? Color.gray: Color.black)
 
                 Spacer()

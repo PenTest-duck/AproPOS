@@ -115,7 +115,6 @@ final class InventoryViewModel: ObservableObject {
     }
     
     func unitsOf(name: String) -> String {
-        getInventory()
         let ingredient = inventory.first(where: { $0.id == name } )
         return ingredient?.units ?? ""
     }

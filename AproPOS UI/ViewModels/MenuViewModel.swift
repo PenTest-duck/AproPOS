@@ -24,6 +24,8 @@ final class MenuViewModel: ObservableObject {
     @Published var imageInput: UIImage = UIImage(named: "defaultMenuItemImage")!
     @Published var newNameInput: String = ""
     
+    @Published var ingredientQuantityInput: String = "0"
+    
     func validateInput(operation: String) {
         if operation == "add" && nameInput == "" {
             error = "Please enter a name"
