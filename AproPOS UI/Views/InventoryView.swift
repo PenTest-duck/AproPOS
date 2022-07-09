@@ -18,20 +18,6 @@ struct InventoryView: View {
     
     //@FocusState private var isFocused: Bool
     
-    static var uniqueKey: String {
-        UUID().uuidString
-    }
-
-    static let options: [DropdownOption] = [
-        DropdownOption(key: uniqueKey, value: "free"),
-        DropdownOption(key: uniqueKey, value: "yetToOrder"),
-        DropdownOption(key: uniqueKey, value: "ordered"),
-        DropdownOption(key: uniqueKey, value: "eating"),
-        DropdownOption(key: uniqueKey, value: "cleaning"),
-        DropdownOption(key: uniqueKey, value: "reserved"),
-        DropdownOption(key: uniqueKey, value: "unavailable")
-    ]
-    
     var body: some View {
         if !confirmingDelete && !editingIngredientName {
             HStack (spacing: 0) {

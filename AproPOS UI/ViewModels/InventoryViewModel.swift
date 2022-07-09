@@ -113,4 +113,10 @@ final class InventoryViewModel: ObservableObject {
             default: return Color.gray
         }
     }
+    
+    func unitsOf(name: String) -> String {
+        getInventory()
+        let ingredient = inventory.first(where: { $0.id == name } )
+        return ingredient?.units ?? ""
+    }
 }

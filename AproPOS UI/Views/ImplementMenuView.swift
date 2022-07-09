@@ -13,9 +13,9 @@ struct ImplementMenuView: View {
     
     var body: some View {
         VStack {
-            Text("Message: \(menuVM.message)")
+            Text("Message: \(menuVM.error)")
             
-            TextField(" Name", text: $menuVM.menuItemNameInput)
+            TextField(" Name", text: $menuVM.nameInput)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .frame(width: 300)
@@ -25,12 +25,12 @@ struct ImplementMenuView: View {
                         .stroke(Color.black, lineWidth: 1)
                 )
             
-            ImagePicker(sourceType: .photoLibrary, selectedImage: $menuVM.menuItemImageInput)
+            ImagePicker(sourceType: .photoLibrary, selectedImage: $menuVM.imageInput)
             
             Button(action: {
-                menuVM.menuItemPriceInput = 4.50
-                menuVM.menuItemEstimatedServingTimeInput = 25
-                menuVM.menuItemIngredientsInput = ["eggs" : 5, "bread" : 2]
+                menuVM.priceInput = "4.50"
+                menuVM.ESTInput = "25"
+                menuVM.ingredientsInput = ["eggs" : 5, "bread" : 2]
                 menuVM.addMenuItem()
             }) {
                 Text("Add Menu Item")

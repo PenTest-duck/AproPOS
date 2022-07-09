@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestoreSwift
 import UIKit // for UIImage
 
-struct MenuItemModel: Identifiable, Codable {
+struct MenuItemModel: Identifiable, Codable, Equatable {
     @DocumentID public var id: String?
     //var name: String
     var price: Decimal

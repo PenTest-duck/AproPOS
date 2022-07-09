@@ -14,45 +14,77 @@ final class MenuViewModel: ObservableObject {
     @Published var menu = [MenuItemModel]()
     @Published var menuRepository = MenuRepository()
     
-    @Published var message = ""
+    @Published var error = ""
     
-    @Published var menuItemNameInput: String = ""
-    @Published var menuItemPriceInput: Decimal = 0.00
-    @Published var menuItemEstimatedServingTimeInput: Int = 0
-    @Published var menuItemWarningsInput: [String] = []
-    @Published var menuItemIngredientsInput: [String: Int] = [:]
-    @Published var menuItemImageInput: UIImage = UIImage(named: "defaultMenuItemImage")!
+    @Published var nameInput: String = ""
+    @Published var priceInput: String = "0.00" // Decimal = 0.00
+    @Published var ESTInput: String = "0" // Int = 0
+    @Published var warningsInput: [String] = []
+    @Published var ingredientsInput: [String: Int] = [:]
+    @Published var imageInput: UIImage = UIImage(named: "defaultMenuItemImage")!
+    @Published var newNameInput: String = ""
+    
+    func validateInput(operation: String) {
+        if operation == "add" && nameInput == "" {
+            error = "Please enter a name"
+        } else if operation == "add" && menu.firstIndex(where: { $0.id == nameInput }) != nil {
+            error = "Item already exists in menu"
+        } else if priceInput.hasPrefix(".") || (priceInput.filter { $0 == "." }).count >= 2 {
+            error = "Invalid price"
+        } else if priceInput[(priceInput.firstIndex(of: ".") ?? priceInput.index(priceInput.endIndex, offsetBy: -1))...].count > 3 {
+            error = "Currency allows max. 2 decimal places"
+        }
+    }
     
     func addMenuItem() { 
-        if menuItemNameInput == "" {
-            message = "Please enter a name"
-        } else if menuItemPriceInput == 0.00 {
-            message = "Please enter a price"
-        } else if menuItemEstimatedServingTimeInput == 0 {
-            message = "Please enter an estimated serving time"
-        } else if menu.firstIndex(where: { $0.id == menuItemNameInput }) != nil {
-            message = "Menu item already exists"
-        } else {
-            let newMenuItem = MenuItemModel(id: menuItemNameInput, price: menuItemPriceInput, estimatedServingTime: menuItemEstimatedServingTimeInput, warnings: menuItemWarningsInput, ingredients: menuItemIngredientsInput, image: menuItemImageInput)
+        validateInput(operation: "add")
+        if error == "" {
+            let newMenuItem = MenuItemModel(id: nameInput, price: Decimal(Double(priceInput)!), estimatedServingTime: Int(ESTInput)!, warnings: warningsInput, ingredients: ingredientsInput, image: imageInput)
             menuRepository.addMenuItem(menuItem: newMenuItem)
+            error = ""
         }
     }
     
     func editMenuItem() {
-        guard let originalMenuItem = menu.first(where: { $0.id == menuItemNameInput }) else {
+        guard let originalMenuItem = menu.first(where: { $0.id == nameInput }) else {
             print("Menu item doesn't exist")
             return
         }
         
-        let editedMenuItemPrice = menuItemPriceInput == 0.00 ? originalMenuItem.price : menuItemPriceInput
-        let editedMenuItemEstimatedServingTime = menuItemEstimatedServingTimeInput == 0 ? originalMenuItem.estimatedServingTime : menuItemEstimatedServingTimeInput
-        let editedWarnings = menuItemWarningsInput == [] ? originalMenuItem.warnings : menuItemWarningsInput
-        let editedIngredients = menuItemIngredientsInput == [:] ? originalMenuItem.ingredients : menuItemIngredientsInput
-        let editedImage = menuItemImageInput == UIImage(named: "defaultMenuItemImage") ? UIImage(data: originalMenuItem.image)! : menuItemImageInput
-        
-        let editedMenuItem = MenuItemModel(id: menuItemNameInput, price: editedMenuItemPrice, estimatedServingTime: editedMenuItemEstimatedServingTime, warnings: editedWarnings, ingredients: editedIngredients, image: editedImage)
-        
-        menuRepository.addMenuItem(menuItem: editedMenuItem)
+        validateInput(operation: "edit")
+        if error == "" {
+            let editedPrice = priceInput == "0.00" ? originalMenuItem.price : Decimal(Double(priceInput)!)
+            let editedEST = ESTInput == "0" ? originalMenuItem.estimatedServingTime : Int(ESTInput)!
+            let editedWarnings = warningsInput == [] ? originalMenuItem.warnings : warningsInput
+            let editedIngredients = ingredientsInput == [:] ? originalMenuItem.ingredients : ingredientsInput
+            let editedImage = imageInput == UIImage(named: "defaultMenuItemImage") ? UIImage(data: originalMenuItem.image)! : imageInput
+            
+            let editedMenuItem = MenuItemModel(id: nameInput, price: editedPrice, estimatedServingTime: editedEST, warnings: editedWarnings, ingredients: editedIngredients, image: editedImage)
+            
+            menuRepository.addMenuItem(menuItem: editedMenuItem)
+            error = ""
+        }
+    }
+    
+    func editMenuItemName() {
+        if menu.firstIndex(where: { $0.id == newNameInput }) != nil {
+            error = "Menu item already exists"
+        } else {
+            let existingMenuItem = menu.first(where: { $0.id == nameInput } )
+
+            let existingPrice = existingMenuItem!.price
+            let existingEST = existingMenuItem!.estimatedServingTime
+            let existingWarnings = existingMenuItem!.warnings
+            let existingIngredients = existingMenuItem!.ingredients
+            let existingImage = UIImage(data: existingMenuItem!.image)!
+            let existingStatus = existingMenuItem!.status
+
+            let editedMenuItem = MenuItemModel(id: newNameInput, price: existingPrice, estimatedServingTime: existingEST, warnings: existingWarnings, ingredients: existingIngredients, image: existingImage, status: existingStatus)
+            menuRepository.addMenuItem(menuItem: editedMenuItem)
+            
+            menuRepository.removeMenuItem(name: nameInput)
+            error = ""
+        }
     }
     
     func getMenu() {
@@ -62,7 +94,7 @@ final class MenuViewModel: ObservableObject {
     }
 
     func removeMenuItem() {
-        menuRepository.removeMenuItem(name: menuItemNameInput)
+        menuRepository.removeMenuItem(name: nameInput)
     }
     
     func checkUnavailableMenuItems() {
