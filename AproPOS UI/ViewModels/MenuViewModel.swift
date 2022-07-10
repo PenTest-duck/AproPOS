@@ -20,7 +20,7 @@ final class MenuViewModel: ObservableObject {
     @Published var priceInput: String = "0.00" // Decimal = 0.00
     @Published var ESTInput: String = "0" // Int = 0
     @Published var warningsInput: [String] = []
-    @Published var ingredientsInput: [String: Int] = [:]
+    @Published var ingredientsInput: [String: Decimal] = [:]
     @Published var imageInput: UIImage = UIImage(named: "defaultMenuItemImage")!
     @Published var newNameInput: String = ""
     

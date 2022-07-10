@@ -167,7 +167,7 @@ struct MenuView: View {
                             // TODO: Warnings
                             
                             // TODO: Ingredients
-                            IngredientDropDownInputView(ingredients: menuVM.ingredientsInput)
+                            IngredientDropDownInputView(ingredients: [:])
                                 .padding(.horizontal, 20)
                                 .frame(height: 500)
                             
@@ -268,7 +268,7 @@ struct MenuView: View {
                                 // TODO: Warnings
                                 
                                 // TODO: Ingredients
-                                IngredientDropDownInputView(ingredients: menuVM.ingredientsInput)
+                                IngredientDropDownInputView(ingredients: selectedMenuItem.ingredients)
                                     .padding(.horizontal, 20)
                                     .frame(height: 500)
                                 

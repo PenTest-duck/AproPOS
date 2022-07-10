@@ -13,7 +13,10 @@ struct IngredientDropDownInputView: View {
     @StateObject private var inventoryVM = InventoryViewModel()
     
     @State private var selectedIngredient: String = ""
-    @State private var addingIngredient: Bool = false //true //false
+    @State private var addingIngredient: Bool = false
+    @State private var oldIngredient: String = ""
+    
+    @State private var error: String = ""
     
     static var uniqueKey: String {
         UUID().uuidString
@@ -24,12 +27,14 @@ struct IngredientDropDownInputView: View {
     func fillOptions() -> [DropdownOption] {
         var out: [DropdownOption] = []
         for ingredient in inventoryVM.inventory {
-            out.append(DropdownOption(key: IngredientDropDownInputView.uniqueKey, value: ingredient.id!))
+            if !menuVM.ingredientsInput.keys.contains(ingredient.id!) {
+                out.append(DropdownOption(key: IngredientDropDownInputView.uniqueKey, value: ingredient.id!))
+            }
         }
         return out
     }
         
-    let ingredients: [String: Int]
+    let ingredients: [String: Decimal]
     
     var body: some View {
         VStack(spacing: 0) {
@@ -38,7 +43,7 @@ struct IngredientDropDownInputView: View {
                     Rectangle()
                         .foregroundColor(Color(red: 249/255, green: 228/255, blue: 183/255))
                     
-                    if ingredients.isEmpty {
+                    if menuVM.ingredientsInput.isEmpty {
                         VStack(spacing: 10) {
                             Image(systemName: "exclamationmark.triangle.fill")
                                 .foregroundColor(.orange)
@@ -52,21 +57,37 @@ struct IngredientDropDownInputView: View {
                         }
                     } else {
                         VStack(spacing: 0) {
-                            ForEach(ingredients.sorted(by: <), id: \.key) { name, quantity in
-                                Button(action: {
-                                    selectedIngredient = name
-                                }) {
-                                    ZStack {
-                                        Rectangle()
-                                            .stroke(.blue, lineWidth: 2)
-                                            .background(Rectangle().fill(.yellow))
-                                            .frame(height: 40)
-                                        
-                                        Text("\(quantity) \(inventoryVM.unitsOf(name: name)) \(name)")
-                                            .font(.system(size: 20))
-                                            .foregroundColor(.white)
-                                            .fontWeight(.semibold)
+                            ForEach(menuVM.ingredientsInput.sorted(by: <), id: \.key) { name, quantity in
+                                ZStack {
+                                    Button(action: {
+                                        selectedIngredient = name
+                                        menuVM.ingredientQuantityInput = String(describing: quantity)
+                                        addingIngredient = true
+                                    }) {
+                                        ZStack {
+                                            Rectangle()
+                                                .stroke(.blue, lineWidth: 2)
+                                                .background(Rectangle().fill(.yellow))
+                                                .frame(height: 40)
+                                            
+                                            Text("\(String(describing: quantity)) \(inventoryVM.unitsOf(name: name)) \(name)")
+                                                .font(.system(size: 20))
+                                                .foregroundColor(.white)
+                                                .fontWeight(.semibold)
+                                        }
                                     }
+                                    
+                                    HStack {
+                                        Spacer()
+                                        
+                                        Button(action: {
+                                            menuVM.ingredientsInput.removeValue(forKey: name)
+                                        }) {
+                                            Image(systemName: "minus.circle")
+                                                .foregroundColor(.red)
+                                                .font(.system(size: 28))
+                                        }
+                                    }.padding(.horizontal, 5)
                                 }
                             }
                             Spacer()
@@ -84,9 +105,12 @@ struct IngredientDropDownInputView: View {
                         // TODO: Fix dropdown frame
                         
                         DropdownSelector(
-                            placeholder: "Select ingredient",
+                            placeholder: selectedIngredient == "" ? "Select ingredient" : selectedIngredient,
                             options: options,
                             onOptionSelected: { option in
+                                if !selectedIngredient.isEmpty {
+                                    oldIngredient = selectedIngredient
+                                }
                                 selectedIngredient = option.value
                             }
                         ).padding(.horizontal, 20)
@@ -120,9 +144,19 @@ struct IngredientDropDownInputView: View {
                             }.padding(.horizontal, 40)
                             
                             Button(action: {
-                                if menuVM.ingredientQuantityInput != "0" {
-                                    menuVM.ingredientsInput[selectedIngredient] = Int(menuVM.ingredientQuantityInput)
+                                if menuVM.ingredientQuantityInput == "0" {
+                                    error = "Please enter a quantity"
+                                } else if menuVM.ingredientQuantityInput.components(separatedBy: ".").count - 1 >= 2 {
+                                    error = "Invalid quantity"
+                                } else {
+                                    if !oldIngredient.isEmpty { // changing ingredient
+                                        menuVM.ingredientsInput.removeValue(forKey: oldIngredient)
+                                        oldIngredient = ""
+                                    }
+                                    menuVM.ingredientsInput[selectedIngredient] = Decimal(Double(menuVM.ingredientQuantityInput)!)
                                     addingIngredient = false
+                                    menuVM.ingredientQuantityInput = "0"
+                                    selectedIngredient = ""
                                 }
                             }) {
                                 ZStack {
@@ -138,7 +172,11 @@ struct IngredientDropDownInputView: View {
                                         .padding(.bottom, 10)
                                         .font(.system(size: 25))
                                 }
-                            }.padding(.bottom, 5)
+                            }
+                            
+                            Text("\(error)")
+                                .foregroundColor(.red)
+                                .padding(.bottom, 5)
                         }
                     }.padding(.top, 30)
                     .onAppear {
@@ -161,25 +199,28 @@ struct IngredientDropDownInputView: View {
                     }) {
                         Image(systemName: "plus.circle")
                             .foregroundColor(.white)
+                            .font(.system(size: 17))
                     }
                     
                     Button(action: {
-                        
+                        addingIngredient = false
                     }) {
-                        Image(systemName: "minus.circle")
+                        Image(systemName: "gobackward")
                             .foregroundColor(.white)
+                            .font(.system(size: 17))
                     }
                 }.padding(.horizontal, 15)
             }
+        }.onAppear {
+            inventoryVM.getInventory()
         }
-        .onAppear {
-            inventoryVM.getInventory() // for unitsOf()
-        }
+
     }
 }
 
 struct IngredientDropDownInputView_Previews: PreviewProvider {
-    static var sampleIngredients: [String: Int] = ["eggs": 5, "bacon": 2]
+    //var menuVM.ingredientsInput: [String: Decimal] = ["eggs": 5, "bacon": 2]
+    static var sampleIngredients: [String: Decimal] = ["eggs": 5, "bacon": 2]
     
     static var previews: some View {
         IngredientDropDownInputView(ingredients: sampleIngredients)

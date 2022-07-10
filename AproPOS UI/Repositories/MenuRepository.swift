@@ -32,13 +32,17 @@ class MenuRepository: ObservableObject {
                 let price = data["price"] as? Double ?? 0.00
                 let estimatedServingTime = data["estimatedServingTime"] as? Int ?? 0
                 let warnings = data["warnings"] as? [String] ?? []
-                let ingredients = data["ingredients"] as? [String: Int] ?? [:]
+                let ingredients = data["ingredients"] as? [String: Double] ?? [:]
                 let image = data["image"] as? Data ?? (UIImage(named: "defaultMenuItemImage")!).pngData()!
                 let status = data["status"] as? [String: [String]] ?? ["available": []]
                 
                 let deserialisedImage = UIImage(data: image)!
+                var convertedIngredients: [String: Decimal] = [:]
+                for ingredient in ingredients {
+                    convertedIngredients[ingredient.key] = Decimal(ingredient.value)
+                }
 
-                return MenuItemModel(id: id, price: Decimal(price), estimatedServingTime: estimatedServingTime, warnings: warnings, ingredients: ingredients, image: deserialisedImage, status: status)
+                return MenuItemModel(id: id, price: Decimal(price), estimatedServingTime: estimatedServingTime, warnings: warnings, ingredients: convertedIngredients, image: deserialisedImage, status: status)
             }
             
             print(self.menu)
@@ -80,7 +84,7 @@ class MenuRepository: ObservableObject {
                 if Array(menuItem.status.keys)[0] == "available" {
                     for ingredient in menuItem.ingredients {
                         let stock = (self.ingredientStock.compactMap { $0[ingredient.key] })[0]
-                        if stock < Double(ingredient.value) {
+                        if Decimal(stock) < ingredient.value {
                             lowIngredients.append(ingredient.key)
                             self.db.collection("menu").document(menuItem.id!).updateData(["status": ["unavailable": lowIngredients]])
                         }
@@ -88,7 +92,7 @@ class MenuRepository: ObservableObject {
                 } else {
                     for ingredient in lowIngredients {
                         let stock = (self.ingredientStock.compactMap { $0[ingredient] })[0]
-                        if stock >= Double(menuItem.ingredients[ingredient]!) {
+                        if Decimal(stock) >= menuItem.ingredients[ingredient]! {
                             lowIngredients.removeAll(where: { $0 == ingredient })
                             if lowIngredients.isEmpty {
                                 self.db.collection("menu").document(menuItem.id!).updateData(["status": ["available": lowIngredients]])

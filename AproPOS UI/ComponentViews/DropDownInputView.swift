@@ -51,7 +51,7 @@ struct Dropdown: View {
                 }
             }
         }
-        .frame(minHeight: CGFloat(options.count) * 17, maxHeight: 250)
+        .frame(height: 120)//minHeight: CGFloat(options.count) * 17, maxHeight: 250)
         .padding(.vertical, 5)
         .background(Color.white)
         .cornerRadius(5)
