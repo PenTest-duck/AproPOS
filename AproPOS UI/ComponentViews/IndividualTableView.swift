@@ -18,6 +18,7 @@ struct IndividualTableView: View {
             RoundedRectangle(cornerRadius: 20)
                 .fill(tableVM.tableColor(status: table.status))
             
+            
             VStack {
                 ZStack {
                     HStack {
@@ -31,8 +32,9 @@ struct IndividualTableView: View {
                         Spacer()
                         
                         Text("\(table.seats)")
-                            .font(.title)
-                            .foregroundColor(Color(red: 230/255, green: 230/255, blue: 230/255))
+                            .font(Font.custom("DIN ", size: 30))
+                            .padding()
+                            .foregroundColor(.white)
                     }.padding(.trailing, 25)
                 }
             }

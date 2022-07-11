@@ -81,13 +81,15 @@ final class TableViewModel: ObservableObject {
     func tableColor(status: String) -> Color {
         switch status {
             case "free": return Color.green
-            case "yetToOrder": return Color.orange
+            case "yetToOrder": return Color.init(red: 160/255, green: 236/255, blue: 208/255)
             case "ordered": return Color.orange
-        case "served": return Color.init(red: 8/255, green: 61/255, blue: 119/255)
+            case "served": return Color.init(red: 8/255, green: 61/255, blue: 119/255)
             case "cleaning": return Color.cyan
             case "reserved": return Color.red
             case "unavailable": return Color.gray
             default: return Color.gray
         }
+        
+        
     }
 }
