@@ -61,6 +61,7 @@
 		40DD9E6727D8CF2000610DB2 /* BillingView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DD9E6627D8CF2000610DB2 /* BillingView2.swift */; };
 		40E7A08C2863D11100871A48 /* BillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7A08B2863D11100871A48 /* BillingViewModel.swift */; };
 		40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */; };
+		596931E428752B5E00056D30 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596931E328752B5E00056D30 /* SwiftUIView.swift */; };
 		5E323E5D286291E200C48313 /* BillingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E323E5C286291E200C48313 /* BillingModel.swift */; };
 		5E32B4AD2873BEB700D60B4B /* ImplementTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E32B4AC2873BEB700D60B4B /* ImplementTableView.swift */; };
 		BB5099C538EBC8A84617709E /* Pods_AproPOS_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51CF6483D3148CF20729988F /* Pods_AproPOS_UI.framework */; };
@@ -125,6 +126,7 @@
 		40E7A08B2863D11100871A48 /* BillingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingViewModel.swift; sourceTree = "<group>"; };
 		40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		51CF6483D3148CF20729988F /* Pods_AproPOS_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AproPOS_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		596931E328752B5E00056D30 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		5E323E5C286291E200C48313 /* BillingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingModel.swift; sourceTree = "<group>"; };
 		5E32B4AC2873BEB700D60B4B /* ImplementTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementTableView.swift; sourceTree = "<group>"; };
 		E4C6F744FAD4140DDB3B83C1 /* Pods-AproPOS UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AproPOS UI.release.xcconfig"; path = "Target Support Files/Pods-AproPOS UI/Pods-AproPOS UI.release.xcconfig"; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				40BD731B27D606A200CBDA9A /* NewOrderView.swift */,
 				4029860F27C7AF26007A70C2 /* BillingView.swift */,
 				40DD9E6627D8CF2000610DB2 /* BillingView2.swift */,
+				596931E328752B5E00056D30 /* SwiftUIView.swift */,
 				401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */,
 				4029861127C7AF41007A70C2 /* ReservationView.swift */,
 				403BE4F1287567B4005A1C54 /* TableView.swift */,
@@ -428,6 +431,7 @@
 				4029861A27C7AF9D007A70C2 /* InventoryViewOld.swift in Sources */,
 				40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */,
 				403BE4EB28745E29005A1C54 /* StaffViewModel.swift in Sources */,
+				596931E428752B5E00056D30 /* SwiftUIView.swift in Sources */,
 				409B2077282E6FAD0014CB54 /* AuthViewModel.swift in Sources */,
 				401CDE5628713EE200DCA698 /* IngredientModel.swift in Sources */,
 				4029861227C7AF41007A70C2 /* ReservationView.swift in Sources */,

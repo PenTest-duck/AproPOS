@@ -34,7 +34,8 @@ struct CreateAccountView: View {
                     }
                     
                     HStack {
-                        TextField(" First Name", text: $authVM.firstName)
+                        TextField("First Name", text: $authVM.firstName)
+                            .padding()
                             .disableAutocorrection(true)
                             .autocapitalization(.none)
                             .frame(width: 300)
@@ -45,7 +46,8 @@ struct CreateAccountView: View {
                             )
                             .padding(.bottom, 10)
                         
-                        TextField(" Last Name", text: $authVM.lastName)
+                        TextField("Last Name", text: $authVM.lastName)
+                            .padding()
                             .disableAutocorrection(true)
                             .autocapitalization(.none)
                             .frame(width: 290)
@@ -57,7 +59,8 @@ struct CreateAccountView: View {
                             .padding(.bottom, 10)
                     }
                     
-                    TextField(" Email", text: $authVM.newEmail)
+                    TextField("Email", text: $authVM.newEmail)
+                        .padding()
                         .disableAutocorrection(true)
                         .autocapitalization(.none)
                         .font(.system(size: 40))
@@ -67,7 +70,8 @@ struct CreateAccountView: View {
                         )
                         .padding(.bottom, 10)
                     
-                    SecureField(" Password", text: $authVM.newPassword)
+                    SecureField("Password", text: $authVM.newPassword)
+                        .padding()
                         .disableAutocorrection(true)
                         .autocapitalization(.none)
                         .font(.system(size: 40))
@@ -77,7 +81,8 @@ struct CreateAccountView: View {
                         )
                         .padding(.bottom, 10)
                     
-                    SecureField(" Verify password", text: $authVM.verifyPassword)
+                    SecureField("Verify password", text: $authVM.verifyPassword)
+                        .padding()
                         .disableAutocorrection(true)
                         .autocapitalization(.none)
                         .font(.system(size: 40))

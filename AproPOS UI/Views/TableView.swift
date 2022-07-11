@@ -54,7 +54,7 @@ struct TableView: View {
                                 }) {
                                     Image(systemName: "plus.square.fill")
                                         .font(.system(size: 60))
-                                        .foregroundColor(.green)
+                                        .foregroundColor(Color(red: 8/255, green: 61/255, blue: 119/255))
                                 }
                                 .padding(.trailing, 10)
                             }
@@ -71,7 +71,7 @@ struct TableView: View {
                                 Text("No tables")
                                     .font(.system(size: 50))
                                     .fontWeight(.semibold)
-                                Text("Create your first table by pressing the add icon.")
+                                Text("Add your first table by pressing the add icon.")
                                     .font(.system(size: 20))
                             }.padding(.bottom, 90)
                         }
@@ -97,7 +97,7 @@ struct TableView: View {
                 
                 Divider()
                     .frame(width: 10)
-                    .background(.red)
+                    .background(Color(red: 202/255, green: 85/255, blue: 220/255))
                 
                 ZStack {
                     VStack {
@@ -116,7 +116,8 @@ struct TableView: View {
                                     .frame(width: 100, height: 40)
                                     .cornerRadius(25)
                                     .multilineTextAlignment(.center)
-                                    // From: https://stackoverflow.com/questions/58733003/how-to-create-textfield-that-only-accepts-numbers
+                                    // Code bellow from: https://stackoverflow.com/questions/58733003/how-to-create-textfield-that-only-accepts-numbers
+                                    //in order to only allow numbers in the input for the tableNumber
                                     .keyboardType(.numberPad)
                                     .onReceive(Just(tableVM.tableNumberInput)) { newValue in
                                         let filtered = newValue.filter { "0123456789".contains($0) }
@@ -368,6 +369,6 @@ struct TableView: View {
 
 struct TableView_Previews: PreviewProvider {
     static var previews: some View {
-        TableView().previewInterfaceOrientation(.landscapeLeft)
+        TableView().previewInterfaceOrientation(.landscapeRight)
     }
 }

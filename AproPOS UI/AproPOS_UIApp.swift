@@ -4,6 +4,8 @@
 //
 //  Created by Chris Yoo on 24/2/22.
 //
+///This file is for the opening view for when the app is built and run
+///views can be changed to access them faster and  test them
 
 import SwiftUI
 import FirebaseCore
@@ -20,13 +22,14 @@ struct AproPOS_UIApp: App {
     var body: some Scene {
         WindowGroup {
             //LoginView()
+            //MainView()
             //ImplementOrderView()
             //ImplementBillingView()
-            MenuView()
+            //MenuView()
             //ImplementMenuView()
             //InventoryView()
             //ImplementInventoryView()
-            //TableView()
+            TableView()
             //ImplementTableView()
             //ImplementStaffView()
         }
