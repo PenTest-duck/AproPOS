@@ -10,5 +10,5 @@ target 'AproPOS UI' do
   pod 'FirebaseAuth'
   pod 'FirebaseFirestore'
   pod 'FirebaseFirestoreSwift'
-  #pod 'FirebaseStorage'
+  pod 'FirebaseStorage'
 end

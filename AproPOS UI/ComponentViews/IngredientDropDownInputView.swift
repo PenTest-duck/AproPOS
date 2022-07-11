@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct IngredientDropDownInputView: View {
-    @StateObject private var menuVM = MenuViewModel()
+    @EnvironmentObject var menuVM: MenuViewModel // need EnvironmentObject to refer to same menuVM as MenuView
     @StateObject private var inventoryVM = InventoryViewModel()
     
     @State private var selectedIngredient: String = ""
@@ -34,7 +34,7 @@ struct IngredientDropDownInputView: View {
         return out
     }
         
-    let ingredients: [String: Decimal]
+    // let ingredients: [String: Decimal] // TODO: Don't need?
     
     var body: some View {
         VStack(spacing: 0) {
@@ -150,6 +150,7 @@ struct IngredientDropDownInputView: View {
                                     error = "Invalid quantity"
                                 } else {
                                     if !oldIngredient.isEmpty { // changing ingredient
+                                        print("changing ingredient")
                                         menuVM.ingredientsInput.removeValue(forKey: oldIngredient)
                                         oldIngredient = ""
                                     }
@@ -175,6 +176,7 @@ struct IngredientDropDownInputView: View {
                             }
                             
                             Text("\(error)")
+                                .font(.system(size: 10))
                                 .foregroundColor(.red)
                                 .padding(.bottom, 5)
                         }
@@ -220,10 +222,10 @@ struct IngredientDropDownInputView: View {
 
 struct IngredientDropDownInputView_Previews: PreviewProvider {
     //var menuVM.ingredientsInput: [String: Decimal] = ["eggs": 5, "bacon": 2]
-    static var sampleIngredients: [String: Decimal] = ["eggs": 5, "bacon": 2]
+    //static var sampleIngredients: [String: Decimal] = ["eggs": 5, "bacon": 2]
     
     static var previews: some View {
-        IngredientDropDownInputView(ingredients: sampleIngredients)
+        IngredientDropDownInputView()//ingredients: sampleIngredients)
             .frame(width: 350, height: 500)
     }
 }

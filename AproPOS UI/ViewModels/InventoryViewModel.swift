@@ -39,6 +39,8 @@ final class InventoryViewModel: ObservableObject {
             error = "Invalid cost per unit"
         } else if costPerUnitInput[(costPerUnitInput.firstIndex(of: ".") ?? costPerUnitInput.index(costPerUnitInput.endIndex, offsetBy: -1))...].count > 3 {
             error = "Currency allows max. 2 decimal places"
+        } else {
+            error = ""
         }
     }
     

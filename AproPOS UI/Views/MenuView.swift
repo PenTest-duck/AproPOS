@@ -10,7 +10,7 @@ import Combine
 
 struct MenuView: View {
     
-    @StateObject private var menuVM = MenuViewModel()
+    @StateObject var menuVM = MenuViewModel()
     
     @State private var selectedMenuItem: MenuItemModel? = nil
     @State private var addingMenuItem: Bool = false
@@ -79,7 +79,7 @@ struct MenuView: View {
                                     menuVM.ingredientsInput = selectedMenuItem!.ingredients
                                     menuVM.imageInput = UIImage(data: selectedMenuItem!.image)!
                                 }) {
-                                    IndividualMenuItemView(menuItem: menuItem)
+                                    IndividualMenuItemView(menuItem: menuItem).environmentObject(menuVM)
                                 }
                             }
                         }.padding(.leading, 10)
@@ -167,7 +167,7 @@ struct MenuView: View {
                             // TODO: Warnings
                             
                             // TODO: Ingredients
-                            IngredientDropDownInputView(ingredients: [:])
+                            IngredientDropDownInputView().environmentObject(menuVM)
                                 .padding(.horizontal, 20)
                                 .frame(height: 500)
                             
@@ -268,7 +268,7 @@ struct MenuView: View {
                                 // TODO: Warnings
                                 
                                 // TODO: Ingredients
-                                IngredientDropDownInputView(ingredients: selectedMenuItem.ingredients)
+                                IngredientDropDownInputView().environmentObject(menuVM)
                                     .padding(.horizontal, 20)
                                     .frame(height: 500)
                                 
@@ -338,6 +338,7 @@ struct MenuView: View {
                 .navigationBarHidden(true)
                 .onAppear {
                     menuVM.getMenu()
+                    menuVM.checkUnavailableMenuItems()
                 }
             
         } else {

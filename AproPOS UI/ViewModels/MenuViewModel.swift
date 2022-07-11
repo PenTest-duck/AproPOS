@@ -27,14 +27,22 @@ final class MenuViewModel: ObservableObject {
     @Published var ingredientQuantityInput: String = "0"
     
     func validateInput(operation: String) {
+        //print(ingredientsInput)
         if operation == "add" && nameInput == "" {
             error = "Please enter a name"
         } else if operation == "add" && menu.firstIndex(where: { $0.id == nameInput }) != nil {
             error = "Item already exists in menu"
+        } else if operation == "add" && Double(priceInput) == 0 {
+            error = "Please enter a price"
         } else if priceInput.hasPrefix(".") || (priceInput.filter { $0 == "." }).count >= 2 {
             error = "Invalid price"
         } else if priceInput[(priceInput.firstIndex(of: ".") ?? priceInput.index(priceInput.endIndex, offsetBy: -1))...].count > 3 {
             error = "Currency allows max. 2 decimal places"
+        } else if ingredientsInput == [:] {
+            error = "Please add at least 1 ingredient"
+        }
+        else {
+            error = ""
         }
     }
     

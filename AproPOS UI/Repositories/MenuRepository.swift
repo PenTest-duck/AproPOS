@@ -9,12 +9,15 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseStorage
 import Combine
 import UIKit
 
 class MenuRepository: ObservableObject {
     
     private let db = Firestore.firestore()
+    private let storageRef = Storage.storage().reference()
+    
     var menu = [MenuItemModel]()
     var ingredientStock = [[String: Double]]()
     
@@ -59,6 +62,16 @@ class MenuRepository: ObservableObject {
         } catch {
             print(error.localizedDescription)
         }
+        /*
+        let imageRef = storageRef.child("images").child(menuItem.id!)
+        imageRef.putData(menuItem.image, metadata: nil) { (metadata, error) in
+            guard metadata != nil else {
+                print("Error uploading to storage")
+                return
+            }
+            
+            print(metadata)
+        }*/
     }
     
     func editMenuItem(name: String) {

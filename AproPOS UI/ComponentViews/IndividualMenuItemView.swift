@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct IndividualMenuItemView: View {
-    @StateObject private var menuVM = MenuViewModel()
+    @EnvironmentObject var menuVM: MenuViewModel
     
     let menuItem: MenuItemModel
     
@@ -32,6 +32,18 @@ struct IndividualMenuItemView: View {
                     .padding(.horizontal, 10)
                     .background(.red)
                     .padding(.bottom, 35)
+            }
+            
+            if Array(menuItem.status.keys)[0] == "unavailable" {
+                VStack {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "exclamationmark.circle.fill")
+                            .foregroundColor(.red)
+                            .font(.system(size: 30))
+                    }.padding(.horizontal, 10)
+                    Spacer()
+                }.padding(.vertical, 10)
             }
         }
     }
