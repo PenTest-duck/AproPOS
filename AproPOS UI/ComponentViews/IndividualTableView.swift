@@ -23,6 +23,7 @@ struct IndividualTableView: View {
                     HStack {
                         Text("Table \(table.id!)")
                         .font(.title)
+                        .foregroundColor(.white)
                         .fontWeight(.bold)
                     }
                     

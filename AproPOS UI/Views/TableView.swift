@@ -24,7 +24,7 @@ struct TableView: View {
         DropdownOption(key: uniqueKey, value: "free"),
         DropdownOption(key: uniqueKey, value: "yetToOrder"),
         DropdownOption(key: uniqueKey, value: "ordered"),
-        DropdownOption(key: uniqueKey, value: "eating"),
+        DropdownOption(key: uniqueKey, value: "served"),
         DropdownOption(key: uniqueKey, value: "cleaning"),
         DropdownOption(key: uniqueKey, value: "reserved"),
         DropdownOption(key: uniqueKey, value: "unavailable")
@@ -54,7 +54,7 @@ struct TableView: View {
                                 }) {
                                     Image(systemName: "plus.square.fill")
                                         .font(.system(size: 60))
-                                        .foregroundColor(Color(red: 8/255, green: 61/255, blue: 119/255))
+                                        .foregroundColor(Color(red: 32/255, green: 30/255, blue: 80/255))
                                 }
                                 .padding(.trailing, 10)
                             }
