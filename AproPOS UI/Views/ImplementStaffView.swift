@@ -13,7 +13,7 @@ struct ImplementStaffView: View {
     
     var body: some View {
         VStack {
-            TextField(" Email", text: $staffVM.userEmailInput)
+            TextField(" Email", text: $staffVM.emailInput)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .frame(width: 300)
@@ -23,7 +23,7 @@ struct ImplementStaffView: View {
                         .stroke(Color.black, lineWidth: 1)
                 )
             
-            TextField(" First name", text: $staffVM.userFirstNameInput)
+            TextField(" First name", text: $staffVM.firstNameInput)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .frame(width: 300)
@@ -33,7 +33,7 @@ struct ImplementStaffView: View {
                         .stroke(Color.black, lineWidth: 1)
                 )
             
-            TextField(" Last name", text: $staffVM.userLastNameInput)
+            TextField(" Last name", text: $staffVM.lastNameInput)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .frame(width: 300)

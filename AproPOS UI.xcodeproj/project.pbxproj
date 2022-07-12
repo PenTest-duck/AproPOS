@@ -31,7 +31,7 @@
 		4029861227C7AF41007A70C2 /* ReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029861127C7AF41007A70C2 /* ReservationView.swift */; };
 		4029861827C7AF8F007A70C2 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029861727C7AF8F007A70C2 /* AnalyticsView.swift */; };
 		4029861A27C7AF9D007A70C2 /* InventoryViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029861927C7AF9D007A70C2 /* InventoryViewOld.swift */; };
-		4038921E27E0923500B9FDFB /* StaffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4038921D27E0923500B9FDFB /* StaffView.swift */; };
+		4038921E27E0923500B9FDFB /* StaffViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4038921D27E0923500B9FDFB /* StaffViewOld.swift */; };
 		403BE4E128745264005A1C54 /* TableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E028745264005A1C54 /* TableRepository.swift */; };
 		403BE4E3287452E4005A1C54 /* InventoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E2287452E4005A1C54 /* InventoryRepository.swift */; };
 		403BE4E528745313005A1C54 /* MenuRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E428745313005A1C54 /* MenuRepository.swift */; };
@@ -52,6 +52,8 @@
 		4091FA26287723ED00BED215 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4091FA25287723ED00BED215 /* InventoryView.swift */; };
 		409B2077282E6FAD0014CB54 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B2076282E6FAD0014CB54 /* AuthViewModel.swift */; };
 		409B2079282E72950014CB54 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B2078282E72950014CB54 /* CreateAccountView.swift */; };
+		40A99787287C5F3400CDABE6 /* StaffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A99786287C5F3400CDABE6 /* StaffView.swift */; };
+		40A99789287C619000CDABE6 /* IndividualUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A99788287C619000CDABE6 /* IndividualUserView.swift */; };
 		40BD731727D6001700CBDA9A /* DIN.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40BD731627D6001700CBDA9A /* DIN.ttf */; };
 		40BD731A27D6019200CBDA9A /* DIN Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40BD731927D6019200CBDA9A /* DIN Bold.ttf */; };
 		40BD731C27D606A200CBDA9A /* NewOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD731B27D606A200CBDA9A /* NewOrderView.swift */; };
@@ -94,7 +96,7 @@
 		4029861127C7AF41007A70C2 /* ReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationView.swift; sourceTree = "<group>"; };
 		4029861727C7AF8F007A70C2 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		4029861927C7AF9D007A70C2 /* InventoryViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewOld.swift; sourceTree = "<group>"; };
-		4038921D27E0923500B9FDFB /* StaffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffView.swift; sourceTree = "<group>"; };
+		4038921D27E0923500B9FDFB /* StaffViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffViewOld.swift; sourceTree = "<group>"; };
 		403BE4E028745264005A1C54 /* TableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableRepository.swift; sourceTree = "<group>"; };
 		403BE4E2287452E4005A1C54 /* InventoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryRepository.swift; sourceTree = "<group>"; };
 		403BE4E428745313005A1C54 /* MenuRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRepository.swift; sourceTree = "<group>"; };
@@ -115,6 +117,8 @@
 		4091FA25287723ED00BED215 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		409B2076282E6FAD0014CB54 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		409B2078282E72950014CB54 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		40A99786287C5F3400CDABE6 /* StaffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffView.swift; sourceTree = "<group>"; };
+		40A99788287C619000CDABE6 /* IndividualUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualUserView.swift; sourceTree = "<group>"; };
 		40BD731627D6001700CBDA9A /* DIN.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DIN.ttf; sourceTree = "<group>"; };
 		40BD731827D6010300CBDA9A /* AproPOS-UI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "AproPOS-UI-Info.plist"; sourceTree = SOURCE_ROOT; };
 		40BD731927D6019200CBDA9A /* DIN Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Bold.ttf"; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 				40C5ED7B287863C000573099 /* IndividualMenuItemView.swift */,
 				4091FA2328771DEA00BED215 /* IndividualIngredientView.swift */,
 				403BE4EF287549C9005A1C54 /* IndividualTableView.swift */,
+				40A99788287C619000CDABE6 /* IndividualUserView.swift */,
 				401109DC28791D9600B3C426 /* IngredientDropDownInputView.swift */,
 				403BE4F32875A3B1005A1C54 /* DropDownInputView.swift */,
 				401109DA28790FFF00B3C426 /* ImagePickerView.swift */,
@@ -248,7 +253,8 @@
 				4029861927C7AF9D007A70C2 /* InventoryViewOld.swift */,
 				401CDE5928714DCD00DCA698 /* ImplementInventoryView.swift */,
 				4029861727C7AF8F007A70C2 /* AnalyticsView.swift */,
-				4038921D27E0923500B9FDFB /* StaffView.swift */,
+				40A99786287C5F3400CDABE6 /* StaffView.swift */,
+				4038921D27E0923500B9FDFB /* StaffViewOld.swift */,
 				403BE4EC28748AA4005A1C54 /* ImplementStaffView.swift */,
 			);
 			path = Views;
@@ -427,10 +433,12 @@
 				403BE4F0287549C9005A1C54 /* IndividualTableView.swift in Sources */,
 				407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */,
 				401CDE5E2871B8FF00DCA698 /* TableViewModel.swift in Sources */,
+				40A99789287C619000CDABE6 /* IndividualUserView.swift in Sources */,
 				403BE4E128745264005A1C54 /* TableRepository.swift in Sources */,
 				4029861A27C7AF9D007A70C2 /* InventoryViewOld.swift in Sources */,
 				40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */,
 				403BE4EB28745E29005A1C54 /* StaffViewModel.swift in Sources */,
+				40A99787287C5F3400CDABE6 /* StaffView.swift in Sources */,
 				596931E428752B5E00056D30 /* SwiftUIView.swift in Sources */,
 				409B2077282E6FAD0014CB54 /* AuthViewModel.swift in Sources */,
 				401CDE5628713EE200DCA698 /* IngredientModel.swift in Sources */,
@@ -454,7 +462,7 @@
 				401866EA283CEA0D0046BFBC /* UserRepository.swift in Sources */,
 				401866F4283CFDFF0046BFBC /* MenuItemModel.swift in Sources */,
 				409B2079282E72950014CB54 /* CreateAccountView.swift in Sources */,
-				4038921E27E0923500B9FDFB /* StaffView.swift in Sources */,
+				4038921E27E0923500B9FDFB /* StaffViewOld.swift in Sources */,
 				403BE4ED28748AA4005A1C54 /* ImplementStaffView.swift in Sources */,
 				403BE4E72874534C005A1C54 /* OrderRepository.swift in Sources */,
 				401CDE60287336DC00DCA698 /* AnalyticsViewModel.swift in Sources */,

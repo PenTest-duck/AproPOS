@@ -72,7 +72,6 @@ final class MenuViewModel: ObservableObject {
             let editedMenuItem = MenuItemModel(id: nameInput, price: editedPrice, estimatedServingTime: editedEST, warnings: editedWarnings, ingredients: editedIngredients, image: editedImage)
             
             menuRepository.addMenuItem(menuItem: editedMenuItem)
-            error = ""
         }
     }
     

@@ -25,12 +25,13 @@ struct AproPOS_UIApp: App {
             //MainView()
             //ImplementOrderView()
             //ImplementBillingView()
-            MenuView()
+            //MenuView()
             //ImplementMenuView()
             //InventoryView()
             //ImplementInventoryView()
             //TableView()
             //ImplementTableView()
+            StaffView()
             //ImplementStaffView()
         }
     }

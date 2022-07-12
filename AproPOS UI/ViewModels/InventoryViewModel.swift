@@ -51,7 +51,6 @@ final class InventoryViewModel: ObservableObject {
         if error == "" {
             let newIngredient = IngredientModel(id: nameInput, units: unitsInput, currentStock: Decimal(Double(currentStockInput)!), minimumThreshold: Decimal(Double(minimumThresholdInput)!), costPerUnit: Decimal(Double(costPerUnitInput)!), warnings: warningsInput, comment: commentInput)
             inventoryRepository.addIngredient(ingredient: newIngredient)
-            error = ""
         }
     }
     
