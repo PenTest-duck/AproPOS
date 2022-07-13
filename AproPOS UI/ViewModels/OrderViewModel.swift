@@ -13,10 +13,10 @@ final class OrderViewModel: ObservableObject {
     @Published var orders = [OrderModel]()
     @Published var orderRepository = OrderRepository()
     
-    @Published var tableNumberInput: String = ""
-    @Published var menuItemsInput: [String: Int] = [:]
+    @Published var error = ""
     
-    @Published var message = ""
+    @Published var tableNumberInput: String = ""
+    @Published var menuItemsInput: [OrderedMenuItem] = [] // [String: Int] = [:]
 
     /*func getStartTime() -> String {
         let formatter = DateFormatter()
@@ -26,9 +26,9 @@ final class OrderViewModel: ObservableObject {
     
     func addOrder() { // Convert tableNumber from String to Int
         if tableNumberInput == "0" {
-            message = "Invalid table number"
+            error = "Invalid table number"
         } else if orders.firstIndex(where: { $0.id == tableNumberInput }) != nil {            // orders needs to update beforehand
-            message = "Order already exists"
+            error = "Order already exists"
         } else {
             // TODO: Refresh subtotalPrice when ordering
             orderRepository.reduceInventory(menuItems: menuItemsInput)
@@ -52,11 +52,11 @@ final class OrderViewModel: ObservableObject {
             return
         }
         
-        var originalMenuItems: [String: Int] = [:]
+        var originalMenuItems: [OrderedMenuItem] = []
         for menuItem in originalOrder.menuItems {
-            originalMenuItems[menuItem.name] = menuItem.quantity
+            originalMenuItems.append(menuItem)
         }
-        let editedMenuItems = menuItemsInput == [:] ? originalMenuItems : menuItemsInput
+        let editedMenuItems = menuItemsInput == [] ? originalMenuItems : menuItemsInput
         
         orderRepository.addOrder(id: tableNumberInput, menuItems: editedMenuItems)
     }

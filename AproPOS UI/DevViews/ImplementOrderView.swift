@@ -13,7 +13,7 @@ struct ImplementOrderView: View {
     
     var body: some View {
         VStack {
-            Text("Message: \(orderVM.message)")
+            Text("Message: \(orderVM.error)")
             
             TextField(" Table Number", text: $orderVM.tableNumberInput)
                 .disableAutocorrection(true)
@@ -28,7 +28,7 @@ struct ImplementOrderView: View {
             
             
             Button(action: {
-                orderVM.menuItemsInput = ["Noodles" : 2, "Fried Rice" : 3]
+                //orderVM.menuItemsInput = ["Noodles" : 2, "Fried Rice" : 3]
                 orderVM.addOrder()
                 
             }) {

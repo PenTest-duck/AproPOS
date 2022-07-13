@@ -11,6 +11,8 @@ struct MainView: View {
     
     @StateObject private var staffVM = StaffViewModel()
     
+    @State private var ManagementViewAllowed: Bool = false
+    
     var body: some View {
         NavigationView {
                     VStack (spacing: 0) {
@@ -46,14 +48,32 @@ struct MainView: View {
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color(red: 202/255, green: 85/255, blue: 220/255))
                     
-                    NavigationLink(destination: ManagementView()) {
-                        Text("Management")
-                            .font(Font.custom("DIN Bold", size: 100))
-                            .foregroundColor(Color.white)
-                            .navigationBarTitle("")
-                            .navigationBarHidden(true)
-                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color(red: 8/255, green: 61/255, blue: 119/255))
+                    if !staffVM.disallowedViews.contains("ManagementView") {
+                        NavigationLink(destination: ManagementView()) {
+                            ZStack {
+                                Text("Management")
+                                    .font(Font.custom("DIN Bold", size: 100))
+                                    .foregroundColor(Color.white)
+                                    .navigationBarTitle("")
+                                    .navigationBarHidden(true)
+                            }
+                        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color(red: 8/255, green: 61/255, blue: 119/255))
+                    } else {
+                        ZStack {
+                            Text("Management")
+                                .font(Font.custom("DIN Bold", size: 100))
+                                .foregroundColor(Color.white)
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
+                            
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 180))
+                                .foregroundColor(.red)
+                                .opacity(0.8)
+                        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color(red: 8/255, green: 61/255, blue: 119/255))
+                    }
                 }
             }.ignoresSafeArea()
         }.navigationViewStyle(StackNavigationViewStyle())

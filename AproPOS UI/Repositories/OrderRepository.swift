@@ -46,7 +46,7 @@ class OrderRepository: ObservableObject {
         }
     }
     
-    func addOrder(id: String, menuItems: [String: Int]) {
+    func addOrder(id: String, menuItems: [OrderedMenuItem]) {
         db.collection("menu").getDocuments() { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
@@ -79,9 +79,9 @@ class OrderRepository: ObservableObject {
                     var orderedMenuItems: [OrderedMenuItem] = []
                     
                     for menuItem in menuItems {
-                        let menuItemPrice = (self.menuPrices.compactMap { $0[menuItem.key] })[0]
-                        orderedMenuItems.append(OrderedMenuItem(name: menuItem.key, quantity: menuItem.value, price: menuItemPrice * Decimal(menuItem.value)))
-                        self.subtotalPrice += menuItemPrice * Decimal(menuItem.value)
+                        let menuItemPrice = (self.menuPrices.compactMap { $0[menuItem.name] })[0]
+                        orderedMenuItems.append(OrderedMenuItem(name: menuItem.name, quantity: menuItem.quantity, price: menuItemPrice * Decimal(menuItem.quantity)))
+                        self.subtotalPrice += menuItemPrice * Decimal(menuItem.quantity)
                     }
                     
                     // Add Order:
@@ -103,7 +103,7 @@ class OrderRepository: ObservableObject {
         }
     }
     
-    func reduceInventory(menuItems: [String: Int]) {
+    func reduceInventory(menuItems: [OrderedMenuItem]) {
         db.collection("menu").getDocuments() { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
@@ -118,9 +118,9 @@ class OrderRepository: ObservableObject {
             }
             
             for menuItem in menuItems {
-                let ingredients = (self.menuIngredients.compactMap { $0[menuItem.key] })[0]
+                let ingredients = (self.menuIngredients.compactMap { $0[menuItem.name] })[0]
                 for ingredient in ingredients {
-                    self.db.collection("inventory").document(ingredient.key).updateData(["currentStock": FieldValue.increment(-Double(ingredient.value * menuItem.value))])
+                    self.db.collection("inventory").document(ingredient.key).updateData(["currentStock": FieldValue.increment(-Double(ingredient.value * menuItem.quantity))])
                 }
             }
         }

@@ -227,5 +227,6 @@ struct IngredientDropDownInputView_Previews: PreviewProvider {
     static var previews: some View {
         IngredientDropDownInputView()//ingredients: sampleIngredients)
             .frame(width: 350, height: 500)
+            .environmentObject(MenuViewModel())
     }
 }

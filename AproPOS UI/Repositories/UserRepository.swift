@@ -68,9 +68,9 @@ class UserRepository: ObservableObject {
         let staffDisallowed = ["ManagementView", "MenuView", "InventoryView", "StaffView", "AnalyticsView"]
         let managerDisallowed = ["StaffView", "AnalyticsView"]
         
-        let user = users.first(where: { $0.id == email } )
+        let user = self.users.first(where: { $0.id == email } )
         var isAllowed: Bool
-        
+
         switch user!.role {
             case "staff":
                 isAllowed = staffDisallowed.contains(view) ? false : true

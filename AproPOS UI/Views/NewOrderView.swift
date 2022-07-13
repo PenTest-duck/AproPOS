@@ -2,301 +2,114 @@
 //  NewOrderView.swift
 //  AproPOS UI
 //
-//  Created by Chris Yoo on 7/3/22.
+//  Created by Chris Yoo on 12/7/22.
 //
 
 import SwiftUI
-
-private let fourRowGrid = [
-    GridItem(.fixed(250)),
-    GridItem(.fixed(250)),
-    GridItem(.fixed(250)),
-    GridItem(.fixed(250))
-]
+import Combine
 
 struct NewOrderView: View {
+    @EnvironmentObject var menuVM: MenuViewModel
+    @StateObject private var orderVM = OrderViewModel()
+    
+    @State private var selectedMenuItem: MenuItemModel? = nil
+    // @State private var selectedOrder: OrderModel? = nil
+
     var body: some View {
         HStack (spacing: 0) {
-            
-            ScrollView(showsIndicators: false) {
-                LazyHGrid(rows: fourRowGrid, alignment: .bottom) {
-                    Group {
-                        ZStack {
-                            
-                            Rectangle()
-                                .frame(width: 300, height: 250)
-                                .foregroundColor(.red)
-                            Image("caesar-salad")
-                                .resizable()
-                                .frame(width: 300, height: 250)
-                            Image(systemName: "leaf.arrow.circlepath")
-                                .font(.system(size: 50))
-                                .foregroundColor(Color.green)
-                                .offset(x: 115, y: -90)
-                            Text("Caesar Salad")
-                                .font(.system(size: 40))
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                .background(Color.red)
-                                .offset(y: 85)
-                            
-                        }
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 300, height: 250)
-                                .foregroundColor(.red)
-                            Image("mac-n-cheese")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 300, height: 250)
-                                .clipped()
-                            Text("Mac N Cheese")
-                                .font(.system(size: 40))
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                .background(Color.red)
-                                .offset(y: 85)
-                            
-                        }
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 300, height: 250)
-                                .foregroundColor(.red)
-                            Image("chicken-penne-pasta")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 300, height: 250)
-                                .clipped()
-                            Text("Chicken Penne Pasta")
-                                .font(.system(size: 28))
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                .background(Color.red)
-                                .offset(y: 85)
-                            
-                        }
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 300, height: 250)
-                                .foregroundColor(.red)
-                            Image("spaghetti-carbonara")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 300, height: 250)
-                                .clipped()
-                            Text("Spaghetti Carbonara")
-                                .font(.system(size: 28))
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                .background(Color.red)
-                                .offset(y: 85)
-                            
+            VStack {
+                VStack {
+                    ZStack {
+                        HStack {
+                            Text("New Order")
+                                .font(.system(size: 55))
+                                .fontWeight(.bold)
                         }
                     }
-                    
-                    Group {
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 300, height: 250)
-                                .foregroundColor(.red)
-                            Image("sirloin-steak")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 300, height: 250)
-                                .clipped()
-                            Text("Sirloin Steak")
-                                .font(.system(size: 40))
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                .background(Color.red)
-                                .offset(y: 85)
-                            
+                }
+                
+                if menuVM.menu == [] {
+                    Spacer()
+                    VStack(spacing: 10) {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundColor(.orange)
+                            .font(.system(size: 50))
+                        Text("No menu items")
+                            .font(.system(size: 50))
+                            .fontWeight(.semibold)
+                        Text("Go to the Menu page to add your first menu item")
+                            .font(.system(size: 20))
+                    }.padding(.bottom, 90)
+                    Spacer()
+                } else {
+                    LazyVGrid(columns: [.init(.adaptive(minimum: 200, maximum: .infinity), spacing: 5)], spacing: 5) {
+                        ForEach(menuVM.menu) { menuItem in
+                            Button(action: {
+                                if orderVM.menuItemsInput.first(where: { $0.name == menuItem.id! } ) == nil {
+                                    orderVM.menuItemsInput.append(OrderedMenuItem(name: menuItem.id!, quantity: 1, price: 100))
+                                }
+                            }) {
+                                IndividualMenuItemView(menuItem: menuItem).environmentObject(menuVM)
+                            }
                         }
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 300, height: 250)
-                                .foregroundColor(.red)
-                            Image("porterhouse")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 300, height: 250)
-                                .clipped()
-                            Text("Porterhouse")
-                                .font(.system(size: 40))
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                .background(Color.red)
-                                .offset(y: 85)
-                            
-                        }
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 300, height: 250)
-                                .foregroundColor(.red)
-                            Image("rib-eye")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 300, height: 250)
-                                .clipped()
-                            Text("Rib Eye")
-                                .font(.system(size: 40))
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                .background(Color.red)
-                                .offset(y: 85)
-                            
-                        }
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 300, height: 250)
-                                .foregroundColor(.red)
-                            Image("new-york-strip")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 300, height: 250)
-                                .clipped()
-                            Text("New York Strip")
-                                .font(.system(size: 40))
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                .background(Color.red)
-                                .offset(y: 85)
-                            
-                        }
-                    }
-                    
-                    Group {
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 300, height: 250)
-                                .foregroundColor(.red)
-                            Image("garlic-mashed-potato")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 300, height: 250)
-                                .clipped()
-                            Image(systemName: "leaf.arrow.circlepath")
-                                .font(.system(size: 50))
-                                .foregroundColor(Color.green)
-                                .offset(x: 115, y: -90)
-                            Text("Garlic Mashed Potato")
-                                .font(.system(size: 28))
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                .background(Color.red)
-                                .offset(y: 85)
-                            
-                        }
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 300, height: 250)
-                                .foregroundColor(.red)
-                            Image("chicken-schnitzel")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 300, height: 250)
-                                .clipped()
-                            Text("Chicken Schnitzel")
-                                .font(.system(size: 32))
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                .background(Color.red)
-                                .offset(y: 85)
-                            
-                        }
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 300, height: 250)
-                                .foregroundColor(.gray)
-                            Text("Red Wine")
-                                .font(.system(size: 40))
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                //.background(Color.red)
-                            
-                        }
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 300, height: 250)
-                                .foregroundColor(.gray)
-                            Text("Champagne")
-                                .font(.system(size: 40))
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                //.background(Color.red)
-                            
-                        }
-                    }
-                    
-                    
-
-                }.padding(.top, -5)
-            }.navigationBarHidden(true)
-            
-            
+                    }.padding(.leading, 10)
+                    Spacer()
+                }
+            }
             
             Spacer()
+            
+            Divider()
+                .frame(width: 10)
+                .background(.red)
             
             VStack {
                 Text("New Order")
                     .font(Font.custom("DIN Bold", size: 60))
-                    .padding(.top, 10)
-                
-                ZStack {
-                    
-                    Rectangle()
-                        .foregroundColor(.orange)
-                        .frame(width: 170, height: 50)
-                        .padding(.bottom, 17)
-                        .cornerRadius(20)
-                    
-                    Text("Table 15")
-                        .font(Font.custom("DIN Bold", size: 35))
-                        .padding(.bottom, 20)
-                        .foregroundColor(.white)
-                    
-                }
-                    
-                
-                VStack(alignment: .leading) {
-                    HStack {
-                        Image(systemName: "arrow.up.circle")
-                        Image(systemName: "arrow.down.circle")
-                        Text(" **2**  Caesar Salad")
-                    }.padding(.bottom, 1)
-                    HStack {
-                        Image(systemName: "arrow.up.circle")
-                        Image(systemName: "arrow.down.circle")
-                        Text(" **1**  Chicken Schnitzel")
-                    }.padding(.bottom, 1)
-                    VStack {
-                        HStack {
-                            Image(systemName: "arrow.up.circle")
-                            Image(systemName: "arrow.down.circle")
-                            Text(" **2**  Sirloin Steak")
-                        }
-                        Text("                  Medium well")
-                            .foregroundColor(.gray)
-                        Text("            Well done")
-                            .foregroundColor(.gray)
-                    }.padding(.bottom, 1)
-                    HStack {
-                        Image(systemName: "arrow.up.circle")
-                        Image(systemName: "arrow.down.circle")
-                        Text(" **1**  Red Wine")
-                    }.padding(.bottom, 1)
+            
+                HStack {
+                    Text("Table")
+                        .fontWeight(.bold)
                     
                     Spacer()
                     
-                    
+                    TextField("", text: $orderVM.tableNumberInput)
+                        .disableAutocorrection(true)
+                        .autocapitalization(.none)
+                        .background(.white)
+                        .frame(width: 300, height: 40)
+                        .cornerRadius(25)
+                        .multilineTextAlignment(.center)
+                        .keyboardType(.decimalPad)
+                        .onReceive(Just(orderVM.tableNumberInput)) { newValue in
+                            let filtered = newValue.filter { "0123456789".contains($0) }
+                            if filtered != newValue {
+                                orderVM.tableNumberInput = filtered
+                            }
+                        }
+                        
+                }.padding(.horizontal, 20)
+
+                MenuDropDownInputView().environmentObject(orderVM)
+                    .padding(.horizontal, 20)
+                    .frame(height: 500)
+                
+                Spacer()
+                
+                Button(action: {
+                    orderVM.addOrder()
+                    if orderVM.error == "" {
+                        OrderView()
+                    }
+                }) {
                     ZStack {
                         Rectangle()
                             .cornerRadius(30)
                             .foregroundColor(Color.blue)
                             .frame(width: 380, height: 100)
                             .padding(.bottom, 10)
-                            
-                        Text("Submit")
+                        
+                        Text("Add Order")
                             .foregroundColor(.white)
                             .fontWeight(.bold)
                             .padding(.bottom, 10)
@@ -304,17 +117,25 @@ struct NewOrderView: View {
                     }
                 }
                 
-                
+                Text("\(orderVM.error)")
+                    .foregroundColor(.red)
+                    .font(.system(size: 22))
+                    .frame(maxWidth: 380)
             }.frame(maxWidth: 450, maxHeight: .infinity)
-                .background(Color(red: 237/255, green: 106/255, blue: 90/255))
+            .background(Color(red: 242/255, green: 242/255, blue: 248/255))
             .font(.system(size: 30))
-            
-        }.navigationBarBackButtonHidden(true)
+        }.background(Color(red: 242/255, green: 242/255, blue: 248/255))
+            .navigationBarHidden(true)
+            .onAppear {
+                menuVM.getMenu()
+                menuVM.checkUnavailableMenuItems()
+            }
     }
 }
 
 struct NewOrderView_Previews: PreviewProvider {
     static var previews: some View {
         NewOrderView().previewInterfaceOrientation(.landscapeLeft)
+            .environmentObject(MenuViewModel())
     }
 }

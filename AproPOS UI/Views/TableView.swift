@@ -31,6 +31,7 @@ struct TableView: View {
     ]
     
     var body: some View {
+        NavigationView {
         if !confirmingDelete && !editingTableNumber {
             HStack (spacing: 0) {
                 VStack {
@@ -265,7 +266,9 @@ struct TableView: View {
                     .font(.system(size: 30))
                 }
             }.background(Color(red: 242/255, green: 242/255, blue: 248/255))
+                .navigationBarTitle("")
                 .navigationBarHidden(true)
+                //.padding(.top, 30)
                 //.ignoresSafeArea()
                 .onAppear {
                     tableVM.getTables()
@@ -362,8 +365,10 @@ struct TableView: View {
                             .foregroundColor(.red)
                     }
                 }.frame(width: 400, height: 160)
-            }
+            }.padding(.top, 30)
+                .ignoresSafeArea()
         }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

@@ -25,7 +25,7 @@ struct OrderModel: Identifiable, Codable {
 
 }
 
-struct OrderedMenuItem: Codable {
+struct OrderedMenuItem: Codable, Equatable {
     var name: String
     var quantity: Int
     var price: Decimal

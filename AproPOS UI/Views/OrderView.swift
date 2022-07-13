@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OrderView: View {
     @StateObject private var orderVM = OrderViewModel()
+    @StateObject private var menuVM = MenuViewModel()
     
     func served() {}
     
@@ -242,7 +243,7 @@ struct OrderView: View {
                 
                 Spacer()
                 
-                NavigationLink (destination: NewOrderView()) {
+                NavigationLink (destination: NewOrderView().environmentObject(menuVM)) {
                     VStack {
                         Image(systemName: "plus.square.fill")
                             .font(.system(size: 100))

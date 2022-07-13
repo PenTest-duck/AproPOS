@@ -13,6 +13,7 @@ final class StaffViewModel: ObservableObject {
     @Published var userRepository = UserRepository()
     
     @Published var error = ""
+    @Published var disallowedViews: [String] = []
     
     @Published var emailInput: String = ""
     @Published var firstNameInput: String = ""
@@ -45,9 +46,16 @@ final class StaffViewModel: ObservableObject {
     func getUsers() {
         userRepository.fetchUsers() { (fetchedUsers) -> Void in
             self.users = fetchedUsers
-            //if !self.isUserAllowedInView(view: "ManagementView") {
-            //    print("User not allowed in view")
-            //}
+            
+            let staffDisallowed = ["ManagementView", "MenuView", "InventoryView", "StaffView", "AnalyticsView"]
+            let managerDisallowed = ["StaffView", "AnalyticsView"]
+            
+            switch self.users.first(where: { $0.id == Auth.auth().currentUser!.email! } )!.role {
+                case "staff": self.disallowedViews = staffDisallowed
+                case "manager": self.disallowedViews = managerDisallowed
+                case "owner": self.disallowedViews = []
+                default: self.disallowedViews = staffDisallowed
+            }
         }
     }
     
