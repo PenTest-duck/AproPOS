@@ -12,6 +12,8 @@ struct NewOrderView: View {
     @EnvironmentObject var menuVM: MenuViewModel
     @StateObject private var orderVM = OrderViewModel()
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State private var selectedMenuItem: MenuItemModel? = nil
     // @State private var selectedOrder: OrderModel? = nil
 
@@ -97,9 +99,10 @@ struct NewOrderView: View {
                 Spacer()
                 
                 Button(action: {
-                    orderVM.addOrder()
-                    if orderVM.error == "" {
-                        OrderView()
+                    orderVM.addOrder() { (_ success) -> Void in
+                        if orderVM.error == "" {
+                            presentationMode.wrappedValue.dismiss() // creates top blank bar
+                        }
                     }
                 }) {
                     ZStack {
@@ -129,6 +132,8 @@ struct NewOrderView: View {
             .onAppear {
                 menuVM.getMenu()
                 menuVM.checkUnavailableMenuItems()
+                // may be unnecessary?
+                orderVM.getOrders()
             }
     }
 }

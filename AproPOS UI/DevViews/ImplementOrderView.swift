@@ -29,7 +29,9 @@ struct ImplementOrderView: View {
             
             Button(action: {
                 //orderVM.menuItemsInput = ["Noodles" : 2, "Fried Rice" : 3]
-                orderVM.addOrder()
+                /*orderVM.addOrder() { () -> Void in
+                    print("added order")
+                }*/
                 
             }) {
                 Text("Add Order")

@@ -12,27 +12,32 @@ import FirebaseFirestore
 final class OrderViewModel: ObservableObject {
     @Published var orders = [OrderModel]()
     @Published var orderRepository = OrderRepository()
+    @Published var tableRepository = TableRepository()
     
     @Published var error = ""
     
-    @Published var tableNumberInput: String = ""
-    @Published var menuItemsInput: [OrderedMenuItem] = [] // [String: Int] = [:]
-
-    /*func getStartTime() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
-        return formatter.string(from: Date())
-    }*/
+    @Published var tableNumberInput: String = "0"
+    @Published var menuItemsInput: [OrderedMenuItem] = []
     
-    func addOrder() { // Convert tableNumber from String to Int
-        if tableNumberInput == "0" {
-            error = "Invalid table number"
-        } else if orders.firstIndex(where: { $0.id == tableNumberInput }) != nil {            // orders needs to update beforehand
-            error = "Order already exists"
-        } else {
-            // TODO: Refresh subtotalPrice when ordering
-            orderRepository.reduceInventory(menuItems: menuItemsInput)
-            orderRepository.addOrder(id: tableNumberInput, menuItems: menuItemsInput)
+    func addOrder(completion: @escaping (_ success: Bool) -> Void) {
+        tableRepository.fetchTables() { (fetchedTables) -> Void in
+            if self.tableNumberInput == "" {
+                self.error = "Please enter a table number"
+            } else if self.tableNumberInput == "0" {
+                self.error = "Invalid table number"
+            } else if self.orders.firstIndex(where: { $0.id == self.tableNumberInput }) != nil {
+                self.error = "Order already exists for table"
+            } else if fetchedTables.firstIndex(where: { $0.id == self.tableNumberInput } ) == nil {
+                self.error = "Table does not exist"
+            } else if self.menuItemsInput == [] {
+                self.error = "Please select at least 1 menu item"
+            } else {
+                // TODO: Refresh subtotalPrice when ordering
+                self.orderRepository.reduceInventory(menuItems: self.menuItemsInput)
+                self.orderRepository.addOrder(id: self.tableNumberInput, menuItems: self.menuItemsInput)
+                self.error = ""
+            }
+            completion(true)
         }
     }
     

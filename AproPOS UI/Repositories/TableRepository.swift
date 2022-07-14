@@ -33,7 +33,7 @@ class TableRepository: ObservableObject { // for the table view and status etc
 
                 return TableModel(id: id, seats: seats, status: status)
             }
-            
+        
             print(self.tables)
             completion(self.tables)
         }
@@ -51,6 +51,8 @@ class TableRepository: ObservableObject { // for the table view and status etc
     }
 
     func removeTable(tableNumber: String) {
+        OrderRepository().removeOrder(tableNumber: tableNumber)
+        
         db.collection("tables").document(tableNumber).delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")

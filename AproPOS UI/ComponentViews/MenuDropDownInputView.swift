@@ -13,15 +13,26 @@ struct MenuDropDownInputView: View {
     @StateObject private var menuVM = MenuViewModel()
     
     @State private var selectedMenuItem: OrderedMenuItem? = nil
-    @State private var quantity: Int = 1
-    
-    @State private var error: String = ""
+    //@State private var quantity: Int = 1
+    @State private var quantities: [String: Int] = [:]
     
     static var uniqueKey: String {
         UUID().uuidString
     }
 
     @State private var options: [DropdownOption] = []
+    
+    func incrementStep(name: String) {
+        if quantities[name]! <= 98 {
+            quantities[name]! += 1
+        }
+    }
+    
+    func decrementStep(name: String) {
+        if quantities[name]! >= 2 {
+            quantities[name]! -= 1
+        }
+    }
             
     var body: some View {
         VStack(spacing: 0) {
@@ -53,9 +64,25 @@ struct MenuDropDownInputView: View {
                                     
                                     HStack {
                                         
-                                        Stepper("\(quantity)", value: $quantity, in: 1...20)
+                                        Button(action: {
+                                            decrementStep(name: menuItem.name)
+                                        }) {
+                                            Text("-")
+                                                .font(.system(size: 25))
+                                                .fontWeight(.bold)
+                                        }
+
+                                        
+                                        Text("\(quantities[menuItem.name] ?? 1)")
                                             .font(.system(size: 20))
-                                            .foregroundColor(.white)
+                                        
+                                        Button(action: {
+                                            incrementStep(name: menuItem.name)
+                                        }) {
+                                            Text("+")
+                                                .font(.system(size: 25))
+                                                .fontWeight(.bold)
+                                        }
                                         
                                         Spacer()
                                         
@@ -81,6 +108,10 @@ struct MenuDropDownInputView: View {
                                             .font(.system(size: 28))
                                     }
                                 }.padding(.horizontal, 5)
+                            }.onAppear {
+                                if quantities.firstIndex(where: { $0.key == menuItem.name } ) == nil {
+                                    quantities[menuItem.name] = 1
+                                }
                             }
                         }
                         Spacer()
@@ -98,8 +129,10 @@ struct MenuDropDownInputView_Previews: PreviewProvider {
 
         //orderVM.menuItemsInput.append(OrderedMenuItem(name: "Pasta", quantity: 2, price: 20))
         
-        MenuDropDownInputView()
+        /*MenuDropDownInputView()
             .frame(width: 350, height: 500)
-            .environmentObject(OrderViewModel()) //orderVM
+            .environmentObject(OrderViewModel()) //orderVM*/
+        NewOrderView().previewInterfaceOrientation(.landscapeLeft)
+            .environmentObject(MenuViewModel())
     }
 }
