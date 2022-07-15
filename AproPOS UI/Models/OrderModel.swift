@@ -8,10 +8,10 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct OrderModel: Identifiable, Codable {
+struct OrderModel: Identifiable, Codable, Equatable {
     @DocumentID public var id: String? // table number
     var orderTime: Date
-    var status: String // preparing, served
+    var status: String // preparing, overdue
     var menuItems: [OrderedMenuItem]
     var subtotalPrice: Decimal
     
@@ -29,10 +29,12 @@ struct OrderedMenuItem: Codable, Equatable {
     var name: String
     var quantity: Int
     var price: Decimal
+    var served: Bool
     
-    init(name: String, quantity: Int, price: Decimal) {
+    init(name: String, quantity: Int, price: Decimal, served: Bool = false) {
         self.name = name
         self.quantity = quantity
         self.price = price
+        self.served = served
     }
 }

@@ -119,8 +119,9 @@ class BillingRepository: ObservableObject {
             let menuItemName = menuItem["name"] as? String ?? ""
             let menuItemQuantity = menuItem["quantity"] as? Int ?? 0
             let menuItemPrice = menuItem["price"] as? Double ?? 0.00
+            let menuItemServed = menuItem["served"] as? Bool ?? false
             
-            let convertedMenuItem = OrderedMenuItem(name: menuItemName, quantity: menuItemQuantity, price: Decimal(menuItemPrice))
+            let convertedMenuItem = OrderedMenuItem(name: menuItemName, quantity: menuItemQuantity, price: Decimal(menuItemPrice), served: menuItemServed)
             convertedMenuItems.append(convertedMenuItem)
         }
         

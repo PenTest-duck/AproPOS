@@ -15,14 +15,13 @@ struct MainView: View {
     
     var body: some View {
         NavigationView {
-                    VStack (spacing: 0) {
-                        HStack (spacing: 0) {
-                            
-                            NavigationLink(destination: OrderView()) {
-                                Text("Order")
-                                    .font(Font.custom("DIN Bold", size: 100))
-                                    .foregroundColor(Color.white)
-                                    .navigationBarTitle("")
+            VStack (spacing: 0) {
+                HStack (spacing: 0) {
+                    NavigationLink(destination: OrderView()) {
+                        Text("Order")
+                            .font(Font.custom("DIN Bold", size: 100))
+                            .foregroundColor(Color.white)
+                            .navigationBarTitle("")
                             .navigationBarHidden(true)
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color(red: 237/255, green: 106/255, blue: 90/255))
@@ -35,7 +34,6 @@ struct MainView: View {
                             .navigationBarHidden(true)
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color(red: 160/255, green: 236/255, blue: 208/255))
-                            
                 }
                 
                 HStack (spacing: 0) {

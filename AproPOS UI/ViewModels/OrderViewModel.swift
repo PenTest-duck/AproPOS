@@ -15,6 +15,7 @@ final class OrderViewModel: ObservableObject {
     @Published var tableRepository = TableRepository()
     
     @Published var error = ""
+    @Published var orderStatistics: [String: Int] = ["total": 0, "preparing": 0, "overdue": 0]
     
     @Published var tableNumberInput: String = "0"
     @Published var menuItemsInput: [OrderedMenuItem] = []
@@ -44,6 +45,11 @@ final class OrderViewModel: ObservableObject {
     func getOrders() {
         orderRepository.fetchOrders() { (fetchedOrders) -> Void in
             self.orders = fetchedOrders
+            
+            let total = fetchedOrders.count
+            let preparing = fetchedOrders.filter( { $0.status == "preparing" } ).count
+            let overdue = fetchedOrders.filter( { $0.status == "overdue" } ).count
+            self.orderStatistics = ["total": total, "preparing": preparing, "overdue": overdue]
         }
     }
     
@@ -68,5 +74,22 @@ final class OrderViewModel: ObservableObject {
     
     func changeOrderStatus(tableNumber: String, status: String) {
         orderRepository.changeOrderStatus(tableNumber: tableNumber, status: status)
+    }
+    
+    func calculateEST(menuItems: [OrderedMenuItem], completion: @escaping (Int) -> Void) {
+        var total = 0
+        MenuRepository().fetchMenu() { (fetchedMenu) -> Void in
+            for menuItem in menuItems {
+                total += fetchedMenu.first(where: { $0.id == menuItem.name } )!.estimatedServingTime
+            }
+            
+            completion(total)
+        }
+    }
+    
+    func toggleMenuItemServed(tableNumber: String, menuItems: [OrderedMenuItem], name: String) {
+        orderRepository.toggleMenuItemServed(tableNumber: tableNumber, menuItems: menuItems, name: name) { (_ success) -> Void in
+            
+        }
     }
 }

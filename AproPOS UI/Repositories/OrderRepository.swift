@@ -80,9 +80,13 @@ class OrderRepository: ObservableObject {
                     
                     for menuItem in menuItems {
                         let menuItemPrice = (self.menuPrices.compactMap { $0[menuItem.name] })[0]
-                        orderedMenuItems.append(OrderedMenuItem(name: menuItem.name, quantity: menuItem.quantity, price: menuItemPrice * Decimal(menuItem.quantity)))
+                        orderedMenuItems.append(OrderedMenuItem(name: menuItem.name, quantity: menuItem.quantity, price: menuItemPrice * Decimal(menuItem.quantity), served: false))
                         self.subtotalPrice += menuItemPrice * Decimal(menuItem.quantity)
                     }
+                    
+                    print("====")
+                    print(orderedMenuItems)
+                    print("====")
                     
                     // Add Order:
                     let newOrder = OrderModel(id: id, menuItems: orderedMenuItems, subtotalPrice: self.subtotalPrice)
@@ -143,7 +147,7 @@ class OrderRepository: ObservableObject {
     }
     
     func changeOrderStatus(tableNumber: String, status: String) {
-        db.collection("orders").document(tableNumber).updateData(["status": status]) { err in // function doesn't throw?
+        db.collection("orders").document(tableNumber).updateData(["status": status]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
             } else {
@@ -158,11 +162,38 @@ class OrderRepository: ObservableObject {
             let menuItemName = menuItem["name"] as? String ?? ""
             let menuItemQuantity = menuItem["quantity"] as? Int ?? 0
             let menuItemPrice = menuItem["price"] as? Double ?? 0.00
+            let menuItemServed = menuItem["served"] as? Bool ?? false
             
-            let convertedMenuItem = OrderedMenuItem(name: menuItemName, quantity: menuItemQuantity, price: Decimal(menuItemPrice))
+            let convertedMenuItem = OrderedMenuItem(name: menuItemName, quantity: menuItemQuantity, price: Decimal(menuItemPrice), served: menuItemServed)
             convertedMenuItems.append(convertedMenuItem)
         }
         
         return convertedMenuItems
+    }
+    
+    func toggleMenuItemServed(tableNumber: String, menuItems: [OrderedMenuItem], name: String, completion: @escaping (_ success: Bool) -> Void) {
+        let oldMenuItem = menuItems.first(where: { $0.name == name } )!
+        let newMenuItem = OrderedMenuItem(name: oldMenuItem.name, quantity: oldMenuItem.quantity, price: oldMenuItem.price, served: !oldMenuItem.served)
+        
+        let encodedOldMenuItem = try! Firestore.Encoder().encode(oldMenuItem)
+        let encodedNewMenuItem = try! Firestore.Encoder().encode(newMenuItem)
+        
+        db.collection("orders").document(tableNumber).updateData([ "menuItems" : FieldValue.arrayRemove([encodedOldMenuItem]) ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                //print("Document successfully updated!")
+            }
+        }
+        
+        db.collection("orders").document(tableNumber).updateData([ "menuItems" : FieldValue.arrayUnion([encodedNewMenuItem]) ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                //print("Document successfully updated!")
+            }
+        }
+        
+        completion(true)
     }
 }

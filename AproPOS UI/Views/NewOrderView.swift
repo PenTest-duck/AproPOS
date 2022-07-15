@@ -48,7 +48,7 @@ struct NewOrderView: View {
                         ForEach(menuVM.menu) { menuItem in
                             Button(action: {
                                 if orderVM.menuItemsInput.first(where: { $0.name == menuItem.id! } ) == nil {
-                                    orderVM.menuItemsInput.append(OrderedMenuItem(name: menuItem.id!, quantity: 1, price: 100))
+                                    orderVM.menuItemsInput.append(OrderedMenuItem(name: menuItem.id!, quantity: 1, price: 100, served: false))
                                 }
                             }) {
                                 IndividualMenuItemView(menuItem: menuItem).environmentObject(menuVM)
@@ -128,7 +128,7 @@ struct NewOrderView: View {
             .background(Color(red: 242/255, green: 242/255, blue: 248/255))
             .font(.system(size: 30))
         }.background(Color(red: 242/255, green: 242/255, blue: 248/255))
-            .navigationBarHidden(true)
+            //.navigationBarHidden(true)
             .onAppear {
                 menuVM.getMenu()
                 menuVM.checkUnavailableMenuItems()
