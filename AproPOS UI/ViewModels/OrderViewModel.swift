@@ -34,11 +34,16 @@ final class OrderViewModel: ObservableObject {
                 self.error = "Please select at least 1 menu item"
             } else {
                 // TODO: Refresh subtotalPrice when ordering
-                self.orderRepository.reduceInventory(menuItems: self.menuItemsInput)
-                self.orderRepository.addOrder(id: self.tableNumberInput, menuItems: self.menuItemsInput)
-                self.error = ""
+                self.orderRepository.reduceInventory(menuItems: self.menuItemsInput) { (result) -> Void in
+                    if result == "success" {
+                        self.orderRepository.addOrder(id: self.tableNumberInput, menuItems: self.menuItemsInput)
+                        self.error = ""
+                    } else {
+                        self.error = "Not enough \(result)"
+                    }
+                    completion(true)
+                }
             }
-            completion(true)
         }
     }
     

@@ -25,12 +25,26 @@ struct MenuDropDownInputView: View {
     func incrementStep(name: String) {
         if quantities[name]! <= 98 {
             quantities[name]! += 1
+            if let index = orderVM.menuItemsInput.firstIndex(where: { $0.name == name } ) {
+                let quantity = orderVM.menuItemsInput[index].quantity + 1
+                let price = orderVM.menuItemsInput[index].price
+                let served = orderVM.menuItemsInput[index].served
+                
+                orderVM.menuItemsInput[index] = OrderedMenuItem(name: name, quantity: quantity, price: price, served: served)
+            }
         }
     }
     
     func decrementStep(name: String) {
         if quantities[name]! >= 2 {
             quantities[name]! -= 1
+            if let index = orderVM.menuItemsInput.firstIndex(where: { $0.name == name } ) {
+                let quantity = orderVM.menuItemsInput[index].quantity - 1
+                let price = orderVM.menuItemsInput[index].price
+                let served = orderVM.menuItemsInput[index].served
+                
+                orderVM.menuItemsInput[index] = OrderedMenuItem(name: name, quantity: quantity, price: price, served: served)
+            }
         }
     }
             
@@ -134,5 +148,6 @@ struct MenuDropDownInputView_Previews: PreviewProvider {
             .environmentObject(OrderViewModel()) //orderVM*/
         NewOrderView().previewInterfaceOrientation(.landscapeLeft)
             .environmentObject(MenuViewModel())
+            .environmentObject(OrderViewModel())
     }
 }

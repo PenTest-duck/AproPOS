@@ -243,7 +243,7 @@ struct OrderViewOld: View {
                 
                 Spacer()
                 
-                NavigationLink (destination: NewOrderView().environmentObject(menuVM)) {
+                NavigationLink (destination: NewOrderView().environmentObject(menuVM).environmentObject(orderVM)) {
                     VStack {
                         Image(systemName: "plus.square.fill")
                             .font(.system(size: 100))

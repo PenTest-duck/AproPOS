@@ -63,15 +63,15 @@ struct IndividualOrderView: View {
                             .font(.system(size: 20))
                     }
                     
-                    Button(action: {
-                        //NewOrderView()
+                    /*Button(action: {
+                        NewOrderView()
                         // TODO: Add Edit feature
                         
                     }) {
                         Image(systemName: "pencil.tip.crop.circle")
                             .foregroundColor(.blue)
                             .font(.system(size: 20))
-                    }
+                    }*/
                 }.padding(.leading, 110)
                 
                 Spacer()

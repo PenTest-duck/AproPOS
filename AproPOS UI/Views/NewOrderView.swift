@@ -10,7 +10,8 @@ import Combine
 
 struct NewOrderView: View {
     @EnvironmentObject var menuVM: MenuViewModel
-    @StateObject private var orderVM = OrderViewModel()
+    @EnvironmentObject var orderVM: OrderViewModel
+    //@StateObject private var orderVM = OrderViewModel()
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -23,7 +24,7 @@ struct NewOrderView: View {
                 VStack {
                     ZStack {
                         HStack {
-                            Text("New Order")
+                            Text(orderVM.tableNumberInput != "0" && orderVM.tableNumberInput != "" ? "Order for Table \(orderVM.tableNumberInput)" : "New Order")
                                 .font(.system(size: 55))
                                 .fontWeight(.bold)
                         }
@@ -48,6 +49,8 @@ struct NewOrderView: View {
                         ForEach(menuVM.menu) { menuItem in
                             Button(action: {
                                 if orderVM.menuItemsInput.first(where: { $0.name == menuItem.id! } ) == nil {
+                                    
+                                    // TODO: price
                                     orderVM.menuItemsInput.append(OrderedMenuItem(name: menuItem.id!, quantity: 1, price: 100, served: false))
                                 }
                             }) {
@@ -66,7 +69,7 @@ struct NewOrderView: View {
                 .background(.red)
             
             VStack {
-                Text("New Order")
+                Text("Order")
                     .font(Font.custom("DIN Bold", size: 60))
             
                 HStack {
@@ -142,5 +145,6 @@ struct NewOrderView_Previews: PreviewProvider {
     static var previews: some View {
         NewOrderView().previewInterfaceOrientation(.landscapeLeft)
             .environmentObject(MenuViewModel())
+            .environmentObject(OrderViewModel())
     }
 }

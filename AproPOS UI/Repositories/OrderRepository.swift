@@ -107,7 +107,7 @@ class OrderRepository: ObservableObject {
         }
     }
     
-    func reduceInventory(menuItems: [OrderedMenuItem]) {
+    func reduceInventory(menuItems: [OrderedMenuItem], completion: @escaping (String) -> Void) {
         db.collection("menu").getDocuments() { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
@@ -120,11 +120,31 @@ class OrderRepository: ObservableObject {
                 let ingredients = data["ingredients"] as? [String: Int] ?? [:]
                 return [id: ingredients]
             }
-            
+                        
             for menuItem in menuItems {
                 let ingredients = (self.menuIngredients.compactMap { $0[menuItem.name] })[0]
                 for ingredient in ingredients {
-                    self.db.collection("inventory").document(ingredient.key).updateData(["currentStock": FieldValue.increment(-Double(ingredient.value * menuItem.quantity))])
+                    self.db.collection("inventory").document(ingredient.key).getDocument { (document, error) in
+                        guard let document = document, document.exists else {
+                            print("No documents")
+                            return
+                        }
+                        
+                        let data = document.data()
+                        let currentStock = data!["currentStock"] as? Double ?? 0.0
+                        
+                        print("====")
+                        print(menuItem)
+                        print(currentStock)
+                        print(Decimal(ingredient.value * menuItem.quantity))
+                        print("====")
+                        
+                        if Decimal(currentStock) < Decimal(ingredient.value * menuItem.quantity) {
+                            completion(ingredient.key)
+                        } else {
+                            self.db.collection("inventory").document(ingredient.key).updateData(["currentStock": FieldValue.increment(-Double(ingredient.value * menuItem.quantity))])
+                        }
+                    }
                 }
             }
         }

@@ -73,12 +73,17 @@ struct OrderView: View {
                     } else {
                         LazyVGrid(columns: [.init(.adaptive(minimum: 200, maximum: .infinity), spacing: 15, alignment: .top)], spacing: 15) {
                             ForEach(orderVM.orders.sorted(by: { Int($0.id!)! < Int($1.id!)! } )) { order in
-                                Button(action: {
-                                    
-                                }) {
+                                NavigationLink (destination: NewOrderView().environmentObject(menuVM).environmentObject(orderVM)
+                                                    .onAppear {
+                                    orderVM.tableNumberInput = order.id!
+                                    orderVM.menuItemsInput = order.menuItems
+                                } ) {
                                     IndividualOrderView(order: order)
                                         .environmentObject(orderVM)
-                                }
+                                }/*.onTapGesture {
+                                    orderVM.tableNumberInput = order.id!
+                                    orderVM.menuItemsInput = order.menuItems
+                                }*/
                             }
                         }.frame(width: 1000)
                         Spacer()
@@ -88,7 +93,11 @@ struct OrderView: View {
             
             //Spacer()
             
-            NavigationLink (destination: NewOrderView().environmentObject(menuVM)) {
+            NavigationLink (destination: NewOrderView().environmentObject(menuVM).environmentObject(orderVM)
+                                .onAppear {
+                orderVM.tableNumberInput = ""
+                orderVM.menuItemsInput = [OrderedMenuItem]()
+            }) {
                 VStack {
                     Image(systemName: "plus.square.fill")
                         .font(.system(size: 100))
