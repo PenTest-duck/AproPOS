@@ -36,7 +36,7 @@ struct ImplementBillingView: View {
                 )
             
             Button(action: {
-                billingVM.serverInput = "Chris Yoo"
+                //billingVM.serverInput = "Chris Yoo"
                 billingVM.processBill()
             }) {
                 Text("Process bill")

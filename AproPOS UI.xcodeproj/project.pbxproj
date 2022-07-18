@@ -44,6 +44,7 @@
 		403BE4F42875A3B1005A1C54 /* DropDownInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4F32875A3B1005A1C54 /* DropDownInputView.swift */; };
 		404B3052287E75FE00BEDD55 /* MenuDropDownInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404B3051287E75FE00BEDD55 /* MenuDropDownInputView.swift */; };
 		4065B3FD27C8A54B00B1D55A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */; };
+		406AD01A28854773002BE230 /* IndividualBillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AD01928854773002BE230 /* IndividualBillView.swift */; };
 		406BFEBE2836F7E700FEA7B9 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406BFEBD2836F7E700FEA7B9 /* ForgotPasswordView.swift */; };
 		407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */; };
 		407BCC3C282D0F9700F8D93E /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407BCC3B282D0F9700F8D93E /* OrderModel.swift */; };
@@ -113,6 +114,7 @@
 		403BE4F32875A3B1005A1C54 /* DropDownInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownInputView.swift; sourceTree = "<group>"; };
 		404B3051287E75FE00BEDD55 /* MenuDropDownInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDropDownInputView.swift; sourceTree = "<group>"; };
 		4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		406AD01928854773002BE230 /* IndividualBillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualBillView.swift; sourceTree = "<group>"; };
 		406BFEBD2836F7E700FEA7B9 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementOrderView.swift; sourceTree = "<group>"; };
 		407BCC3B282D0F9700F8D93E /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				40C9631E288036CF000EAEDF /* IndividualOrderView.swift */,
+				406AD01928854773002BE230 /* IndividualBillView.swift */,
 				40C5ED7B287863C000573099 /* IndividualMenuItemView.swift */,
 				4091FA2328771DEA00BED215 /* IndividualIngredientView.swift */,
 				403BE4EF287549C9005A1C54 /* IndividualTableView.swift */,
@@ -488,6 +491,7 @@
 				409B2079282E72950014CB54 /* CreateAccountView.swift in Sources */,
 				4038921E27E0923500B9FDFB /* StaffViewOld.swift in Sources */,
 				403BE4ED28748AA4005A1C54 /* ImplementStaffView.swift in Sources */,
+				406AD01A28854773002BE230 /* IndividualBillView.swift in Sources */,
 				403BE4E72874534C005A1C54 /* OrderRepository.swift in Sources */,
 				401CDE60287336DC00DCA698 /* AnalyticsViewModel.swift in Sources */,
 				403BE4E92874547F005A1C54 /* BillingRepository.swift in Sources */,

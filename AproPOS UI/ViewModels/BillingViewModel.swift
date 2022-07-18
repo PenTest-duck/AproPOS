@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseAuth
 
 final class BillingViewModel: ObservableObject {
     @Published var billOrders = [OrderModel]()
@@ -15,9 +16,22 @@ final class BillingViewModel: ObservableObject {
     @Published var orderRepository = OrderRepository()
     @Published var billingRepository = BillingRepository()
     
+    @Published var error = ""
+    
     @Published var tableNumberInput: String = ""
-    @Published var discountInput: Decimal = 0.00
-    @Published var serverInput: String = "" // TODO: current user auth features
+    @Published var discountInput: String = "0.00"
+    
+    @Published var viewingPastBill = false
+    
+    func validateDiscount(discount: String) {
+        if discount == "" {
+            error = "Please enter a valid discount amount"
+        } else if discount[(discount.firstIndex(of: ".") ?? discount.index(discount.endIndex, offsetBy: -1))...].count > 3 {
+            error = "Currency allows max. 2 decimal places"
+        } else {
+            error = ""
+        }
+    }
     
     func getOrders() {
         orderRepository.fetchOrders() { (fetchedOrders) -> Void in
@@ -26,7 +40,10 @@ final class BillingViewModel: ObservableObject {
     }
     
     func processBill() {
-        billingRepository.processBill(tableNumber: tableNumberInput, discount: discountInput, server: serverInput)
+        UserRepository().fetchUsers() { (fetchedUsers) -> Void in
+            let currentUser = fetchedUsers.first(where: { $0.id == Auth.auth().currentUser!.email! } )!
+            self.billingRepository.processBill(tableNumber: self.tableNumberInput, discount: Decimal(Double(self.discountInput)!), server: "\(currentUser.firstName) \(currentUser.lastName)")
+        }
     }
     
     func getBillsHistory() {
