@@ -26,7 +26,7 @@ struct MainView: View {
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color(red: 237/255, green: 106/255, blue: 90/255))
                     
-                    NavigationLink(destination: BillingView2()) {
+                    NavigationLink(destination: BillingView()) {
                         Text("Billing")
                             .font(Font.custom("DIN Bold", size: 100))
                             .foregroundColor(Color.white)

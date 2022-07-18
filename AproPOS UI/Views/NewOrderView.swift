@@ -24,7 +24,7 @@ struct NewOrderView: View {
                 VStack {
                     ZStack {
                         HStack {
-                            Text(orderVM.tableNumberInput != "0" && orderVM.tableNumberInput != "" ? "Order for Table \(orderVM.tableNumberInput)" : "New Order")
+                            Text(orderVM.editingOrder ? "Order for Table \(orderVM.tableNumberInput)" : "New Order")
                                 .font(.system(size: 55))
                                 .fontWeight(.bold)
                         }
@@ -51,7 +51,9 @@ struct NewOrderView: View {
                                 if orderVM.menuItemsInput.first(where: { $0.name == menuItem.id! } ) == nil {
                                     
                                     // TODO: price
-                                    orderVM.menuItemsInput.append(OrderedMenuItem(name: menuItem.id!, quantity: 1, price: 100, served: false))
+                                    orderVM.initPrice(name: menuItem.id!) { (price) -> Void in
+                                        orderVM.menuItemsInput.append(OrderedMenuItem(name: menuItem.id!, quantity: 1, price: price, served: false))
+                                    }
                                 }
                             }) {
                                 IndividualMenuItemView(menuItem: menuItem).environmentObject(menuVM)
@@ -99,11 +101,14 @@ struct NewOrderView: View {
                     .padding(.horizontal, 20)
                     .frame(height: 500)
                 
+                Text("Total Price: $\(String(describing: orderVM.totalPrice()))")
+                
                 Spacer()
                 
                 Button(action: {
                     orderVM.addOrder() { (_ success) -> Void in
                         if orderVM.error == "" {
+                            orderVM.editingOrder = false
                             presentationMode.wrappedValue.dismiss() // creates top blank bar
                         }
                     }
@@ -115,7 +120,7 @@ struct NewOrderView: View {
                             .frame(width: 380, height: 100)
                             .padding(.bottom, 10)
                         
-                        Text("Add Order")
+                        Text(orderVM.editingOrder ? "Edit Order" : "Add Order")
                             .foregroundColor(.white)
                             .fontWeight(.bold)
                             .padding(.bottom, 10)

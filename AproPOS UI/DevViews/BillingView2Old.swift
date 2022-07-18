@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct BillingView2: View {
+struct BillingView2Old: View {
     
     var body: some View {
         HStack (spacing: 0) {
@@ -100,8 +100,8 @@ struct BillingView2: View {
     }
 }
 
-struct BillingView2_Previews: PreviewProvider {
+struct BillingView2Old_Previews: PreviewProvider {
     static var previews: some View {
-        BillingView2().previewInterfaceOrientation(.landscapeLeft)
+        BillingView2Old().previewInterfaceOrientation(.landscapeLeft)
     }
 }

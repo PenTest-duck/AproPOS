@@ -63,15 +63,13 @@ struct IndividualOrderView: View {
                             .font(.system(size: 20))
                     }
                     
-                    /*Button(action: {
-                        NewOrderView()
-                        // TODO: Add Edit feature
-                        
+                    Button(action: {
+                        orderVM.changeOrderStatus(tableNumber: order.id!, status: "served")
                     }) {
-                        Image(systemName: "pencil.tip.crop.circle")
-                            .foregroundColor(.blue)
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.green)
                             .font(.system(size: 20))
-                    }*/
+                    }
                 }.padding(.leading, 110)
                 
                 Spacer()

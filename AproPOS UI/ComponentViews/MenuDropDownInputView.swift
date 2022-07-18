@@ -19,7 +19,7 @@ struct MenuDropDownInputView: View {
     static var uniqueKey: String {
         UUID().uuidString
     }
-
+    
     @State private var options: [DropdownOption] = []
     
     func incrementStep(name: String) {
@@ -27,9 +27,9 @@ struct MenuDropDownInputView: View {
             quantities[name]! += 1
             if let index = orderVM.menuItemsInput.firstIndex(where: { $0.name == name } ) {
                 let quantity = orderVM.menuItemsInput[index].quantity + 1
-                let price = orderVM.menuItemsInput[index].price
+                let price = (orderVM.menuItemsInput[index].price / Decimal(orderVM.menuItemsInput[index].quantity)) * Decimal(orderVM.menuItemsInput[index].quantity + 1)
                 let served = orderVM.menuItemsInput[index].served
-                
+
                 orderVM.menuItemsInput[index] = OrderedMenuItem(name: name, quantity: quantity, price: price, served: served)
             }
         }
@@ -40,9 +40,9 @@ struct MenuDropDownInputView: View {
             quantities[name]! -= 1
             if let index = orderVM.menuItemsInput.firstIndex(where: { $0.name == name } ) {
                 let quantity = orderVM.menuItemsInput[index].quantity - 1
-                let price = orderVM.menuItemsInput[index].price
+                let price = (orderVM.menuItemsInput[index].price / Decimal(orderVM.menuItemsInput[index].quantity)) * Decimal(orderVM.menuItemsInput[index].quantity - 1)
                 let served = orderVM.menuItemsInput[index].served
-                
+
                 orderVM.menuItemsInput[index] = OrderedMenuItem(name: name, quantity: quantity, price: price, served: served)
             }
         }
@@ -96,6 +96,12 @@ struct MenuDropDownInputView: View {
                                             Text("+")
                                                 .font(.system(size: 25))
                                                 .fontWeight(.bold)
+                                        }
+                                        
+                                        if let index = orderVM.menuItemsInput.firstIndex(where: { $0.name == menuItem.name } ) {
+                                            Text("$\(String(describing: orderVM.menuItemsInput[index].price))")
+                                                .foregroundColor(.gray)
+                                                .font(.system(size: 20))
                                         }
                                         
                                         Spacer()

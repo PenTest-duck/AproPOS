@@ -27,7 +27,7 @@
 		4029860A27C7AEDC007A70C2 /* OrderViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029860927C7AEDC007A70C2 /* OrderViewOld.swift */; };
 		4029860C27C7AEF7007A70C2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029860B27C7AEF7007A70C2 /* MainView.swift */; };
 		4029860E27C7AF1A007A70C2 /* MenuViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029860D27C7AF1A007A70C2 /* MenuViewOld.swift */; };
-		4029861027C7AF26007A70C2 /* BillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029860F27C7AF26007A70C2 /* BillingView.swift */; };
+		4029861027C7AF26007A70C2 /* BillingViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029860F27C7AF26007A70C2 /* BillingViewOld.swift */; };
 		4029861227C7AF41007A70C2 /* ReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029861127C7AF41007A70C2 /* ReservationView.swift */; };
 		4029861827C7AF8F007A70C2 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029861727C7AF8F007A70C2 /* AnalyticsView.swift */; };
 		4029861A27C7AF9D007A70C2 /* InventoryViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029861927C7AF9D007A70C2 /* InventoryViewOld.swift */; };
@@ -50,6 +50,7 @@
 		407C0F4328389B4D00052389 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407C0F4228389B4D00052389 /* OrderViewModel.swift */; };
 		407C0F452838AFF100052389 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407C0F442838AFF100052389 /* UserModel.swift */; };
 		408ACF1B287DB2A200C35A67 /* NewOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408ACF1A287DB2A200C35A67 /* NewOrderView.swift */; };
+		408C5EB028852B9300DD50F6 /* BillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C5EAF28852B9300DD50F6 /* BillingView.swift */; };
 		4091FA2428771DEB00BED215 /* IndividualIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4091FA2328771DEA00BED215 /* IndividualIngredientView.swift */; };
 		4091FA26287723ED00BED215 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4091FA25287723ED00BED215 /* InventoryView.swift */; };
 		409B2077282E6FAD0014CB54 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409B2076282E6FAD0014CB54 /* AuthViewModel.swift */; };
@@ -64,7 +65,7 @@
 		40C9631D28803458000EAEDF /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C9631C28803458000EAEDF /* OrderView.swift */; };
 		40C9631F288036CF000EAEDF /* IndividualOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C9631E288036CF000EAEDF /* IndividualOrderView.swift */; };
 		40D33A43282BD12100D34B95 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40D33A42282BD12100D34B95 /* GoogleService-Info.plist */; };
-		40DD9E6727D8CF2000610DB2 /* BillingView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DD9E6627D8CF2000610DB2 /* BillingView2.swift */; };
+		40DD9E6727D8CF2000610DB2 /* BillingView2Old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DD9E6627D8CF2000610DB2 /* BillingView2Old.swift */; };
 		40E7A08C2863D11100871A48 /* BillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7A08B2863D11100871A48 /* BillingViewModel.swift */; };
 		40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */; };
 		5E323E5D286291E200C48313 /* BillingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E323E5C286291E200C48313 /* BillingModel.swift */; };
@@ -95,7 +96,7 @@
 		4029860927C7AEDC007A70C2 /* OrderViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewOld.swift; sourceTree = "<group>"; };
 		4029860B27C7AEF7007A70C2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		4029860D27C7AF1A007A70C2 /* MenuViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewOld.swift; sourceTree = "<group>"; };
-		4029860F27C7AF26007A70C2 /* BillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingView.swift; sourceTree = "<group>"; };
+		4029860F27C7AF26007A70C2 /* BillingViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingViewOld.swift; sourceTree = "<group>"; };
 		4029861127C7AF41007A70C2 /* ReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationView.swift; sourceTree = "<group>"; };
 		4029861727C7AF8F007A70C2 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		4029861927C7AF9D007A70C2 /* InventoryViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewOld.swift; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 		407C0F4228389B4D00052389 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		407C0F442838AFF100052389 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		408ACF1A287DB2A200C35A67 /* NewOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrderView.swift; sourceTree = "<group>"; };
+		408C5EAF28852B9300DD50F6 /* BillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingView.swift; sourceTree = "<group>"; };
 		4091FA2328771DEA00BED215 /* IndividualIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualIngredientView.swift; sourceTree = "<group>"; };
 		4091FA25287723ED00BED215 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		409B2076282E6FAD0014CB54 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -133,7 +135,7 @@
 		40C9631C28803458000EAEDF /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		40C9631E288036CF000EAEDF /* IndividualOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualOrderView.swift; sourceTree = "<group>"; };
 		40D33A42282BD12100D34B95 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		40DD9E6627D8CF2000610DB2 /* BillingView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingView2.swift; sourceTree = "<group>"; };
+		40DD9E6627D8CF2000610DB2 /* BillingView2Old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingView2Old.swift; sourceTree = "<group>"; };
 		40E7A08B2863D11100871A48 /* BillingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingViewModel.swift; sourceTree = "<group>"; };
 		40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		51CF6483D3148CF20729988F /* Pods_AproPOS_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AproPOS_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,9 +161,9 @@
 			children = (
 				401866E9283CEA0D0046BFBC /* UserRepository.swift */,
 				403BE4E62874534C005A1C54 /* OrderRepository.swift */,
+				403BE4E82874547F005A1C54 /* BillingRepository.swift */,
 				403BE4E428745313005A1C54 /* MenuRepository.swift */,
 				403BE4E2287452E4005A1C54 /* InventoryRepository.swift */,
-				403BE4E82874547F005A1C54 /* BillingRepository.swift */,
 				403BE4E028745264005A1C54 /* TableRepository.swift */,
 			);
 			path = Repositories;
@@ -246,9 +248,7 @@
 				4029860B27C7AEF7007A70C2 /* MainView.swift */,
 				40C9631C28803458000EAEDF /* OrderView.swift */,
 				408ACF1A287DB2A200C35A67 /* NewOrderView.swift */,
-				4029860F27C7AF26007A70C2 /* BillingView.swift */,
-				40DD9E6627D8CF2000610DB2 /* BillingView2.swift */,
-				401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */,
+				408C5EAF28852B9300DD50F6 /* BillingView.swift */,
 				403BE4F1287567B4005A1C54 /* TableView.swift */,
 				4016CAF327C8F27700A97867 /* ManagementView.swift */,
 				40C5ED7D2878669300573099 /* MenuView.swift */,
@@ -302,6 +302,9 @@
 				4029860927C7AEDC007A70C2 /* OrderViewOld.swift */,
 				40BD731B27D606A200CBDA9A /* NewOrderViewOld.swift */,
 				407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */,
+				4029860F27C7AF26007A70C2 /* BillingViewOld.swift */,
+				40DD9E6627D8CF2000610DB2 /* BillingView2Old.swift */,
+				401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */,
 				4029861127C7AF41007A70C2 /* ReservationView.swift */,
 				5E32B4AC2873BEB700D60B4B /* ImplementTableView.swift */,
 				4029860D27C7AF1A007A70C2 /* MenuViewOld.swift */,
@@ -473,12 +476,13 @@
 				401CDE4E28708C7E00DCA698 /* ImplementBillingView.swift in Sources */,
 				403BE4E3287452E4005A1C54 /* InventoryRepository.swift in Sources */,
 				404B3052287E75FE00BEDD55 /* MenuDropDownInputView.swift in Sources */,
-				4029861027C7AF26007A70C2 /* BillingView.swift in Sources */,
-				40DD9E6727D8CF2000610DB2 /* BillingView2.swift in Sources */,
+				4029861027C7AF26007A70C2 /* BillingViewOld.swift in Sources */,
+				40DD9E6727D8CF2000610DB2 /* BillingView2Old.swift in Sources */,
 				4091FA2428771DEB00BED215 /* IndividualIngredientView.swift in Sources */,
 				40BD731C27D606A200CBDA9A /* NewOrderViewOld.swift in Sources */,
 				401109DB28790FFF00B3C426 /* ImagePickerView.swift in Sources */,
 				40C5ED7E2878669300573099 /* MenuView.swift in Sources */,
+				408C5EB028852B9300DD50F6 /* BillingView.swift in Sources */,
 				401866EA283CEA0D0046BFBC /* UserRepository.swift in Sources */,
 				401866F4283CFDFF0046BFBC /* MenuItemModel.swift in Sources */,
 				409B2079282E72950014CB54 /* CreateAccountView.swift in Sources */,

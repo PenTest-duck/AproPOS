@@ -50,6 +50,16 @@ struct OrderView: View {
                                     .font(.system(size: 55))
                                     .fontWeight(.bold)
                             }.padding(.horizontal, 20)
+                            
+                            VStack {
+                                Text("Served")
+                                    .foregroundColor(.white)
+                                    .fontWeight(.semibold)
+                                
+                                Text("\(orderVM.orderStatistics["served"]!)")
+                                    .font(.system(size: 55))
+                                    .fontWeight(.bold)
+                            }.padding(.horizontal, 20)
                         }.frame(width: 1070) // static value
                             .padding(.vertical, 10)
                             .background(.orange)
@@ -72,18 +82,16 @@ struct OrderView: View {
                         Spacer()
                     } else {
                         LazyVGrid(columns: [.init(.adaptive(minimum: 200, maximum: .infinity), spacing: 15, alignment: .top)], spacing: 15) {
-                            ForEach(orderVM.orders.sorted(by: { Int($0.id!)! < Int($1.id!)! } )) { order in
+                            ForEach(orderVM.orders.sorted(by: { Int($0.id!)! < Int($1.id!)! } ).filter { $0.status != "served" } ) { order in
                                 NavigationLink (destination: NewOrderView().environmentObject(menuVM).environmentObject(orderVM)
                                                     .onAppear {
+                                    orderVM.editingOrder = true
                                     orderVM.tableNumberInput = order.id!
                                     orderVM.menuItemsInput = order.menuItems
                                 } ) {
                                     IndividualOrderView(order: order)
                                         .environmentObject(orderVM)
-                                }/*.onTapGesture {
-                                    orderVM.tableNumberInput = order.id!
-                                    orderVM.menuItemsInput = order.menuItems
-                                }*/
+                                }
                             }
                         }.frame(width: 1000)
                         Spacer()
@@ -95,6 +103,7 @@ struct OrderView: View {
             
             NavigationLink (destination: NewOrderView().environmentObject(menuVM).environmentObject(orderVM)
                                 .onAppear {
+                orderVM.editingOrder = false
                 orderVM.tableNumberInput = ""
                 orderVM.menuItemsInput = [OrderedMenuItem]()
             }) {

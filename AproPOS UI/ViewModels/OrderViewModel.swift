@@ -8,14 +8,17 @@
 import Foundation
 import FirebaseCore
 import FirebaseFirestore
+import SwiftUI
 
 final class OrderViewModel: ObservableObject {
     @Published var orders = [OrderModel]()
     @Published var orderRepository = OrderRepository()
     @Published var tableRepository = TableRepository()
+    private let db = Firestore.firestore()
     
     @Published var error = ""
-    @Published var orderStatistics: [String: Int] = ["total": 0, "preparing": 0, "overdue": 0]
+    @Published var orderStatistics: [String: Int] = ["total": 0, "preparing": 0, "overdue": 0, "served": 0]
+    @Published var editingOrder = false
     
     @Published var tableNumberInput: String = "0"
     @Published var menuItemsInput: [OrderedMenuItem] = []
@@ -26,7 +29,7 @@ final class OrderViewModel: ObservableObject {
                 self.error = "Please enter a table number"
             } else if self.tableNumberInput == "0" {
                 self.error = "Invalid table number"
-            } else if self.orders.firstIndex(where: { $0.id == self.tableNumberInput }) != nil {
+            } else if !self.editingOrder && self.orders.firstIndex(where: { $0.id == self.tableNumberInput }) != nil {
                 self.error = "Order already exists for table"
             } else if fetchedTables.firstIndex(where: { $0.id == self.tableNumberInput } ) == nil {
                 self.error = "Table does not exist"
@@ -36,7 +39,9 @@ final class OrderViewModel: ObservableObject {
                 // TODO: Refresh subtotalPrice when ordering
                 self.orderRepository.reduceInventory(menuItems: self.menuItemsInput) { (result) -> Void in
                     if result == "success" {
-                        self.orderRepository.addOrder(id: self.tableNumberInput, menuItems: self.menuItemsInput)
+                        //self.orderRepository.addOrder(id: self.tableNumberInput, menuItems: self.menuItemsInput)
+                        let newOrder = OrderModel(id: self.tableNumberInput, menuItems: self.menuItemsInput, subtotalPrice: self.totalPrice())
+                        self.orderRepository.addOrder(order: newOrder)
                         self.error = ""
                     } else {
                         self.error = "Not enough \(result)"
@@ -54,7 +59,8 @@ final class OrderViewModel: ObservableObject {
             let total = fetchedOrders.count
             let preparing = fetchedOrders.filter( { $0.status == "preparing" } ).count
             let overdue = fetchedOrders.filter( { $0.status == "overdue" } ).count
-            self.orderStatistics = ["total": total, "preparing": preparing, "overdue": overdue]
+            let served = fetchedOrders.filter( { $0.status == "served" } ).count
+            self.orderStatistics = ["total": total, "preparing": preparing, "overdue": overdue, "served": served]
         }
     }
     
@@ -74,7 +80,9 @@ final class OrderViewModel: ObservableObject {
         }
         let editedMenuItems = menuItemsInput == [] ? originalMenuItems : menuItemsInput
         
-        orderRepository.addOrder(id: tableNumberInput, menuItems: editedMenuItems)
+        let editedOrder = OrderModel(id: tableNumberInput, menuItems: editedMenuItems, subtotalPrice: totalPrice())
+        
+        orderRepository.addOrder(order: editedOrder)
     }
     
     func changeOrderStatus(tableNumber: String, status: String) {
@@ -90,6 +98,28 @@ final class OrderViewModel: ObservableObject {
             
             completion(total)
         }
+    }
+    
+    func initPrice(name: String, completion: @escaping (Decimal) -> Void) {
+        db.collection("menu").document(name).getDocument { (document, error) in
+            guard let document = document, document.exists else {
+                print("No documents")
+                return
+            }
+
+            let data = document.data()
+            let price = data!["price"] as? Double ?? 0.0
+            
+            completion(Decimal(price))
+        }
+    }
+    
+    func totalPrice() -> Decimal {
+        var total: Decimal = 0.00
+        for menuItem in menuItemsInput {
+            total += menuItem.price
+        }
+        return total
     }
     
     func toggleMenuItemServed(tableNumber: String, menuItems: [OrderedMenuItem], name: String) {

@@ -46,63 +46,35 @@ class OrderRepository: ObservableObject {
         }
     }
     
-    func addOrder(id: String, menuItems: [OrderedMenuItem]) {
-        db.collection("menu").getDocuments() { (querySnapshot, error) in
+    //func addOrder(id: String, menuItems: [OrderedMenuItem]) {
+    func addOrder(order: OrderModel) {
+        var existingTables: [String] = []
+        
+        self.db.collection("tables").getDocuments() { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return
             }
-            
-            // TODO: Limit order availability
-
-            self.menuPrices = documents.map { queryDocumentSnapshot -> [String: Decimal] in
-                let data = queryDocumentSnapshot.data()
-                let id = queryDocumentSnapshot.documentID
-                let price = data["price"] as? Double ?? 0.00
-
-                return [id: Decimal(price)]
+                
+            existingTables = documents.map { queryDocumentSnapshot -> String in
+                return queryDocumentSnapshot.documentID
             }
             
-            var existingTables: [String] = []
-            
-            self.db.collection("tables").getDocuments() { (querySnapshot, error) in
-                guard let documents = querySnapshot?.documents else {
-                    print("No documents")
-                    return
-                }
-                    
-                existingTables = documents.map { queryDocumentSnapshot -> String in
-                    return queryDocumentSnapshot.documentID
+            if existingTables.contains(order.id!) {
+                
+                // Add Order:
+                let docRef = self.db.collection("orders").document(order.id!)
+                
+                do {
+                    try docRef.setData(from: order)
+                    print("success")
+                } catch {
+                    print(error.localizedDescription)
                 }
                 
-                if existingTables.contains(id) {
-                    var orderedMenuItems: [OrderedMenuItem] = []
-                    
-                    for menuItem in menuItems {
-                        let menuItemPrice = (self.menuPrices.compactMap { $0[menuItem.name] })[0]
-                        orderedMenuItems.append(OrderedMenuItem(name: menuItem.name, quantity: menuItem.quantity, price: menuItemPrice * Decimal(menuItem.quantity), served: false))
-                        self.subtotalPrice += menuItemPrice * Decimal(menuItem.quantity)
-                    }
-                    
-                    print("====")
-                    print(orderedMenuItems)
-                    print("====")
-                    
-                    // Add Order:
-                    let newOrder = OrderModel(id: id, menuItems: orderedMenuItems, subtotalPrice: self.subtotalPrice)
-                    let docRef = self.db.collection("orders").document(newOrder.id!)
-                    
-                    do {
-                        try docRef.setData(from: newOrder)
-                        print("success")
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                    
-                    self.db.collection("tables").document(id).updateData(["status": "ordered"])
-                } else {
-                    print("Table doesn't exist")
-                }
+                self.db.collection("tables").document(order.id!).updateData(["status": "ordered"])
+            } else {
+                print("Table doesn't exist")
             }
         }
     }
@@ -133,11 +105,11 @@ class OrderRepository: ObservableObject {
                         let data = document.data()
                         let currentStock = data!["currentStock"] as? Double ?? 0.0
                         
-                        print("====")
+                        /*print("====")
                         print(menuItem)
                         print(currentStock)
                         print(Decimal(ingredient.value * menuItem.quantity))
-                        print("====")
+                        print("====")*/
                         
                         if Decimal(currentStock) < Decimal(ingredient.value * menuItem.quantity) {
                             completion(ingredient.key)
@@ -147,6 +119,7 @@ class OrderRepository: ObservableObject {
                     }
                 }
             }
+            completion("success")
         }
     }
     
