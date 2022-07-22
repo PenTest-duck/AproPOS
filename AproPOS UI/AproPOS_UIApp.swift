@@ -21,7 +21,9 @@ struct AproPOS_UIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            AnalyticsViewTest
+            //AnalyticsViewModel()
+            //LoginView()
             //MainView()
             //ImplementOrderView()
             //ImplementBillingView()
