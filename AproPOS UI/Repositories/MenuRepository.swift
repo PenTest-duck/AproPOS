@@ -36,16 +36,32 @@ class MenuRepository: ObservableObject {
                 let estimatedServingTime = data["estimatedServingTime"] as? Int ?? 0
                 let warnings = data["warnings"] as? [String] ?? []
                 let ingredients = data["ingredients"] as? [String: Double] ?? [:]
-                let image = data["image"] as? Data ?? (UIImage(named: "defaultMenuItemImage")!).pngData()!
+                //let image = data["image"] as? Data ?? (UIImage(named: "defaultMenuItemImage")!).pngData()!
                 let status = data["status"] as? [String: [String]] ?? ["available": []]
                 
-                let deserialisedImage = UIImage(data: image)!
+                //let deserialisedImage = UIImage(data: image)!
                 var convertedIngredients: [String: Decimal] = [:]
                 for ingredient in ingredients {
                     convertedIngredients[ingredient.key] = Decimal(ingredient.value)
                 }
+                
+                let imageRef = self.storageRef.child("images/\(id)")
+                
+                
+                var image = UIImage(named: "defaultMenuItemImage")!
+                imageRef.getData(maxSize: 50 * 1024 * 1024) { data, error in
+                    if let error = error {
+                        print("Error getting image from Firebase Storage: \(error.localizedDescription)")
+                        return
+                    } else {
+                        image = UIImage(data: data!)!
+                    }
+                }
+                
+                // TODO: Return after getting image
+                
+                return MenuItemModel(id: id, price: Decimal(price), estimatedServingTime: estimatedServingTime, warnings: warnings, ingredients: convertedIngredients, image: image, status: status)
 
-                return MenuItemModel(id: id, price: Decimal(price), estimatedServingTime: estimatedServingTime, warnings: warnings, ingredients: convertedIngredients, image: deserialisedImage, status: status)
             }
             
             print(self.menu)
@@ -62,16 +78,14 @@ class MenuRepository: ObservableObject {
         } catch {
             print(error.localizedDescription)
         }
-        /*
+        
         let imageRef = storageRef.child("images").child(menuItem.id!)
         imageRef.putData(menuItem.image, metadata: nil) { (metadata, error) in
             guard metadata != nil else {
                 print("Error uploading to storage")
                 return
             }
-            
-            print(metadata)
-        }*/
+        }
     }
     
     func editMenuItem(name: String) {

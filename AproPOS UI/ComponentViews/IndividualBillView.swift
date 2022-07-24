@@ -122,20 +122,31 @@ struct IndividualBillView: View {
                     Spacer()
                     
                     VStack {
-                        Text("Sub Total: $\(String(describing: order.subtotalPrice))")
-                        Text("Discount: $\(billingVM.discountInput)")
-                        Text("Total: $\(String(describing: (order.subtotalPrice - Decimal(Double(billingVM.discountInput)!))))")
-                    }
+                        Text("Sub Total: **$\(String(describing: order.subtotalPrice))**")
+                        Text("Discount: **$\(billingVM.discountInput)**")
+                        Text("Total: **$\(String(describing: (order.subtotalPrice - Decimal(Double(billingVM.discountInput)!))))**")
+                    }.font(.system(size: 25))
                 }.padding(.bottom, 50)
                 
                 if !billingVM.viewingPastBill {
                     Button(action: {
                         billingVM.tableNumberInput = order.id!
                         billingVM.processBill()
-                        
-                        // TODO: return to no bill selected view
+                        billingVM.selectedOrder = nil
                     }) {
-                        Text("Process Bill")
+                        ZStack {
+                            Rectangle()
+                                .cornerRadius(20)
+                                .foregroundColor(Color.blue)
+                                .frame(width: 250, height: 50)
+                                .padding(.bottom, 10)
+                            
+                            Text("Process bill")
+                                .foregroundColor(.white)
+                                .fontWeight(.semibold)
+                                .padding(.bottom, 10)
+                                .font(.system(size: 35))
+                        }
                     }
                 }
                 
@@ -148,11 +159,12 @@ struct IndividualBillView: View {
 
 struct IndividualBillView_Previews: PreviewProvider {
     static var previews: some View {
-        let sampleOrder = OrderModel(id: "7", orderTime: Date(), status: "preparing", menuItems: [OrderedMenuItem(name: "Fried Rice", quantity: 2, price: 14.8, served: false), OrderedMenuItem(name: "Noodles", quantity: 5, price: 22.5, served: true), OrderedMenuItem(name: "Pasta", quantity: 3, price: 13.5, served: false)], subtotalPrice: 50.8)
+        //let sampleOrder = OrderModel(id: "7", orderTime: Date(), status: "preparing", menuItems: [OrderedMenuItem(name: "Fried Rice", quantity: 2, price: 14.8, served: false), OrderedMenuItem(name: "Noodles", quantity: 5, price: 22.5, served: true), OrderedMenuItem(name: "Pasta", quantity: 3, price: 13.5, served: false)], subtotalPrice: 50.8)
         
-        IndividualBillView(order: sampleOrder)
+        /*IndividualBillView(order: sampleOrder)
             .previewInterfaceOrientation(.landscapeLeft)
             .environmentObject(BillingViewModel())
-            .frame(width: 850, height: 850)
+            .frame(width: 850, height: 850)*/
+        BillingView().previewInterfaceOrientation(.landscapeLeft)
     }
 }
