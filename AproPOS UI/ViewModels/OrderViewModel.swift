@@ -25,16 +25,22 @@ final class OrderViewModel: ObservableObject {
     
     func addOrder(completion: @escaping (_ success: Bool) -> Void) {
         tableRepository.fetchTables() { (fetchedTables) -> Void in
+            let statuses = ["free", "yetToOrder", "reserved"]
+            
             if self.tableNumberInput == "" {
                 self.error = "Please enter a table number"
             } else if self.tableNumberInput == "0" {
                 self.error = "Invalid table number"
-            } else if !self.editingOrder && self.orders.firstIndex(where: { $0.id == self.tableNumberInput }) != nil {
+            } else if !self.editingOrder
+                && self.orders.firstIndex(where: { $0.id == self.tableNumberInput }) != nil
+                && (self.orders.first(where: { $0.id == self.tableNumberInput }) ?? OrderModel(status: "x", menuItems: [])).status != "served" {
                 self.error = "Order already exists for table"
             } else if fetchedTables.firstIndex(where: { $0.id == self.tableNumberInput } ) == nil {
                 self.error = "Table does not exist"
             } else if self.menuItemsInput == [] {
                 self.error = "Please select at least 1 menu item"
+            } else if !statuses.contains(fetchedTables.first(where: { $0.id == self.tableNumberInput } )!.status) && !self.editingOrder {
+                self.error = "Table is not available"
             } else {
                 // TODO: Refresh subtotalPrice when ordering
                 self.orderRepository.reduceInventory(menuItems: self.menuItemsInput) { (result) -> Void in

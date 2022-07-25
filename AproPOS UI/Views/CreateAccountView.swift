@@ -103,7 +103,7 @@ struct CreateAccountView: View {
                     .frame(width: 600, height: 800)
                     .background(.white)
             }.navigationViewStyle(StackNavigationViewStyle())
-                .navigationBarBackButtonHidden(true)
+                //.navigationBarBackButtonHidden(true)
                 .navigationBarTitleDisplayMode(.inline)
         }
     }

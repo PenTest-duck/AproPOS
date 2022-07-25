@@ -10,10 +10,11 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
-import UIKit // for UIImage
+import UIKit // only for UIImage
 
 
 class UserRepository: ObservableObject {
+    //
     private let db = Firestore.firestore()
     var users = [UserModel]()
     

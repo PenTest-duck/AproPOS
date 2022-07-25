@@ -10,9 +10,7 @@ import Combine
 
 struct BillingView: View {
     @StateObject private var billingVM = BillingViewModel()
-    //@StateObject private var orderVM = OrderViewModel()
     
-    @State private var selectedOrder: OrderModel? = nil
     @State private var confirmingDelete: Bool = false
     
     static let dateFormatter: DateFormatter = {
@@ -40,13 +38,13 @@ struct BillingView: View {
                 HStack {
                     Spacer()
                     ZStack {
-                        if selectedOrder == nil {
+                        if billingVM.selectedOrder == nil {
                             Text("Select a bill to view")
                                 .font(.system(size: 50))
                                 .fontWeight(.semibold)
                                 .padding(.bottom, 90)
                         } else {
-                            IndividualBillView(order: selectedOrder!)
+                            IndividualBillView(order: billingVM.selectedOrder!)
                                 .environmentObject(billingVM)
                         }
                     }
@@ -75,15 +73,15 @@ struct BillingView: View {
                     ScrollView {
                         ForEach(billingVM.billOrders.filter( { $0.status == "served" } ).sorted(by: { Int($0.id!)! < Int($1.id!)! } )) { order in
                                 ZStack {
-                                    Rectangle()
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(.black, lineWidth: 1)
                                         .frame(width: 360)
                                         .foregroundColor(.white)
-                                        .border(.black, width: 1)
                                     
                                     Button(action: {
                                         billingVM.viewingPastBill = false
                                         billingVM.discountInput = "0.00"
-                                        selectedOrder = order
+                                        billingVM.selectedOrder = order
                                     }) {
                                         Text("Table \(order.id!)")
                                     }
@@ -98,15 +96,15 @@ struct BillingView: View {
                     ScrollView {
                         ForEach(billingVM.billsHistory) { bill in
                                 ZStack {
-                                    Rectangle()
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(.black, lineWidth: 1)
                                         .frame(width: 360)
                                         .foregroundColor(.white)
-                                        .border(.black, width: 1)
                                     
                                     Button(action: {
                                         billingVM.discountInput = String(describing: bill.discount)
                                         billingVM.viewingPastBill = true
-                                        selectedOrder = bill.order
+                                        billingVM.selectedOrder = bill.order
                                     }) {
                                         Text("\(BillingView.dateFormatter.string(from: bill.billingTime))")
                                     }
@@ -124,7 +122,7 @@ struct BillingView: View {
                 .font(.system(size: 30))
             }
         }.background(Color(red: 242/255, green: 242/255, blue: 248/255))
-            .navigationBarHidden(true)
+            //.navigationBarHidden(true)
             .onAppear {
                 billingVM.getOrders()
                 billingVM.getBillsHistory()

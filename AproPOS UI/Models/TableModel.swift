@@ -9,9 +9,9 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct TableModel: Identifiable, Codable, Equatable {
-    @DocumentID public var id: String? // table number
-    var seats: Int
-    var status: String
+    @DocumentID public var id: String? // Unique table number
+    var seats: Int // 1 to 20
+    var status: String // Free, yetToOrder, ordered, served, cleaning, reserved, unavailable
     
     init(id: String = UUID().uuidString, seats: Int, status: String = "free") {
         self.id = id

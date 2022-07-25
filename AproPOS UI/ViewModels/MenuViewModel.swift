@@ -39,8 +39,9 @@ final class MenuViewModel: ObservableObject {
             error = "Currency allows max. 2 decimal places"
         } else if ingredientsInput == [:] {
             error = "Please add at least 1 ingredient"
-        }
-        else {
+        } else if imageInput.pngData()!.count > 900 * 1024 {
+            error = "Image must be smaller than 900KB."
+        } else {
             error = ""
         }
     }

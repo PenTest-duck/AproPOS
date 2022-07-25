@@ -59,7 +59,7 @@ struct ForgotPasswordView: View {
                     .frame(width: 450, height: 800)
                     .background(.white)
             }.navigationViewStyle(StackNavigationViewStyle())
-                .navigationBarBackButtonHidden(true)
+                //.navigationBarBackButtonHidden(true)
         }
     }
 }

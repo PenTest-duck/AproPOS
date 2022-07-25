@@ -13,32 +13,22 @@
 		401866EA283CEA0D0046BFBC /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401866E9283CEA0D0046BFBC /* UserRepository.swift */; };
 		401866F4283CFDFF0046BFBC /* MenuItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401866F3283CFDFF0046BFBC /* MenuItemModel.swift */; };
 		401866F6283CFE130046BFBC /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401866F5283CFE130046BFBC /* MenuViewModel.swift */; };
-		401CDE4E28708C7E00DCA698 /* ImplementBillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */; };
-		401CDE522871305E00DCA698 /* ImplementMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE512871305E00DCA698 /* ImplementMenuView.swift */; };
 		401CDE5628713EE200DCA698 /* IngredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5528713EE200DCA698 /* IngredientModel.swift */; };
 		401CDE5828714B3400DCA698 /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5728714B3400DCA698 /* InventoryViewModel.swift */; };
-		401CDE5A28714DCD00DCA698 /* ImplementInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5928714DCD00DCA698 /* ImplementInventoryView.swift */; };
 		401CDE5C2871B82000DCA698 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5B2871B82000DCA698 /* TableModel.swift */; };
 		401CDE5E2871B8FF00DCA698 /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5D2871B8FF00DCA698 /* TableViewModel.swift */; };
 		401CDE60287336DC00DCA698 /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401CDE5F287336DB00DCA698 /* AnalyticsViewModel.swift */; };
 		402985FA27C7ADDA007A70C2 /* AproPOS_UIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402985F927C7ADDA007A70C2 /* AproPOS_UIApp.swift */; };
 		402985FE27C7ADDC007A70C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402985FD27C7ADDC007A70C2 /* Assets.xcassets */; };
 		4029860127C7ADDC007A70C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4029860027C7ADDC007A70C2 /* Preview Assets.xcassets */; };
-		4029860A27C7AEDC007A70C2 /* OrderViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029860927C7AEDC007A70C2 /* OrderViewOld.swift */; };
 		4029860C27C7AEF7007A70C2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029860B27C7AEF7007A70C2 /* MainView.swift */; };
-		4029860E27C7AF1A007A70C2 /* MenuViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029860D27C7AF1A007A70C2 /* MenuViewOld.swift */; };
-		4029861027C7AF26007A70C2 /* BillingViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029860F27C7AF26007A70C2 /* BillingViewOld.swift */; };
-		4029861227C7AF41007A70C2 /* ReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029861127C7AF41007A70C2 /* ReservationView.swift */; };
 		4029861827C7AF8F007A70C2 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029861727C7AF8F007A70C2 /* AnalyticsView.swift */; };
-		4029861A27C7AF9D007A70C2 /* InventoryViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4029861927C7AF9D007A70C2 /* InventoryViewOld.swift */; };
-		4038921E27E0923500B9FDFB /* StaffViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4038921D27E0923500B9FDFB /* StaffViewOld.swift */; };
 		403BE4E128745264005A1C54 /* TableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E028745264005A1C54 /* TableRepository.swift */; };
 		403BE4E3287452E4005A1C54 /* InventoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E2287452E4005A1C54 /* InventoryRepository.swift */; };
 		403BE4E528745313005A1C54 /* MenuRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E428745313005A1C54 /* MenuRepository.swift */; };
 		403BE4E72874534C005A1C54 /* OrderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E62874534C005A1C54 /* OrderRepository.swift */; };
 		403BE4E92874547F005A1C54 /* BillingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4E82874547F005A1C54 /* BillingRepository.swift */; };
 		403BE4EB28745E29005A1C54 /* StaffViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4EA28745E29005A1C54 /* StaffViewModel.swift */; };
-		403BE4ED28748AA4005A1C54 /* ImplementStaffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4EC28748AA4005A1C54 /* ImplementStaffView.swift */; };
 		403BE4F0287549C9005A1C54 /* IndividualTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4EF287549C9005A1C54 /* IndividualTableView.swift */; };
 		403BE4F2287567B4005A1C54 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4F1287567B4005A1C54 /* TableView.swift */; };
 		403BE4F42875A3B1005A1C54 /* DropDownInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403BE4F32875A3B1005A1C54 /* DropDownInputView.swift */; };
@@ -46,7 +36,6 @@
 		4065B3FD27C8A54B00B1D55A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */; };
 		406AD01A28854773002BE230 /* IndividualBillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406AD01928854773002BE230 /* IndividualBillView.swift */; };
 		406BFEBE2836F7E700FEA7B9 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406BFEBD2836F7E700FEA7B9 /* ForgotPasswordView.swift */; };
-		407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */; };
 		407BCC3C282D0F9700F8D93E /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407BCC3B282D0F9700F8D93E /* OrderModel.swift */; };
 		407C0F4328389B4D00052389 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407C0F4228389B4D00052389 /* OrderViewModel.swift */; };
 		407C0F452838AFF100052389 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407C0F442838AFF100052389 /* UserModel.swift */; };
@@ -60,13 +49,11 @@
 		40A99789287C619000CDABE6 /* IndividualUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A99788287C619000CDABE6 /* IndividualUserView.swift */; };
 		40BD731727D6001700CBDA9A /* DIN.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40BD731627D6001700CBDA9A /* DIN.ttf */; };
 		40BD731A27D6019200CBDA9A /* DIN Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40BD731927D6019200CBDA9A /* DIN Bold.ttf */; };
-		40BD731C27D606A200CBDA9A /* NewOrderViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD731B27D606A200CBDA9A /* NewOrderViewOld.swift */; };
 		40C5ED7C287863C000573099 /* IndividualMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C5ED7B287863C000573099 /* IndividualMenuItemView.swift */; };
 		40C5ED7E2878669300573099 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C5ED7D2878669300573099 /* MenuView.swift */; };
 		40C9631D28803458000EAEDF /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C9631C28803458000EAEDF /* OrderView.swift */; };
 		40C9631F288036CF000EAEDF /* IndividualOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C9631E288036CF000EAEDF /* IndividualOrderView.swift */; };
 		40D33A43282BD12100D34B95 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40D33A42282BD12100D34B95 /* GoogleService-Info.plist */; };
-		40DD9E6727D8CF2000610DB2 /* BillingView2Old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DD9E6627D8CF2000610DB2 /* BillingView2Old.swift */; };
 		40E7A08C2863D11100871A48 /* BillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7A08B2863D11100871A48 /* BillingViewModel.swift */; };
 		40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */; };
 		5E323E5D286291E200C48313 /* BillingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E323E5C286291E200C48313 /* BillingModel.swift */; };
@@ -83,11 +70,8 @@
 		401866E9283CEA0D0046BFBC /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		401866F3283CFDFF0046BFBC /* MenuItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemModel.swift; sourceTree = "<group>"; };
 		401866F5283CFE130046BFBC /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
-		401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementBillingView.swift; sourceTree = "<group>"; };
-		401CDE512871305E00DCA698 /* ImplementMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementMenuView.swift; sourceTree = "<group>"; };
 		401CDE5528713EE200DCA698 /* IngredientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientModel.swift; sourceTree = "<group>"; };
 		401CDE5728714B3400DCA698 /* InventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewModel.swift; sourceTree = "<group>"; };
-		401CDE5928714DCD00DCA698 /* ImplementInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementInventoryView.swift; sourceTree = "<group>"; };
 		401CDE5B2871B82000DCA698 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
 		401CDE5D2871B8FF00DCA698 /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
 		401CDE5F287336DB00DCA698 /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
@@ -95,21 +79,14 @@
 		402985F927C7ADDA007A70C2 /* AproPOS_UIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AproPOS_UIApp.swift; sourceTree = "<group>"; };
 		402985FD27C7ADDC007A70C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4029860027C7ADDC007A70C2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4029860927C7AEDC007A70C2 /* OrderViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewOld.swift; sourceTree = "<group>"; };
 		4029860B27C7AEF7007A70C2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		4029860D27C7AF1A007A70C2 /* MenuViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewOld.swift; sourceTree = "<group>"; };
-		4029860F27C7AF26007A70C2 /* BillingViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingViewOld.swift; sourceTree = "<group>"; };
-		4029861127C7AF41007A70C2 /* ReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationView.swift; sourceTree = "<group>"; };
 		4029861727C7AF8F007A70C2 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
-		4029861927C7AF9D007A70C2 /* InventoryViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewOld.swift; sourceTree = "<group>"; };
-		4038921D27E0923500B9FDFB /* StaffViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffViewOld.swift; sourceTree = "<group>"; };
 		403BE4E028745264005A1C54 /* TableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableRepository.swift; sourceTree = "<group>"; };
 		403BE4E2287452E4005A1C54 /* InventoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryRepository.swift; sourceTree = "<group>"; };
 		403BE4E428745313005A1C54 /* MenuRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRepository.swift; sourceTree = "<group>"; };
 		403BE4E62874534C005A1C54 /* OrderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRepository.swift; sourceTree = "<group>"; };
 		403BE4E82874547F005A1C54 /* BillingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingRepository.swift; sourceTree = "<group>"; };
 		403BE4EA28745E29005A1C54 /* StaffViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffViewModel.swift; sourceTree = "<group>"; };
-		403BE4EC28748AA4005A1C54 /* ImplementStaffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementStaffView.swift; sourceTree = "<group>"; };
 		403BE4EF287549C9005A1C54 /* IndividualTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualTableView.swift; sourceTree = "<group>"; };
 		403BE4F1287567B4005A1C54 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		403BE4F32875A3B1005A1C54 /* DropDownInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownInputView.swift; sourceTree = "<group>"; };
@@ -117,7 +94,6 @@
 		4065B3FC27C8A54B00B1D55A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		406AD01928854773002BE230 /* IndividualBillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualBillView.swift; sourceTree = "<group>"; };
 		406BFEBD2836F7E700FEA7B9 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
-		407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementOrderView.swift; sourceTree = "<group>"; };
 		407BCC3B282D0F9700F8D93E /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		407C0F4228389B4D00052389 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		407C0F442838AFF100052389 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -132,13 +108,11 @@
 		40BD731627D6001700CBDA9A /* DIN.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DIN.ttf; sourceTree = "<group>"; };
 		40BD731827D6010300CBDA9A /* AproPOS-UI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "AproPOS-UI-Info.plist"; sourceTree = SOURCE_ROOT; };
 		40BD731927D6019200CBDA9A /* DIN Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Bold.ttf"; sourceTree = "<group>"; };
-		40BD731B27D606A200CBDA9A /* NewOrderViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrderViewOld.swift; sourceTree = "<group>"; };
 		40C5ED7B287863C000573099 /* IndividualMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualMenuItemView.swift; sourceTree = "<group>"; };
 		40C5ED7D2878669300573099 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		40C9631C28803458000EAEDF /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		40C9631E288036CF000EAEDF /* IndividualOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualOrderView.swift; sourceTree = "<group>"; };
 		40D33A42282BD12100D34B95 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		40DD9E6627D8CF2000610DB2 /* BillingView2Old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingView2Old.swift; sourceTree = "<group>"; };
 		40E7A08B2863D11100871A48 /* BillingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingViewModel.swift; sourceTree = "<group>"; };
 		40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		51CF6483D3148CF20729988F /* Pods_AproPOS_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AproPOS_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,7 +179,6 @@
 				40BD731827D6010300CBDA9A /* AproPOS-UI-Info.plist */,
 				40D33A42282BD12100D34B95 /* GoogleService-Info.plist */,
 				402985F927C7ADDA007A70C2 /* AproPOS_UIApp.swift */,
-				40D9D47A287EB37D008EF19B /* DevViews */,
 				406BFEBC2836F6F100FEA7B9 /* Views */,
 				403BE4EE28754931005A1C54 /* ComponentViews */,
 				409B207A282F6C730014CB54 /* ViewModels */,
@@ -300,27 +273,6 @@
 				40BD731927D6019200CBDA9A /* DIN Bold.ttf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		40D9D47A287EB37D008EF19B /* DevViews */ = {
-			isa = PBXGroup;
-			children = (
-				4029860927C7AEDC007A70C2 /* OrderViewOld.swift */,
-				40BD731B27D606A200CBDA9A /* NewOrderViewOld.swift */,
-				407BCC38282D0D2900F8D93E /* ImplementOrderView.swift */,
-				4029860F27C7AF26007A70C2 /* BillingViewOld.swift */,
-				40DD9E6627D8CF2000610DB2 /* BillingView2Old.swift */,
-				401CDE4D28708C7E00DCA698 /* ImplementBillingView.swift */,
-				4029861127C7AF41007A70C2 /* ReservationView.swift */,
-				5E32B4AC2873BEB700D60B4B /* ImplementTableView.swift */,
-				4029860D27C7AF1A007A70C2 /* MenuViewOld.swift */,
-				401CDE512871305E00DCA698 /* ImplementMenuView.swift */,
-				4029861927C7AF9D007A70C2 /* InventoryViewOld.swift */,
-				401CDE5928714DCD00DCA698 /* ImplementInventoryView.swift */,
-				4038921D27E0923500B9FDFB /* StaffViewOld.swift */,
-				403BE4EC28748AA4005A1C54 /* ImplementStaffView.swift */,
-			);
-			path = DevViews;
 			sourceTree = "<group>";
 		};
 		B0BD387D8855593A237BD550 /* Pods */ = {
@@ -454,46 +406,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4029860E27C7AF1A007A70C2 /* MenuViewOld.swift in Sources */,
 				40E7A08C2863D11100871A48 /* BillingViewModel.swift in Sources */,
 				403BE4F0287549C9005A1C54 /* IndividualTableView.swift in Sources */,
-				407BCC39282D0D2900F8D93E /* ImplementOrderView.swift in Sources */,
 				401CDE5E2871B8FF00DCA698 /* TableViewModel.swift in Sources */,
 				40A99789287C619000CDABE6 /* IndividualUserView.swift in Sources */,
 				408ACF1B287DB2A200C35A67 /* NewOrderView.swift in Sources */,
 				403BE4E128745264005A1C54 /* TableRepository.swift in Sources */,
-				4029861A27C7AF9D007A70C2 /* InventoryViewOld.swift in Sources */,
 				40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */,
 				403BE4EB28745E29005A1C54 /* StaffViewModel.swift in Sources */,
 				40A99787287C5F3400CDABE6 /* StaffView.swift in Sources */,
 				409B2077282E6FAD0014CB54 /* AuthViewModel.swift in Sources */,
 				401CDE5628713EE200DCA698 /* IngredientModel.swift in Sources */,
-				4029861227C7AF41007A70C2 /* ReservationView.swift in Sources */,
 				4029861827C7AF8F007A70C2 /* AnalyticsView.swift in Sources */,
 				401109DD28791D9600B3C426 /* IngredientDropDownInputView.swift in Sources */,
 				4029860C27C7AEF7007A70C2 /* MainView.swift in Sources */,
-				5E32B4AD2873BEB700D60B4B /* ImplementTableView.swift in Sources */,
 				40C9631D28803458000EAEDF /* OrderView.swift in Sources */,
 				40C9631F288036CF000EAEDF /* IndividualOrderView.swift in Sources */,
 				407BCC3C282D0F9700F8D93E /* OrderModel.swift in Sources */,
 				407C0F4328389B4D00052389 /* OrderViewModel.swift in Sources */,
-				4029860A27C7AEDC007A70C2 /* OrderViewOld.swift in Sources */,
 				401866F6283CFE130046BFBC /* MenuViewModel.swift in Sources */,
-				401CDE4E28708C7E00DCA698 /* ImplementBillingView.swift in Sources */,
 				403BE4E3287452E4005A1C54 /* InventoryRepository.swift in Sources */,
 				404B3052287E75FE00BEDD55 /* MenuDropDownInputView.swift in Sources */,
-				4029861027C7AF26007A70C2 /* BillingViewOld.swift in Sources */,
-				40DD9E6727D8CF2000610DB2 /* BillingView2Old.swift in Sources */,
 				4091FA2428771DEB00BED215 /* IndividualIngredientView.swift in Sources */,
-				40BD731C27D606A200CBDA9A /* NewOrderViewOld.swift in Sources */,
 				401109DB28790FFF00B3C426 /* ImagePickerView.swift in Sources */,
 				40C5ED7E2878669300573099 /* MenuView.swift in Sources */,
 				408C5EB028852B9300DD50F6 /* BillingView.swift in Sources */,
 				401866EA283CEA0D0046BFBC /* UserRepository.swift in Sources */,
 				401866F4283CFDFF0046BFBC /* MenuItemModel.swift in Sources */,
 				409B2079282E72950014CB54 /* CreateAccountView.swift in Sources */,
-				4038921E27E0923500B9FDFB /* StaffViewOld.swift in Sources */,
-				403BE4ED28748AA4005A1C54 /* ImplementStaffView.swift in Sources */,
 				406AD01A28854773002BE230 /* IndividualBillView.swift in Sources */,
 				403BE4E72874534C005A1C54 /* OrderRepository.swift in Sources */,
 				401CDE60287336DC00DCA698 /* AnalyticsViewModel.swift in Sources */,
@@ -503,14 +443,12 @@
 				403BE4F42875A3B1005A1C54 /* DropDownInputView.swift in Sources */,
 				40C5ED7C287863C000573099 /* IndividualMenuItemView.swift in Sources */,
 				402985FA27C7ADDA007A70C2 /* AproPOS_UIApp.swift in Sources */,
-				401CDE5A28714DCD00DCA698 /* ImplementInventoryView.swift in Sources */,
 				406BFEBE2836F7E700FEA7B9 /* ForgotPasswordView.swift in Sources */,
 				5E60A8CD288A77800025A411 /* AnalyticsViewTest.swift in Sources */,
 				401CDE5828714B3400DCA698 /* InventoryViewModel.swift in Sources */,
 				407C0F452838AFF100052389 /* UserModel.swift in Sources */,
 				4091FA26287723ED00BED215 /* InventoryView.swift in Sources */,
 				4016CAF427C8F27700A97867 /* ManagementView.swift in Sources */,
-				401CDE522871305E00DCA698 /* ImplementMenuView.swift in Sources */,
 				401CDE5C2871B82000DCA698 /* TableModel.swift in Sources */,
 				5E323E5D286291E200C48313 /* BillingModel.swift in Sources */,
 			);

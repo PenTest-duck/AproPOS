@@ -21,13 +21,16 @@ final class BillingViewModel: ObservableObject {
     @Published var tableNumberInput: String = ""
     @Published var discountInput: String = "0.00"
     
+    @Published var selectedOrder: OrderModel? = nil
     @Published var viewingPastBill = false
     
-    func validateDiscount(discount: String) {
+    func validateDiscount(discount: String, subtotal: Decimal) {
         if discount == "" {
             error = "Please enter a valid discount amount"
         } else if discount[(discount.firstIndex(of: ".") ?? discount.index(discount.endIndex, offsetBy: -1))...].count > 3 {
             error = "Currency allows max. 2 decimal places"
+        } else if Decimal(Double(discount)!) > subtotal {
+            error = "Discount cannot be larger than the subtotal price."
         } else {
             error = ""
         }

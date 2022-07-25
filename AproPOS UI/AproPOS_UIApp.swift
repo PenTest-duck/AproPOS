@@ -13,28 +13,14 @@ import FirebaseCore
 @main
 struct AproPOS_UIApp: App {
     
-    // Initially connect to Firebase at app startup
+    // Initially configures a default Firebase App
     init() {
         FirebaseApp.configure()
-        // Perhaps load data here
     }
     
     var body: some Scene {
-        WindowGroup {
-            AnalyticsViewTest
-            //AnalyticsViewModel()
-            //LoginView()
-            //MainView()
-            //ImplementOrderView()
-            //ImplementBillingView()
-            //MenuView()
-            //ImplementMenuView()
-            //InventoryView()
-            //ImplementInventoryView()
-            //TableView()
-            //ImplementTableView()
-            //StaffView()
-            //ImplementStaffView()
+        WindowGroup { // container for view hierarchy
+            LoginView() // first view app opens to
         }
     }
 }

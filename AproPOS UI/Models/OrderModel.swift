@@ -9,9 +9,9 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct OrderModel: Identifiable, Codable, Equatable {
-    @DocumentID public var id: String? // table number
+    @DocumentID public var id: String? // Unique table number
     var orderTime: Date
-    var status: String // preparing, overdue, served
+    var status: String // Preparing, overdue, served
     var menuItems: [OrderedMenuItem]
     var subtotalPrice: Decimal
     
