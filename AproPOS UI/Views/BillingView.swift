@@ -10,9 +10,7 @@ import Combine
 
 struct BillingView: View {
     @StateObject private var billingVM = BillingViewModel()
-    //@StateObject private var orderVM = OrderViewModel()
     
-    //@State private var selectedOrder: OrderModel? = nil
     @State private var confirmingDelete: Bool = false
     
     static let dateFormatter: DateFormatter = {
@@ -124,7 +122,7 @@ struct BillingView: View {
                 .font(.system(size: 30))
             }
         }.background(Color(red: 242/255, green: 242/255, blue: 248/255))
-            .navigationBarHidden(true)
+            //.navigationBarHidden(true)
             .onAppear {
                 billingVM.getOrders()
                 billingVM.getBillsHistory()

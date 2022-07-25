@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI // for Color
-//import FirebaseFirestoreSwift
 
 final class InventoryViewModel: ObservableObject {
     @Published var inventory = [IngredientModel]()

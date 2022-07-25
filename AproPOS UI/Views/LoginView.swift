@@ -9,12 +9,14 @@ import SwiftUI
 
 struct LoginView: View {
     
+    // LoginView uses StaffViewModel and AuthViewModel
     @StateObject private var staffVM = StaffViewModel()
     @StateObject private var authVM = AuthViewModel()
     
     var body: some View {
         
-        return Group {
+        
+        return Group { // Returning Group allows switching between MainView and LoginView
             if authVM.isLoggedIn {
                 MainView().environmentObject(authVM)
             } else {
@@ -26,9 +28,9 @@ struct LoginView: View {
                         
                         Spacer()
                         
-                        // Button to be styled
                         HStack {
                             NavigationLink(destination: CreateAccountView().onAppear {
+                                // Clear authVM input fields
                                 authVM.email = ""
                                 authVM.password = ""
                             }) {
@@ -39,6 +41,7 @@ struct LoginView: View {
                             }
                             
                             NavigationLink(destination: ForgotPasswordView().onAppear {
+                                // Clear authVM input fields
                                 authVM.email = ""
                                 authVM.password = ""
                             }) {
@@ -57,6 +60,7 @@ struct LoginView: View {
                                 .foregroundColor(.red)
                         }
                         
+                        // Email input
                         TextField("Email", text: $authVM.email)
                             .padding()
                             .disableAutocorrection(true)
@@ -68,6 +72,7 @@ struct LoginView: View {
                             )
                             .padding(.bottom, 10)
                         
+                        // Password input (secure)
                         SecureField("Password", text: $authVM.password)
                             .padding()
                             .disableAutocorrection(true)
@@ -79,6 +84,7 @@ struct LoginView: View {
                             )
                         
                         Button(action: {
+                            // Login and clear authVM values so that input fields are not pre-populated upon logout
                             authVM.login()
                             authVM.email = ""
                             authVM.password = ""

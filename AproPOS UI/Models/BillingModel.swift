@@ -9,13 +9,13 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct BillingModel: Identifiable, Codable {
-    @DocumentID public var id: String?
+    @DocumentID public var id: String? // Randomly generated UUID
     var tableNumber: String
     var order: OrderModel
     var discount: Decimal
     var totalPrice: Decimal
     var billingTime: Date
-    var server: String
+    var server: String // Logged-in user's full name
     
     init(id: String = UUID().uuidString, tableNumber: String, order: OrderModel, discount: Decimal, totalPrice: Decimal, billingTime: Date = Date(), server: String) {
         self.id = id

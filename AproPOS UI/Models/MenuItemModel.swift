@@ -7,16 +7,16 @@
 
 import Foundation
 import FirebaseFirestoreSwift
-import UIKit // for UIImage
+import UIKit // only for UIImage
 
 struct MenuItemModel: Identifiable, Codable, Equatable {
-    @DocumentID public var id: String?
+    @DocumentID public var id: String? // Unique name of menu item
     var price: Decimal
-    var estimatedServingTime: Int // minutes
-    var warnings: [String] // vegetarian, vegan, gluten, allergen, alcohol
+    var estimatedServingTime: Int // In minutes
+    var warnings: [String] // TODO: vegetarian, vegan, gluten, allergen, alcohol
     var ingredients: [String: Decimal]
-    var image: Data // to conform to Codable
-    var status: [String: [String]] // available, unavailable
+    var image: Data // Must use Data instead of UIImage to conform to Codable
+    var status: [String: [String]] // Available or unavailable as the key, array of low ingredients in value
     
     init(id: String = UUID().uuidString, price: Decimal, estimatedServingTime: Int, warnings: [String] = [], ingredients: [String: Decimal] = [:], image: UIImage = UIImage(named: "defaultMenuItemImage")!, status: [String: [String]] = ["available": []]) {
         self.id = id
@@ -24,7 +24,7 @@ struct MenuItemModel: Identifiable, Codable, Equatable {
         self.estimatedServingTime = estimatedServingTime
         self.warnings = warnings
         self.ingredients = ingredients
-        self.image = image.pngData()!
+        self.image = image.pngData()! // Convert image to raw data
         self.status = status
     }
 }

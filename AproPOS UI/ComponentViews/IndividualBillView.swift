@@ -98,7 +98,7 @@ struct IndividualBillView: View {
                                             }
                                         
                                         Button(action: {
-                                            billingVM.validateDiscount(discount: discountInput)
+                                            billingVM.validateDiscount(discount: discountInput, subtotal: order.subtotalPrice)
                                             if billingVM.error == "" {
                                                 billingVM.discountInput = discountInput
                                                 inputDiscount = false

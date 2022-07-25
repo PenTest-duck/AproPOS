@@ -9,10 +9,10 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct UserModel: Identifiable, Codable, Equatable {
-    @DocumentID public var id: String? // unique email
+    @DocumentID public var id: String? // User's unique email address
     var firstName: String
     var lastName: String
-    var role: String            // staff, manager, owner
+    var role: String // Staff, manager, owner
     var wage: Decimal
     var phone: String
     var comment: String

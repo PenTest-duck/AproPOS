@@ -84,11 +84,13 @@ struct OrderView: View {
                         LazyVGrid(columns: [.init(.adaptive(minimum: 200, maximum: .infinity), spacing: 15, alignment: .top)], spacing: 15) {
                             ForEach(orderVM.orders.sorted(by: { Int($0.id!)! < Int($1.id!)! } ).filter { $0.status != "served" } ) { order in
                                 NavigationLink (destination: NewOrderView().environmentObject(menuVM).environmentObject(orderVM)
-                                                    .onAppear {
-                                    orderVM.editingOrder = true
-                                    orderVM.tableNumberInput = order.id!
-                                    orderVM.menuItemsInput = order.menuItems
-                                } ) {
+                                        .onAppear {
+                                            orderVM.editingOrder = true
+                                            orderVM.tableNumberInput = order.id!
+                                            orderVM.menuItemsInput = order.menuItems
+                                        }
+                                    )
+                                {
                                     IndividualOrderView(order: order)
                                         .environmentObject(orderVM)
                                 }
