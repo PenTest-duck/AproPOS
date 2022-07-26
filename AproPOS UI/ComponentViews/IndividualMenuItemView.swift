@@ -31,6 +31,7 @@ struct IndividualMenuItemView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 10)
                     .background(.red)
+                    .cornerRadius(2)
                     .padding(.bottom, 35)
             }
             

@@ -55,7 +55,7 @@ struct TableView: View {
                                 }) {
                                     Image(systemName: "plus.square.fill")
                                         .font(.system(size: 60))
-                                        .foregroundColor(Color(red: 32/255, green: 30/255, blue: 80/255))
+                                        .foregroundColor(Color.green)
                                 }
                                 .padding(.trailing, 10)
                             }
@@ -153,7 +153,7 @@ struct TableView: View {
                                 ZStack {
                                     Rectangle()
                                         .cornerRadius(30)
-                                        .foregroundColor(Color.blue)
+                                        .foregroundColor(Color(red: 8/255, green: 61/255, blue: 119/255))
                                         .frame(width: 380, height: 100)
                                         .padding(.bottom, 10)
                                     
@@ -220,6 +220,28 @@ struct TableView: View {
                             
                             Spacer()
                             
+                            
+
+                            Button(action: {
+                                tableVM.tableNumberInput = selectedTable.id!
+                                tableVM.editTable()
+                                self.selectedTable = nil
+                            }) {
+                                ZStack {
+                                    Rectangle()
+                                        .cornerRadius(30)
+                                        .foregroundColor(Color(red: 8/255, green: 61/255, blue: 119/255))
+                                        .frame(width: 380, height: 85)
+                                        .padding(.bottom, 10)
+                                    
+                                    Text("Save changes")
+                                        .foregroundColor(.white)
+                                        .fontWeight(.bold)
+                                        .padding(.bottom, 10)
+                                        .font(.system(size: 35))
+                                }
+                            }
+                            
                             HStack {
                                 Spacer()
                                 
@@ -235,26 +257,6 @@ struct TableView: View {
                                         .font(.system(size: 40))
                                 }
                             }.padding(.horizontal, 20)
-
-                            Button(action: {
-                                tableVM.tableNumberInput = selectedTable.id!
-                                tableVM.editTable()
-                                self.selectedTable = nil
-                            }) {
-                                ZStack {
-                                    Rectangle()
-                                        .cornerRadius(30)
-                                        .foregroundColor(Color.blue)
-                                        .frame(width: 380, height: 85)
-                                        .padding(.bottom, 10)
-                                    
-                                    Text("Save changes")
-                                        .foregroundColor(.white)
-                                        .fontWeight(.bold)
-                                        .padding(.bottom, 10)
-                                        .font(.system(size: 35))
-                                }
-                            }
                             
                         } else {
                             Text("Select a table")

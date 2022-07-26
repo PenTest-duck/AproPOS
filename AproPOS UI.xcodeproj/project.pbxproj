@@ -57,7 +57,6 @@
 		40E7A08C2863D11100871A48 /* BillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7A08B2863D11100871A48 /* BillingViewModel.swift */; };
 		40FBCE3F27DFF35B006D4AA1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */; };
 		5E323E5D286291E200C48313 /* BillingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E323E5C286291E200C48313 /* BillingModel.swift */; };
-		5E32B4AD2873BEB700D60B4B /* ImplementTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E32B4AC2873BEB700D60B4B /* ImplementTableView.swift */; };
 		5E60A8CD288A77800025A411 /* AnalyticsViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60A8CC288A77800025A411 /* AnalyticsViewTest.swift */; };
 		BB5099C538EBC8A84617709E /* Pods_AproPOS_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51CF6483D3148CF20729988F /* Pods_AproPOS_UI.framework */; };
 /* End PBXBuildFile section */
@@ -117,7 +116,6 @@
 		40FBCE3E27DFF35B006D4AA1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		51CF6483D3148CF20729988F /* Pods_AproPOS_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AproPOS_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E323E5C286291E200C48313 /* BillingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingModel.swift; sourceTree = "<group>"; };
-		5E32B4AC2873BEB700D60B4B /* ImplementTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementTableView.swift; sourceTree = "<group>"; };
 		5E60A8CC288A77800025A411 /* AnalyticsViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewTest.swift; sourceTree = "<group>"; };
 		E4C6F744FAD4140DDB3B83C1 /* Pods-AproPOS UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AproPOS UI.release.xcconfig"; path = "Target Support Files/Pods-AproPOS UI/Pods-AproPOS UI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -582,7 +580,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AproPOS UI/Preview Content\"";
-				DEVELOPMENT_TEAM = UM888S4K2H;
+				DEVELOPMENT_TEAM = Y7BZX9FSV5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "AproPOS-UI-Info.plist";
@@ -613,7 +611,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AproPOS UI/Preview Content\"";
-				DEVELOPMENT_TEAM = UM888S4K2H;
+				DEVELOPMENT_TEAM = Y7BZX9FSV5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "AproPOS-UI-Info.plist";

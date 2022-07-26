@@ -24,8 +24,8 @@ struct MenuView: View {
                     VStack {
                         ZStack {
                             HStack {
-                                Text("Menu")
-                                    .font(.system(size: 55))
+                                Text("Menu Items")
+                                    .font(.system(size: 60))
                                     .fontWeight(.bold)
                             }
                                 
@@ -91,7 +91,7 @@ struct MenuView: View {
                 
                 Divider()
                     .frame(width: 10)
-                    .background(.red)
+                    .background(Color(red: 202/255, green: 85/255, blue: 220/255))
                 
                 ScrollView {
                     VStack {
@@ -190,7 +190,7 @@ struct MenuView: View {
                                 ZStack {
                                     Rectangle()
                                         .cornerRadius(30)
-                                        .foregroundColor(Color.blue)
+                                        .foregroundColor(Color(red: 8/255, green: 61/255, blue: 119/255))
                                         .frame(width: 380, height: 100)
                                         .padding(.bottom, 10)
                                     
@@ -282,21 +282,7 @@ struct MenuView: View {
                             
                             Spacer()
                             
-                            HStack {
-                                Spacer()
-                                
-                                Text("Remove Menu Item")
-                                    .fontWeight(.bold)
-                                
-                                Button(action: {
-                                    menuVM.nameInput = selectedMenuItem.id!
-                                    confirmingDelete = true
-                                }) {
-                                    Image(systemName: "trash.fill")
-                                        .foregroundColor(.red)
-                                        .font(.system(size: 40))
-                                }
-                            }.padding(.horizontal, 20)
+                            
 
                             Button(action: {
                                 menuVM.nameInput = selectedMenuItem.id!
@@ -308,7 +294,7 @@ struct MenuView: View {
                                 ZStack {
                                     Rectangle()
                                         .cornerRadius(30)
-                                        .foregroundColor(Color.blue)
+                                        .foregroundColor(Color(red: 8/255, green: 61/255, blue: 119/255))
                                         .frame(width: 380, height: 85)
                                         .padding(.bottom, 10)
                                     
@@ -320,14 +306,29 @@ struct MenuView: View {
                                 }
                             }
                             
+                            HStack {
+                                Spacer()
+                                
+                                Button(action: {
+                                    menuVM.nameInput = selectedMenuItem.id!
+                                    confirmingDelete = true
+                                }) {
+                                    Image(systemName: "trash.fill")
+                                        .foregroundColor(.red)
+                                        .font(.system(size: 40))
+                                }
+                            }.padding(.horizontal, 20)
+                            
                             Text("\(menuVM.error)")
                                 .foregroundColor(.red)
                                 .font(.system(size: 22))
                                 .frame(maxWidth: 380)
                             
                         } else {
-                            Text("Select a menu item")
+                            Text("Select a Menu Item or Add a New Item")
                                 .font(Font.custom("DIN Bold", size: 60))
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 200)
                         }
                         
                     }.frame(maxWidth: 450, maxHeight: .infinity)

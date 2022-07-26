@@ -29,6 +29,6 @@ struct AnalyticsViewTest: View {
 struct AnalyticsViewTest_Previews: PreviewProvider {
     static var previews: some View {
         AnalyticsViewTest()
+        }
     }
-}
 }

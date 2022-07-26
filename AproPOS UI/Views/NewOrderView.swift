@@ -68,7 +68,7 @@ struct NewOrderView: View {
             
             Divider()
                 .frame(width: 10)
-                .background(.red)
+                .background(Color(red: 202/255, green: 85/255, blue: 220/255))
             
             VStack {
                 Text("Order")

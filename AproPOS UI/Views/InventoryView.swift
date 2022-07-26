@@ -93,7 +93,7 @@ struct InventoryView: View {
                 
                 Divider()
                     .frame(width: 10)
-                    .background(.red)
+                    .background(Color(red: 202/255, green: 85/255, blue: 220/255))
                 
                 ZStack {
                     VStack {
@@ -228,7 +228,7 @@ struct InventoryView: View {
                                 ZStack {
                                     Rectangle()
                                         .cornerRadius(30)
-                                        .foregroundColor(Color.blue)
+                                        .foregroundColor(Color(red: 8/255, green: 61/255, blue: 119/255))
                                         .frame(width: 380, height: 100)
                                         .padding(.bottom, 10)
                                     
@@ -356,21 +356,7 @@ struct InventoryView: View {
                             
                             Spacer()
                             
-                            HStack {
-                                Spacer()
-                                
-                                Text("Remove Ingredient")
-                                    .fontWeight(.bold)
-                                
-                                Button(action: {
-                                    inventoryVM.nameInput = selectedIngredient.id!
-                                    confirmingDelete = true
-                                }) {
-                                    Image(systemName: "trash.fill")
-                                        .foregroundColor(.red)
-                                        .font(.system(size: 40))
-                                }
-                            }.padding(.horizontal, 20)
+                            
 
                             Button(action: {
                                 inventoryVM.nameInput = selectedIngredient.id!
@@ -382,7 +368,7 @@ struct InventoryView: View {
                                 ZStack {
                                     Rectangle()
                                         .cornerRadius(30)
-                                        .foregroundColor(Color.blue)
+                                        .foregroundColor(Color(red: 8/255, green: 61/255, blue: 119/255))
                                         .frame(width: 380, height: 85)
                                         .padding(.bottom, 10)
                                     
@@ -392,7 +378,23 @@ struct InventoryView: View {
                                         .padding(.bottom, 10)
                                         .font(.system(size: 35))
                                 }
+                                
+                                
                             }
+                            
+                            HStack {
+                                Spacer()
+                                
+                                Button(action: {
+                                    inventoryVM.nameInput = selectedIngredient.id!
+                                    confirmingDelete = true
+                                }) {
+                                    Image(systemName: "trash.fill")
+                                        .foregroundColor(.red)
+                                        .font(.system(size: 40))
+                                        .padding(.top, 20)
+                                }
+                            }.padding(.horizontal, 20)
                             
                             Text("\(inventoryVM.error)")
                                 .foregroundColor(.red)
