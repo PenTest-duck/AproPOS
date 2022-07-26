@@ -22,7 +22,7 @@ struct ManagementView: View {
                             .navigationBarTitle("")
                             .navigationBarHidden(true)
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color(red: 210/255, green: 150/255, blue: 180/255))
+                        .background(Color(red: 123/255, green: 30/255, blue: 122/255))
                     
                     NavigationLink(destination: InventoryView()) {
                         Text("Inventory")
@@ -31,7 +31,7 @@ struct ManagementView: View {
                             .navigationBarTitle("")
                             .navigationBarHidden(true)
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color(red: 40/255, green: 140/255, blue: 60/255))
+                        .background(Color(red: 67/255, green: 170/255, blue: 139/255))
                 }
                 
                 HStack (spacing: 0) {
@@ -43,7 +43,7 @@ struct ManagementView: View {
                                 .navigationBarTitle("")
                                 .navigationBarHidden(true)
                         }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color(red: 90/255, green: 40/255, blue: 200/255))
+                            .background(Color(red: 179/255, green: 63/255, blue: 98/255))
                     } else {
                         ZStack {
                             Text("Staff")
@@ -57,7 +57,7 @@ struct ManagementView: View {
                                 .foregroundColor(.red)
                                 .opacity(0.8)
                         }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color(red: 90/255, green: 40/255, blue: 200/255))
+                            .background(Color(red: 179/255, green: 63/255, blue: 98/255))
                     }
                     
                     if !staffVM.disallowedViews.contains("AnalyticsView") {
@@ -68,7 +68,7 @@ struct ManagementView: View {
                                 .navigationBarTitle("")
                                 .navigationBarHidden(true)
                         }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color(red: 160/255, green: 50/255, blue: 80/255))
+                            .background(Color(red: 12/255, green: 10/255, blue: 62/255))
                     } else {
                         ZStack {
                             Text("Analytics")
@@ -82,7 +82,7 @@ struct ManagementView: View {
                                 .foregroundColor(.red)
                                 .opacity(0.8)
                         }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color(red: 160/255, green: 50/255, blue: 80/255))
+                            .background(Color(red: 12/255, green: 10/255, blue: 62/255))
                     }
                 }
             }.ignoresSafeArea()
