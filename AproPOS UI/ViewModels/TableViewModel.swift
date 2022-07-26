@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI // only for Color
 
 final class TableViewModel: ObservableObject {
-    // Table storage and repository
+    // Repository and storage
     @Published var tables = [TableModel]()
     @Published var tableRepository = TableRepository()
     
@@ -57,6 +57,8 @@ final class TableViewModel: ObservableObject {
         // Check if an input is empty, retain the original value if it is, and use the new value if it isn't
         let editedSeats = seatsInput == 0 ? originalTable.seats : seatsInput
         let editedStatus = statusInput == "" ? originalTable.status : statusInput
+        
+        // Create a new TableModel with updated data
         let editedTable = TableModel(id: tableNumberInput, seats: editedSeats, status: editedStatus)
         
         tableRepository.addTable(table: editedTable)
