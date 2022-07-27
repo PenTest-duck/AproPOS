@@ -105,6 +105,7 @@ struct BillingView: View {
                                         billingVM.discountInput = String(describing: bill.discount)
                                         billingVM.viewingPastBill = true
                                         billingVM.selectedOrder = bill.order
+                                        billingVM.server = bill.server
                                     }) {
                                         Text("\(BillingView.dateFormatter.string(from: bill.billingTime))")
                                     }
@@ -126,6 +127,7 @@ struct BillingView: View {
             .onAppear {
                 billingVM.getOrders()
                 billingVM.getBillsHistory()
+                billingVM.getUsers()
             }
     }
 }

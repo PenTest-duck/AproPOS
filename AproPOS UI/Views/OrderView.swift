@@ -13,7 +13,14 @@ struct OrderView: View {
     @StateObject private var menuVM = MenuViewModel()
         
     @State private var selectedMenuItem: MenuItemModel? = nil
-    // @State private var selectedOrder: OrderModel? = nil
+
+    var timer = Timer()
+/*
+    func viewDidLoad() {
+        self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
+            orderVM.monitorOverdue()
+        })
+    }*/
 
     var body: some View {
         HStack (spacing: 0) {
@@ -67,7 +74,7 @@ struct OrderView: View {
                 }
                 
                 ScrollView {
-                    if orderVM.orders == [] {
+                    if orderVM.orderStatistics["preparing"] == 0 && orderVM.orderStatistics["overdue"] == 0 {
                         Spacer()
                         VStack(spacing: 10) {
                             Image(systemName: "exclamationmark.triangle.fill")

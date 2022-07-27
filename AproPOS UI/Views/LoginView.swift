@@ -15,13 +15,15 @@ struct LoginView: View {
     
     var body: some View {
         
-        
         return Group { // Returning Group allows switching between MainView and LoginView
             if authVM.isLoggedIn {
+                // If logged in, display MainView
                 MainView().environmentObject(authVM)
             } else {
+                // If not logged in, display LoginView
                 NavigationView {
                     VStack {
+                        // Title
                         Text("AproPOS")
                             .fontWeight(.bold)
                             .font(.system(size: 70))
@@ -29,6 +31,7 @@ struct LoginView: View {
                         Spacer()
                         
                         HStack {
+                            // Create account button
                             NavigationLink(destination: CreateAccountView().onAppear {
                                 // Clear authVM input fields
                                 authVM.email = ""
@@ -40,6 +43,7 @@ struct LoginView: View {
                                     .navigationBarHidden(true)
                             }
                             
+                            // Forgot password button
                             NavigationLink(destination: ForgotPasswordView().onAppear {
                                 // Clear authVM input fields
                                 authVM.email = ""
@@ -83,8 +87,9 @@ struct LoginView: View {
                                     .stroke(Color.black, lineWidth: 1)
                             )
                         
+                        // Login button
                         Button(action: {
-                            // Login and clear authVM values so that input fields are not pre-populated upon logout
+                            // Clear authVM values so that input fields are not pre-populated upon logout
                             authVM.login()
                             authVM.email = ""
                             authVM.password = ""

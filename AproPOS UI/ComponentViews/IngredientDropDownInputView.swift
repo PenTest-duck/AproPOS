@@ -9,41 +9,48 @@ import SwiftUI
 import Combine
 
 struct IngredientDropDownInputView: View {
-    @EnvironmentObject var menuVM: MenuViewModel // need EnvironmentObject to refer to same menuVM as MenuView
+    // ViewModels
+    @EnvironmentObject var menuVM: MenuViewModel // refers to same menuVM as MenuView
     @StateObject private var inventoryVM = InventoryViewModel()
     
+    // System fields
     @State private var selectedIngredient: String = ""
     @State private var addingIngredient: Bool = false
     @State private var oldIngredient: String = ""
+    @State private var options: [DropdownOption] = []
     
+    // Error field
     @State private var error: String = ""
     
+    // Generate random UUID string for DropdownOption()
     static var uniqueKey: String {
         UUID().uuidString
     }
-
-    @State private var options: [DropdownOption] = []
     
+    // Set dropdown option values
     func fillOptions() -> [DropdownOption] {
         var out: [DropdownOption] = []
         for ingredient in inventoryVM.inventory {
+            // Exclude ingredients which have already been selected
             if !menuVM.ingredientsInput.keys.contains(ingredient.id!) {
-                out.append(DropdownOption(key: IngredientDropDownInputView.uniqueKey, value: ingredient.id!))
+                out.append(DropdownOption(key: IngredientDropDownInputView.uniqueKey, value: ingredient.id!)) // Unique key ensures distinct storage
             }
         }
         return out
     }
-        
-    // let ingredients: [String: Decimal] // TODO: Don't need?
-    
+            
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
+                // Main view when not adding ingredient
                 if !addingIngredient {
+                    // Background colour
                     Rectangle()
                         .foregroundColor(Color(red: 249/255, green: 228/255, blue: 183/255))
                     
+                    // Check if ingredients are empty
                     if menuVM.ingredientsInput.isEmpty {
+                        // No ingredients view
                         VStack(spacing: 10) {
                             Image(systemName: "exclamationmark.triangle.fill")
                                 .foregroundColor(.orange)

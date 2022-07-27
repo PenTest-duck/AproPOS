@@ -14,13 +14,15 @@ struct OrderModel: Identifiable, Codable, Equatable {
     var status: String // Preparing, overdue, served
     var menuItems: [OrderedMenuItem]
     var subtotalPrice: Decimal
+    var estimatedServingTime: Int
     
-    init(id: String = UUID().uuidString, orderTime: Date = Date(), status: String = "preparing", menuItems: [OrderedMenuItem], subtotalPrice: Decimal = 0.00) {
+    init(id: String = UUID().uuidString, orderTime: Date = Date(), status: String = "preparing", menuItems: [OrderedMenuItem], subtotalPrice: Decimal = 0.00, estimatedServingTime: Int) {
         self.id = id
         self.orderTime = orderTime
         self.status = status
         self.menuItems = menuItems
         self.subtotalPrice = subtotalPrice
+        self.estimatedServingTime = estimatedServingTime
     }
 
 }

@@ -14,8 +14,10 @@ final class BillingViewModel: ObservableObject {
     // Repositories and storage
     @Published var billOrders = [OrderModel]()
     @Published var billsHistory = [BillingModel]()
+    @Published var users = [UserModel]()
     @Published var orderRepository = OrderRepository()
     @Published var billingRepository = BillingRepository()
+    @Published var userRepository = UserRepository()
     
     // Error field
     @Published var error = ""
@@ -26,6 +28,7 @@ final class BillingViewModel: ObservableObject {
     
     // System fields
     @Published var selectedOrder: OrderModel? = nil
+    @Published var server: String = ""
     @Published var viewingPastBill = false
     
     // Validates discount input
@@ -49,20 +52,25 @@ final class BillingViewModel: ObservableObject {
         }
     }
     
-    // Processes the order, converting it into a bill and updating the database
-    func processBill() {
-        UserRepository().fetchUsers() { (fetchedUsers) -> Void in // Awaits until completion of fetchUsers()
-            // Get UserModel of currently logged-in user
-            let currentUser = fetchedUsers.first(where: { $0.id == Auth.auth().currentUser!.email! } )!
-            
-            self.billingRepository.processBill(tableNumber: self.tableNumberInput, discount: Decimal(Double(self.discountInput)!), server: "\(currentUser.firstName) \(currentUser.lastName)")
-        }
-    }
-    
     // Retrieves all bills and stores them in billsHistory
     func getBillsHistory() {
         billingRepository.fetchBills() { (fetchedBills) -> Void in // Awaits until completion of fetchBills()
             self.billsHistory = fetchedBills
+        }
+    }
+    
+    // Processes the order, converting it into a bill and updating the database
+    func processBill() {
+        // Get UserModel of currently logged-in user
+        let currentUser = self.users.first(where: { $0.id == Auth.auth().currentUser!.email! } )!
+        
+        self.billingRepository.processBill(tableNumber: self.tableNumberInput, discount: Decimal(Double(self.discountInput)!), server: "\(currentUser.firstName) \(currentUser.lastName)")
+    }
+    
+    // Retrieves all users and stores them in <users>
+    func getUsers() {
+        userRepository.fetchUsers() { (fetchedUsers) -> Void in // Awaits until completion of fetchUsers()
+            self.users = fetchedUsers
         }
     }
 }

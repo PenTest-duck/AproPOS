@@ -45,12 +45,13 @@ class BillingRepository: ObservableObject {
                 let orderStatus = order["status"] as? String ?? ""
                 let orderMenuItems = order["menuItems"] as? [[String: Any]] ?? []
                 let orderSubtotalPrice = order["subtotalPrice"] as? Double ?? 0.00
+                let orderEstimatedServingTime = order["estimatedServingTime"] as? Int ?? 0
                 
                 // Convert menuItems array to array of OrderedMenuItems
                 let convertedOrderMenuItems = self.convertMenuItems(menuItems: orderMenuItems)
                 
                 // Create an OrderModel with all extracted data
-                let convertedOrder = OrderModel(id: tableNumber, orderTime: orderOrderTime, status: orderStatus, menuItems: convertedOrderMenuItems, subtotalPrice: Decimal(orderSubtotalPrice))
+                let convertedOrder = OrderModel(id: tableNumber, orderTime: orderOrderTime, status: orderStatus, menuItems: convertedOrderMenuItems, subtotalPrice: Decimal(orderSubtotalPrice), estimatedServingTime: orderEstimatedServingTime)
                 
                 // Add constructed BillingModels to billsHistory
                 return BillingModel(id: id, tableNumber: tableNumber, order: convertedOrder, discount: Decimal(discount), totalPrice: Decimal(totalPrice), billingTime: billingTime, server: server)
@@ -78,12 +79,13 @@ class BillingRepository: ObservableObject {
             let status = data!["status"] as? String ?? ""
             let menuItems = data!["menuItems"] as? [[String: Any]] ?? []
             let subtotalPrice = data!["subtotalPrice"] as? Double ?? 0.00
+            let estimatedServingTime = data!["estimatedServingTime"] as? Int ?? 0
             
             // Convert menuItems array to array of OrderedMenuItems
             let convertedMenuItems = self.convertMenuItems(menuItems: menuItems)
             
             // Create a new OrderModel with all extracted data
-            let order = OrderModel(id: tableNumber, orderTime: orderTime, status: status, menuItems: convertedMenuItems, subtotalPrice: Decimal(subtotalPrice))
+            let order = OrderModel(id: tableNumber, orderTime: orderTime, status: status, menuItems: convertedMenuItems, subtotalPrice: Decimal(subtotalPrice), estimatedServingTime: estimatedServingTime)
         
             // Calculate total price
             let totalPrice = order.subtotalPrice - discount

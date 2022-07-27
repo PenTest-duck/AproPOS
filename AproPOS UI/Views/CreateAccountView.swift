@@ -9,16 +9,18 @@ import SwiftUI
 
 struct CreateAccountView: View {
     
+    // CreateAccountView uses AuthViewModel
     @StateObject private var authVM = AuthViewModel()
     
     var body: some View {
-        
         if authVM.createAccountSuccess {
+            // Once account created, display LoginView
             LoginView()
         } else {
-            
+            // Display CreateAccountView
             NavigationView {
                 VStack {
+                    // Title
                     Text("AproPOS")
                         .fontWeight(.bold)
                         .font(.system(size: 70))
@@ -34,6 +36,7 @@ struct CreateAccountView: View {
                     }
                     
                     HStack {
+                        // First name input
                         TextField("First Name", text: $authVM.firstName)
                             .padding()
                             .disableAutocorrection(true)
@@ -46,6 +49,7 @@ struct CreateAccountView: View {
                             )
                             .padding(.bottom, 10)
                         
+                        // Last name input
                         TextField("Last Name", text: $authVM.lastName)
                             .padding()
                             .disableAutocorrection(true)
@@ -59,6 +63,7 @@ struct CreateAccountView: View {
                             .padding(.bottom, 10)
                     }
                     
+                    // Email input
                     TextField("Email", text: $authVM.newEmail)
                         .padding()
                         .disableAutocorrection(true)
@@ -70,6 +75,7 @@ struct CreateAccountView: View {
                         )
                         .padding(.bottom, 10)
                     
+                    // Password input (secure)
                     SecureField("Password", text: $authVM.newPassword)
                         .padding()
                         .disableAutocorrection(true)
@@ -81,6 +87,7 @@ struct CreateAccountView: View {
                         )
                         .padding(.bottom, 10)
                     
+                    // Password verify input (secure)
                     SecureField("Verify password", text: $authVM.verifyPassword)
                         .padding()
                         .disableAutocorrection(true)
@@ -91,6 +98,7 @@ struct CreateAccountView: View {
                                 .stroke(Color.black, lineWidth: 1)
                         )
                     
+                    // Create account button
                     Button(action: { authVM.createAccount() }) {
                         Image(systemName: "arrow.right.square.fill")
                             .foregroundColor(.blue)
@@ -103,7 +111,6 @@ struct CreateAccountView: View {
                     .frame(width: 600, height: 800)
                     .background(.white)
             }.navigationViewStyle(StackNavigationViewStyle())
-                //.navigationBarBackButtonHidden(true)
                 .navigationBarTitleDisplayMode(.inline)
         }
     }

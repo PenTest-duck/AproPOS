@@ -40,12 +40,13 @@ class OrderRepository: ObservableObject {
                 let status = data["status"] as? String ?? ""
                 let menuItems = data["menuItems"] as? [[String: Any]] ?? []
                 let subtotalPrice = data["subtotalPrice"] as? Double ?? 0.00
+                let estimatedServingTime = data["estimatedServingTime"] as? Int ?? 0
                 
                 // Convert menuItems array to array of OrderedMenuItems
                 let convertedMenuItems = self.convertMenuItems(menuItems: menuItems)
 
                 // Add constructed OrderModels to orders
-                return OrderModel(id: id, orderTime: orderTime, status: status, menuItems: convertedMenuItems, subtotalPrice: Decimal(subtotalPrice))
+                return OrderModel(id: id, orderTime: orderTime, status: status, menuItems: convertedMenuItems, subtotalPrice: Decimal(subtotalPrice), estimatedServingTime: estimatedServingTime)
             }
             
             // Return the orders when Firebase requests complete

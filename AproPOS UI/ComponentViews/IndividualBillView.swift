@@ -122,6 +122,11 @@ struct IndividualBillView: View {
                     Spacer()
                     
                     VStack {
+                        if billingVM.viewingPastBill {
+                            Text("Server: \(billingVM.server)")
+                                .padding(.bottom, 30)
+                        }
+                        
                         Text("Sub Total: **$\(String(describing: order.subtotalPrice))**")
                         Text("Discount: **$\(billingVM.discountInput)**")
                         Text("Total: **$\(String(describing: (order.subtotalPrice - Decimal(Double(billingVM.discountInput)!))))**")
