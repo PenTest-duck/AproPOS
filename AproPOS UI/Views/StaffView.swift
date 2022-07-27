@@ -24,7 +24,7 @@ struct StaffView: View {
                         ZStack {
                             HStack {
                                 Text("Staff")
-                                    .font(.system(size: 55))
+                                    .font(.system(size: 60))
                                     .fontWeight(.bold)
                             }
                                 

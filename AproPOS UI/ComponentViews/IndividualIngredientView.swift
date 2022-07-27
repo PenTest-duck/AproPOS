@@ -31,6 +31,7 @@ struct IndividualIngredientView: View {
                         Text("\(String(describing: ingredient.currentStock)) \(ingredient.units)  /   \(String(describing: ingredient.minimumThreshold)) \(ingredient.units)")
                             .font(.title)
                             .foregroundColor(Color(red: 230/255, green: 230/255, blue: 230/255))
+                            .padding()
                     }.padding(.trailing, 25)
                 }
             }

@@ -316,6 +316,7 @@ struct MenuView: View {
                                     Image(systemName: "trash.fill")
                                         .foregroundColor(.red)
                                         .font(.system(size: 40))
+                                        .padding(.trailing, 170)
                                 }
                             }.padding(.horizontal, 20)
                             
@@ -328,7 +329,7 @@ struct MenuView: View {
                             Text("Select a Menu Item or Add a New Item")
                                 .font(Font.custom("DIN Bold", size: 60))
                                 .multilineTextAlignment(.center)
-                                .padding(.top, 200)
+                                .padding(.top, 400)
                         }
                         
                     }.frame(maxWidth: 450, maxHeight: .infinity)
@@ -391,7 +392,7 @@ struct MenuView: View {
                                 .disableAutocorrection(true)
                                 .autocapitalization(.none)
                                 .frame(width: 150, height: 40)
-                                .background(Color(red: 242/255, green: 242/255, blue: 248/255))
+                                .background(Color(red: 237/255, green: 106/255, blue: 90/255))
                                 .cornerRadius(25)
                                 .multilineTextAlignment(.center)
                         }.padding(.horizontal, 50)

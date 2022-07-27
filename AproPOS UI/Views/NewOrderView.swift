@@ -25,7 +25,7 @@ struct NewOrderView: View {
                     ZStack {
                         HStack {
                             Text(orderVM.editingOrder ? "Order for Table \(orderVM.tableNumberInput)" : "New Order")
-                                .font(.system(size: 55))
+                                .font(.system(size: 60))
                                 .fontWeight(.bold)
                         }
                     }
@@ -116,7 +116,7 @@ struct NewOrderView: View {
                     ZStack {
                         Rectangle()
                             .cornerRadius(30)
-                            .foregroundColor(Color.blue)
+                            .foregroundColor(Color(red: 8/255, green: 61/255, blue: 119/255))
                             .frame(width: 380, height: 100)
                             .padding(.bottom, 10)
                         

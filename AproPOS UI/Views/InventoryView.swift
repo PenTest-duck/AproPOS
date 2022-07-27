@@ -26,7 +26,7 @@ struct InventoryView: View {
                         ZStack {
                             HStack {
                                 Text("Inventory")
-                                    .font(.system(size: 55))
+                                    .font(.system(size: 60))
                                     .fontWeight(.bold)
                             }
                                 
