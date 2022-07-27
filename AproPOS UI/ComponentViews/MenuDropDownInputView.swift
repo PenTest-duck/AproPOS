@@ -52,7 +52,7 @@ struct MenuDropDownInputView: View {
         VStack(spacing: 0) {
             ZStack {
                 Rectangle()
-                    .foregroundColor(Color(red: 249/255, green: 228/255, blue: 183/255))
+                    .foregroundColor(Color(red: 160/255, green: 236/255, blue: 208/255))
                 
                 if orderVM.menuItemsInput.isEmpty {
                     VStack(spacing: 10) {

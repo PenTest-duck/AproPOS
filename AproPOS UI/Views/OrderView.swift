@@ -34,7 +34,7 @@ struct OrderView: View {
                                     .fontWeight(.semibold)
                                 
                                 Text("\(orderVM.orderStatistics["total"]!)")
-                                    .font(.system(size: 55))
+                                    .font(.system(size: 60))
                                     .fontWeight(.bold)
                             }.padding(.horizontal, 20)
                             
@@ -44,7 +44,7 @@ struct OrderView: View {
                                     .fontWeight(.semibold)
                                 
                                 Text("\(orderVM.orderStatistics["preparing"]!)")
-                                    .font(.system(size: 55))
+                                    .font(.system(size: 60))
                                     .fontWeight(.bold)
                             }.padding(.horizontal, 20)
                             
@@ -54,7 +54,7 @@ struct OrderView: View {
                                     .fontWeight(.semibold)
                                 
                                 Text("\(orderVM.orderStatistics["overdue"]!)")
-                                    .font(.system(size: 55))
+                                    .font(.system(size: 60))
                                     .fontWeight(.bold)
                             }.padding(.horizontal, 20)
                             
@@ -64,12 +64,12 @@ struct OrderView: View {
                                     .fontWeight(.semibold)
                                 
                                 Text("\(orderVM.orderStatistics["served"]!)")
-                                    .font(.system(size: 55))
+                                    .font(.system(size: 60))
                                     .fontWeight(.bold)
                             }.padding(.horizontal, 20)
                         }.frame(width: 1070) // static value
                             .padding(.vertical, 10)
-                            .background(.orange)
+                            .background(Color(red: 237/255, green: 106/255, blue: 90/255))
                     }
                 }
                 

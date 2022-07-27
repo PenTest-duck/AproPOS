@@ -25,8 +25,8 @@ struct BillingView: View {
                 VStack {
                     ZStack {
                         HStack {
-                            Text("Bills")
-                                .font(.system(size: 55))
+                            Text("Billing")
+                                .font(.system(size: 60))
                                 .fontWeight(.bold)
                         }
                         Spacer()
@@ -62,7 +62,7 @@ struct BillingView: View {
             
             ZStack {
                 VStack {
-                    Text("Select Table")
+                    Text("Select Bill")
                         .fontWeight(.bold)
                         .font(.system(size: 50))
                         .padding(.bottom, 10)

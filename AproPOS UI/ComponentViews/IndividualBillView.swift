@@ -63,11 +63,11 @@ struct IndividualBillView: View {
                                 if !inputDiscount {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(.green)
+                                            .foregroundColor(Color(red: 160/255, green: 236/255, blue: 208/255))
                                             .frame(width: 200, height: 50)
                                         
                                         Text("Discount")
-                                            .foregroundColor(.white)
+                                            .foregroundColor(.black)
                                             .fontWeight(.semibold)
                                             .font(.system(size: 30))
                                         
@@ -142,7 +142,7 @@ struct IndividualBillView: View {
                         ZStack {
                             Rectangle()
                                 .cornerRadius(20)
-                                .foregroundColor(Color.blue)
+                                .foregroundColor(Color(red: 8/255, green: 61/255, blue: 119/255))
                                 .frame(width: 250, height: 50)
                                 .padding(.bottom, 10)
                             

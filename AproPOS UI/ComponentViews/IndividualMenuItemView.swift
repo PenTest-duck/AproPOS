@@ -20,6 +20,7 @@ struct IndividualMenuItemView: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .clipped()
                 .aspectRatio(1, contentMode: .fit)
+                .cornerRadius(20)
             
             VStack {
                 Spacer()
@@ -31,7 +32,7 @@ struct IndividualMenuItemView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 10)
                     .background(.red)
-                    .cornerRadius(2)
+                    .cornerRadius(10)
                     .padding(.bottom, 35)
             }
             

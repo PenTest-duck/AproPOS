@@ -39,7 +39,7 @@ struct TableView: View {
                         ZStack {
                             HStack {
                                 Text("Tables")
-                                    .font(.system(size: 55))
+                                    .font(.system(size: 60))
                                     .fontWeight(.bold)
                             }
                                 

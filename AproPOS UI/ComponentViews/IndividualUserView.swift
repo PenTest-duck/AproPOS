@@ -35,6 +35,7 @@ struct IndividualUserView: View {
                         .font(.title)
                         .foregroundColor(.white)
                         .fontWeight(.bold)
+                        .padding()
                     }
                 }
             }

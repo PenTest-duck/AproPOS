@@ -46,7 +46,7 @@ struct IngredientDropDownInputView: View {
                 if !addingIngredient {
                     // Background colour
                     Rectangle()
-                        .foregroundColor(Color(red: 249/255, green: 228/255, blue: 183/255))
+                        .foregroundColor(Color(red: 160/255, green: 236/255, blue: 208/255))
                     
                     // Check if ingredients are empty
                     if menuVM.ingredientsInput.isEmpty {
@@ -102,7 +102,7 @@ struct IngredientDropDownInputView: View {
                     }
                 } else if addingIngredient {
                     Rectangle()
-                        .foregroundColor(Color(red: 255/255, green: 204/255, blue: 255/255))
+                        .foregroundColor(Color(red: 160/255, green: 236/255, blue: 208/255))
                     
                     VStack {
                         Text("Add Ingredient")
