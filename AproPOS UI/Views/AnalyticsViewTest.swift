@@ -14,21 +14,24 @@ struct AnalyticsViewTest: View {
         
         VStack {
             
-            Button(action: {$analyticsVM.getBillsHistory }) {
-                Text("Click here")
-                    .foregroundColor(.blue)
-                    .font(.system(size: 60))
-                    .padding(.top, 20)
-            }
-                
+            Button {
+                AnalyticsViewModel().fetchBills()
+                AnalyticsViewModel().addBillPrice()
+            } label: {
+            Text("Click here")
+                .foregroundColor(.blue)
+                .font(.system(size: 60))
+                .padding(.top, 20)
+        }
+            
+        }
     }
-}
-
-
-
-struct AnalyticsViewTest_Previews: PreviewProvider {
-    static var previews: some View {
-        AnalyticsViewTest()
+    
+    
+    
+    struct AnalyticsViewTest_Previews: PreviewProvider {
+        static var previews: some View {
+            AnalyticsViewTest()
         }
     }
 }
