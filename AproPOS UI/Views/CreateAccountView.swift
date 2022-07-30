@@ -21,7 +21,7 @@ struct CreateAccountView: View {
             NavigationView {
                 VStack {
                     // Title
-                    Text("AproPOS")
+                    Text("Create Account")
                         .fontWeight(.bold)
                         .font(.system(size: 70))
                     

@@ -108,7 +108,12 @@ class MenuRepository: ObservableObject {
                 // Checks stock levels of each ingredient in menu item
                 if Array(menuItem.status.keys)[0] == "available" { // Checking the key of the nested dictionary
                     for ingredient in menuItem.ingredients {
-                        let stock = (self.ingredientStock.compactMap { $0[ingredient.key] })[0] // Extracts relevant ingredient stock
+                        var stock: Double = 0
+                        let ingStock = self.ingredientStock.compactMap({ $0[ingredient.key] }) // Extracts relevant ingredient stock
+                        
+                        if ingStock != [] {
+                            stock = ingStock[0]
+                        }
                         
                         // If stock levels are too low, add to lowIngredients and update the database
                         if Decimal(stock) < ingredient.value {
@@ -121,7 +126,12 @@ class MenuRepository: ObservableObject {
                 // Checks stock levels of each low ingredient
                 } else {
                     for ingredient in lowIngredients {
-                        let stock = (self.ingredientStock.compactMap { $0[ingredient] })[0] // Extracts relevant ingredient stock
+                        var stock: Double = 0
+                        let ingStock = self.ingredientStock.compactMap({ $0[ingredient] }) // Extracts relevant ingredient stock
+                        
+                        if ingStock != [] {
+                            stock = ingStock[0]
+                        }
                         
                         // If stock levels are sufficient, remove from low ingredients and update the database
                         if Decimal(stock) >= menuItem.ingredients[ingredient]! {

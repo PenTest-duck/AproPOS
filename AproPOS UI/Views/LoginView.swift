@@ -93,6 +93,8 @@ struct LoginView: View {
                             authVM.login()
                             authVM.email = ""
                             authVM.password = ""
+                            authVM.failedLogin = false
+                            authVM.loginError = ""
                         }) {
                             Image(systemName: "arrow.right.square.fill")
                                 .foregroundColor(Color.blue)
