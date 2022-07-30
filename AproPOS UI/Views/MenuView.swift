@@ -326,10 +326,10 @@ struct MenuView: View {
                                 .frame(maxWidth: 380)
                             
                         } else {
-                            Text("Select a Menu Item or Add a New Item")
+                            Text("Select a Menu Item")
                                 .font(Font.custom("DIN Bold", size: 60))
                                 .multilineTextAlignment(.center)
-                                .padding(.top, 400)
+                                .padding(.top, 340)
                         }
                         
                     }.frame(maxWidth: 450, maxHeight: .infinity)

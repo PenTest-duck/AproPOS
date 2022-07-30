@@ -112,6 +112,7 @@ struct OrderView: View {
             
             NavigationLink (destination: NewOrderView().environmentObject(menuVM).environmentObject(orderVM)
                                 .onAppear {
+                orderVM.error = ""
                 orderVM.editingOrder = false
                 orderVM.tableNumberInput = ""
                 orderVM.menuItemsInput = [OrderedMenuItem]()

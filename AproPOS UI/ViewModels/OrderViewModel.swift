@@ -127,6 +127,10 @@ final class OrderViewModel: ObservableObject {
             let editedOrder = OrderModel(id: self.tableNumberInput, menuItems: editedMenuItems, subtotalPrice: self.totalPrice(), estimatedServingTime: EST)
             
             self.orderRepository.addOrder(order: editedOrder)
+            
+            if self.tableNumberInput != originalOrder.id {
+                self.orderRepository.removeOrder(tableNumber: originalOrder.id!)
+            }
         }
     }
     
@@ -141,7 +145,7 @@ final class OrderViewModel: ObservableObject {
         MenuRepository().fetchMenu() { (fetchedMenu) -> Void in // Awaits completion of fetchMenu()
             // Iterate over menu items and add their ESTs
             for menuItem in menuItems {
-                total += fetchedMenu.first(where: { $0.id == menuItem.name } )!.estimatedServingTime
+                total += (fetchedMenu.first(where: { $0.id == menuItem.name } ) ?? MenuItemModel(price: 0, estimatedServingTime: 0)).estimatedServingTime
             }
             
             completion(total)
