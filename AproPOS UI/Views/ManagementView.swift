@@ -13,79 +13,94 @@ struct ManagementView: View {
     
     var body: some View {
         NavigationView {
-            VStack (spacing: 0) {
-                HStack (spacing: 0) {
-                    NavigationLink(destination: MenuView()) {
-                        Text("Menu")
-                            .font(Font.custom("DIN Bold", size: 100))
-                            .foregroundColor(Color.white)
-                            .navigationBarTitle("")
-                            .navigationBarHidden(true)
-                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color(red: 123/255, green: 30/255, blue: 122/255))
+            ZStack {
+                VStack (spacing: 0) {
+                    HStack (spacing: 0) {
+                        NavigationLink(destination: MenuView()) {
+                            Text("Menu")
+                                .font(Font.custom("DIN Bold", size: 100))
+                                .foregroundColor(Color.white)
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
+                        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color(red: 123/255, green: 30/255, blue: 122/255))
+                        
+                        NavigationLink(destination: InventoryView()) {
+                            Text("Inventory")
+                                .font(Font.custom("DIN Bold", size: 100))
+                                .foregroundColor(Color.white)
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
+                        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color(red: 67/255, green: 170/255, blue: 139/255))
+                    }
                     
-                    NavigationLink(destination: InventoryView()) {
-                        Text("Inventory")
-                            .font(Font.custom("DIN Bold", size: 100))
-                            .foregroundColor(Color.white)
-                            .navigationBarTitle("")
-                            .navigationBarHidden(true)
-                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color(red: 67/255, green: 170/255, blue: 139/255))
-                }
+                    HStack (spacing: 0) {
+                        if !staffVM.disallowedViews.contains("StaffView") {
+                            NavigationLink(destination: StaffView()) {
+                                Text("Staff")
+                                    .font(Font.custom("DIN Bold", size: 100))
+                                    .foregroundColor(Color.white)
+                                    .navigationBarTitle("")
+                                    .navigationBarHidden(true)
+                            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color(red: 179/255, green: 63/255, blue: 98/255))
+                        } else {
+                            ZStack {
+                                Text("Staff")
+                                    .font(Font.custom("DIN Bold", size: 100))
+                                    .foregroundColor(Color.white)
+                                    .navigationBarTitle("")
+                                    .navigationBarHidden(true)
+                                
+                                Image(systemName: "lock.fill")
+                                    .font(.system(size: 180))
+                                    .foregroundColor(.red)
+                                    .opacity(0.8)
+                            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color(red: 179/255, green: 63/255, blue: 98/255))
+                        }
+                        
+                        if !staffVM.disallowedViews.contains("AnalyticsView") {
+                            NavigationLink(destination: StaffView()) {
+                                Text("Analytics")
+                                    .font(Font.custom("DIN Bold", size: 100))
+                                    .foregroundColor(Color.white)
+                                    .navigationBarTitle("")
+                                    .navigationBarHidden(true)
+                            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color(red: 12/255, green: 10/255, blue: 62/255))
+                        } else {
+                            ZStack {
+                                Text("Analytics")
+                                    .font(Font.custom("DIN Bold", size: 100))
+                                    .foregroundColor(Color.white)
+                                    .navigationBarTitle("")
+                                    .navigationBarHidden(true)
+                                
+                                Image(systemName: "lock.fill")
+                                    .font(.system(size: 180))
+                                    .foregroundColor(.red)
+                                    .opacity(0.8)
+                            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color(red: 12/255, green: 10/255, blue: 62/255))
+                        }
+                    }
+                }.ignoresSafeArea()
                 
-                HStack (spacing: 0) {
-                    if !staffVM.disallowedViews.contains("StaffView") {
-                        NavigationLink(destination: StaffView()) {
-                            Text("Staff")
-                                .font(Font.custom("DIN Bold", size: 100))
-                                .foregroundColor(Color.white)
-                                .navigationBarTitle("")
-                                .navigationBarHidden(true)
-                        }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color(red: 179/255, green: 63/255, blue: 98/255))
-                    } else {
-                        ZStack {
-                            Text("Staff")
-                                .font(Font.custom("DIN Bold", size: 100))
-                                .foregroundColor(Color.white)
-                                .navigationBarTitle("")
-                                .navigationBarHidden(true)
-                            
-                            Image(systemName: "lock.fill")
-                                .font(.system(size: 180))
-                                .foregroundColor(.red)
-                                .opacity(0.8)
-                        }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color(red: 179/255, green: 63/255, blue: 98/255))
-                    }
+                VStack {
+                    Spacer()
                     
-                    if !staffVM.disallowedViews.contains("AnalyticsView") {
-                        NavigationLink(destination: StaffView()) {
-                            Text("Analytics")
-                                .font(Font.custom("DIN Bold", size: 100))
-                                .foregroundColor(Color.white)
-                                .navigationBarTitle("")
-                                .navigationBarHidden(true)
-                        }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color(red: 12/255, green: 10/255, blue: 62/255))
-                    } else {
-                        ZStack {
-                            Text("Analytics")
-                                .font(Font.custom("DIN Bold", size: 100))
-                                .foregroundColor(Color.white)
-                                .navigationBarTitle("")
-                                .navigationBarHidden(true)
-                            
-                            Image(systemName: "lock.fill")
-                                .font(.system(size: 180))
-                                .foregroundColor(.red)
-                                .opacity(0.8)
-                        }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color(red: 12/255, green: 10/255, blue: 62/255))
-                    }
-                }
-            }.ignoresSafeArea()
+                    HStack {
+                        Spacer()
+                        
+                        Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=id.ren43qxael4u")!) {
+                            Image(systemName: "questionmark.circle.fill")
+                                .font(.system(size: 70))
+                        }
+                    }.padding(.trailing, 40)
+                }.padding(.bottom, 20)
+            }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
