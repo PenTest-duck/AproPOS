@@ -504,17 +504,17 @@ struct StaffView: View {
             }
             
             VStack {
-                Spacer()
-                
                 HStack {
                     Spacer()
                     
-                    Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=id.pcsbu7j00h6b")!) {
+                    Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=id.iw3dn7mc99d9")!) {
                         Image(systemName: "questionmark.circle.fill")
-                            .font(.system(size: 70))
+                            .font(.system(size: 40))
                     }
-                }.padding(.trailing, 40)
-            }.padding(.bottom, 20)
+                }.padding(.trailing, 30)
+                
+                Spacer()
+            }.padding(.top, 20)
         }
     }
 }
