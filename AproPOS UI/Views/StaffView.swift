@@ -410,22 +410,7 @@ struct StaffView: View {
                             Spacer()
                             
                             Group {
-                                HStack {
-                                    Spacer()
-                                    
-                                    Text("Remove User")
-                                        .fontWeight(.bold)
-                                    
-                                    Button(action: {
-                                        staffVM.emailInput = selectedStaff.id!
-                                        confirmingDelete = true
-                                    }) {
-                                        Image(systemName: "trash.fill")
-                                            .foregroundColor(.red)
-                                            .font(.system(size: 40))
-                                    }
-                                }.padding(.horizontal, 20)
-
+                                
                                 Button(action: {
                                     staffVM.oldEmailInput = selectedStaff.id!
                                     staffVM.editUser()
@@ -436,9 +421,7 @@ struct StaffView: View {
                                     ZStack {
                                         Rectangle()
                                             .cornerRadius(30)
-                                            .foregroundColor(Color.blue)
-                                            .frame(width: 380, height: 85)
-                                            .padding(.bottom, 10)
+                                            .foregroundColor(Color(red: 8/255, green: 61/255, blue: 119/255))
                                         
                                         Text("Save changes")
                                             .foregroundColor(.white)
@@ -447,6 +430,19 @@ struct StaffView: View {
                                             .font(.system(size: 35))
                                     }
                                 }
+                                
+                                HStack {
+                                    Spacer()
+                                    
+                                    Button(action: {
+                                        staffVM.emailInput = selectedStaff.id!
+                                        confirmingDelete = true
+                                    }) {
+                                        Image(systemName: "trash.fill")
+                                            .foregroundColor(.red)
+                                            .font(.system(size: 40))
+                                    }
+                                }.padding(.horizontal, 20)
                                 
                                 Text("\(staffVM.error)")
                                     .foregroundColor(.red)

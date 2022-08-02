@@ -245,8 +245,7 @@ struct TableView: View {
                             HStack {
                                 Spacer()
                                 
-                                Text("Remove Table")
-                                    .fontWeight(.bold)
+                        
                                 
                                 Button(action: {
                                     tableVM.tableNumberInput = selectedTable.id!
@@ -255,6 +254,7 @@ struct TableView: View {
                                     Image(systemName: "trash.fill")
                                         .foregroundColor(.red)
                                         .font(.system(size: 40))
+                                        .padding(.trailing, 170)
                                 }
                             }.padding(.horizontal, 20)
                             
