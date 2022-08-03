@@ -112,12 +112,11 @@ struct CreateAccountView: View {
                         .frame(width: 600, height: 800)
                         .background(.white)
                     
+                    // Help button
                     VStack {
                         Spacer()
-                        
                         HStack {
                             Spacer()
-                            
                             Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=id.943khhlfus1e")!) {
                                 Image(systemName: "questionmark.circle.fill")
                                     .font(.system(size: 70))

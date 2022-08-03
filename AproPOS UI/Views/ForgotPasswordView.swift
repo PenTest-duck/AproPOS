@@ -13,17 +13,19 @@ struct ForgotPasswordView: View {
     var body: some View {
         
         if authVM.resetPasswordSuccess {
+            // Once password has been reset, return to login view
             LoginView()
         } else {
+            // Display ForgotPasswordView
             NavigationView {
                 ZStack {
                     VStack {
+                        // Title
                         Text("AproPOS")
                             .fontWeight(.bold)
                             .font(.system(size: 70))
                         
                         Spacer();
-                        
                         
                         // Fail reste password dialogue
                         // ADD: refresh dialogue on second failure
@@ -37,6 +39,7 @@ struct ForgotPasswordView: View {
                             .fontWeight(.bold)
                             .font(.system(size: 30))
                         
+                        // Email input
                         TextField("Email", text: $authVM.resetPasswordEmail)
                             .padding()
                             .disableAutocorrection(true)
@@ -48,6 +51,8 @@ struct ForgotPasswordView: View {
                             )
                             .padding(.bottom, 10)
                         
+                        // Password reset button
+                        // Will send a templated email to user for resetting password
                         Button(action: { authVM.resetPassword() }) {
                             Image(systemName: "arrow.right.square.fill")
                                 .foregroundColor(Color.blue)
@@ -59,12 +64,11 @@ struct ForgotPasswordView: View {
                     }.frame(width: 450, height: 800)
                         .background(.white)
                     
+                    // Help button
                     VStack {
                         Spacer()
-                        
                         HStack {
                             Spacer()
-                            
                             Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=id.jxv01uosff4d")!) {
                                 Image(systemName: "questionmark.circle.fill")
                                     .font(.system(size: 70))
@@ -73,7 +77,6 @@ struct ForgotPasswordView: View {
                     }.padding(.bottom, 20)
                 }
             }.navigationViewStyle(StackNavigationViewStyle())
-                //.navigationBarBackButtonHidden(true)
         }
     }
 }

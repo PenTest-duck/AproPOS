@@ -11,17 +11,17 @@ import Combine
 struct NewOrderView: View {
     @EnvironmentObject var menuVM: MenuViewModel
     @EnvironmentObject var orderVM: OrderViewModel
-    //@StateObject private var orderVM = OrderViewModel()
     
+    // Allowing dismissal of views to go back one view
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State private var selectedMenuItem: MenuItemModel? = nil
-    // @State private var selectedOrder: OrderModel? = nil
 
     var body: some View {
         ZStack {
             HStack (spacing: 0) {
                 VStack {
+                    // Centered title
                     VStack {
                         ZStack {
                             HStack {
@@ -32,7 +32,7 @@ struct NewOrderView: View {
                         }
                     }
                     
-                    if menuVM.menu == [] {
+                    if menuVM.menu == [] { // View for when there are no menu items
                         Spacer()
                         VStack(spacing: 10) {
                             Image(systemName: "exclamationmark.triangle.fill")
@@ -45,14 +45,16 @@ struct NewOrderView: View {
                                 .font(.system(size: 20))
                         }.padding(.bottom, 90)
                         Spacer()
-                    } else {
+                    } else { // If at least one menu item exists
+                        // Grid of every menu item
                         LazyVGrid(columns: [.init(.adaptive(minimum: 200, maximum: .infinity), spacing: 5)], spacing: 5) {
                             ForEach(menuVM.menu) { menuItem in
                                 Button(action: {
+                                    // If menu item has not been added to the order already
                                     if orderVM.menuItemsInput.first(where: { $0.name == menuItem.id! } ) == nil {
-                                        
-                                        // TODO: price
+                                        // Initially get the price of 1 of that menu item
                                         orderVM.initPrice(name: menuItem.id!) { (price) -> Void in
+                                            // Append to menuItemsInput
                                             orderVM.menuItemsInput.append(OrderedMenuItem(name: menuItem.id!, quantity: 1, price: price, served: false))
                                         }
                                     }
@@ -71,10 +73,12 @@ struct NewOrderView: View {
                     .frame(width: 10)
                     .background(Color(red: 202/255, green: 85/255, blue: 220/255))
                 
+                // Input fields
                 VStack {
                     Text("Order")
                         .font(Font.custom("DIN Bold", size: 60))
                 
+                    // Table input
                     HStack {
                         Text("Table")
                             .fontWeight(.bold)
@@ -89,7 +93,7 @@ struct NewOrderView: View {
                             .cornerRadius(25)
                             .multilineTextAlignment(.center)
                             .keyboardType(.decimalPad)
-                            .onReceive(Just(orderVM.tableNumberInput)) { newValue in
+                            .onReceive(Just(orderVM.tableNumberInput)) { newValue in // Filter only numbers
                                 let filtered = newValue.filter { "0123456789".contains($0) }
                                 if filtered != newValue {
                                     orderVM.tableNumberInput = filtered
@@ -98,19 +102,22 @@ struct NewOrderView: View {
                             
                     }.padding(.horizontal, 20)
 
+                    // Menu items input
                     MenuDropDownInputView().environmentObject(orderVM)
                         .padding(.horizontal, 20)
                         .frame(height: 500)
                     
+                    // Calculate and update total price in real time
                     Text("Total Price: $\(String(describing: orderVM.totalPrice()))")
                     
                     Spacer()
                     
+                    // Add order button
                     Button(action: {
                         orderVM.addOrder() { (_ success) -> Void in
                             if orderVM.error == "" {
                                 orderVM.editingOrder = false
-                                presentationMode.wrappedValue.dismiss() // creates top blank bar
+                                presentationMode.wrappedValue.dismiss() // returns to OrderView
                             }
                         }
                     }) {
@@ -121,7 +128,7 @@ struct NewOrderView: View {
                                 .frame(width: 380, height: 100)
                                 .padding(.bottom, 10)
                             
-                            Text(orderVM.editingOrder ? "Edit Order" : "Add Order")
+                            Text(orderVM.editingOrder ? "Edit Order" : "Add Order") // Varying text for edit status
                                 .foregroundColor(.white)
                                 .fontWeight(.bold)
                                 .padding(.bottom, 10)
@@ -129,32 +136,33 @@ struct NewOrderView: View {
                         }
                     }
                     
+                    // Error display
                     Text("\(orderVM.error)")
                         .foregroundColor(.red)
                         .font(.system(size: 22))
                         .frame(maxWidth: 380)
+                    
                 }.frame(maxWidth: 450, maxHeight: .infinity)
                 .background(Color(red: 242/255, green: 242/255, blue: 248/255))
                 .font(.system(size: 30))
+                
             }.background(Color(red: 242/255, green: 242/255, blue: 248/255))
-                //.navigationBarHidden(true)
                 .onAppear {
+                    // Start synchronising data
                     menuVM.getMenu()
                     menuVM.checkUnavailableMenuItems()
-                    // may be unnecessary?
                     orderVM.getOrders()
                 }
             
+            // Help button
             VStack {
                 HStack {
                     Spacer()
-                    
                     Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=id.iw3dn7mc99d9")!) {
                         Image(systemName: "questionmark.circle.fill")
                             .font(.system(size: 50))
                     }
                 }.padding(.trailing, 40)
-                
                 Spacer()
             }.padding(.top, 12)
         }

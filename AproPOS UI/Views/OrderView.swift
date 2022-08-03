@@ -19,8 +19,10 @@ struct OrderView: View {
             HStack (spacing: 0) {
                 VStack {
                     VStack {
+                        // Centered order statistics
                         ZStack {
                             HStack {
+                                // Total orders
                                 VStack {
                                     Text("Total")
                                         .foregroundColor(.white)
@@ -31,6 +33,7 @@ struct OrderView: View {
                                         .fontWeight(.bold)
                                 }.padding(.horizontal, 20)
                                 
+                                // Preparing orders
                                 VStack {
                                     Text("Preparing")
                                         .foregroundColor(.white)
@@ -41,6 +44,7 @@ struct OrderView: View {
                                         .fontWeight(.bold)
                                 }.padding(.horizontal, 20)
                                 
+                                // Overdue orders
                                 VStack {
                                     Text("Overdue")
                                         .foregroundColor(.white)
@@ -51,6 +55,7 @@ struct OrderView: View {
                                         .fontWeight(.bold)
                                 }.padding(.horizontal, 20)
                                 
+                                // Served orders
                                 VStack {
                                     Text("Served")
                                         .foregroundColor(.white)
@@ -67,7 +72,7 @@ struct OrderView: View {
                     }
                     
                     ScrollView {
-                        if orderVM.orderStatistics["preparing"] == 0 && orderVM.orderStatistics["overdue"] == 0 {
+                        if orderVM.orderStatistics["preparing"] == 0 && orderVM.orderStatistics["overdue"] == 0 { // View for for when there are no outstanding orders
                             Spacer()
                             VStack(spacing: 10) {
                                 Image(systemName: "exclamationmark.triangle.fill")
@@ -80,9 +85,11 @@ struct OrderView: View {
                                     .font(.system(size: 20))
                             }.padding(.bottom, 90)
                             Spacer()
-                        } else {
+                        } else { // If at least one outstanding order exists
+                            // Grid of every order
                             LazyVGrid(columns: [.init(.adaptive(minimum: 200, maximum: .infinity), spacing: 15, alignment: .top)], spacing: 15) {
-                                ForEach(orderVM.orders.sorted(by: { Int($0.id!)! < Int($1.id!)! } ).filter { $0.status != "served" } ) { order in
+                                ForEach(orderVM.orders.sorted(by: { Int($0.id!)! < Int($1.id!)! } ).filter { $0.status != "served" } ) { order in // sorting by ascending order of table number
+                                    // Pressing it will open NewOrderView() with prefilled values (= editing)
                                     NavigationLink (destination: NewOrderView().environmentObject(menuVM).environmentObject(orderVM)
                                             .onAppear {
                                                 orderVM.editingOrder = true
@@ -101,10 +108,10 @@ struct OrderView: View {
                     }
                 }.ignoresSafeArea()
                 
-                //Spacer()
-                
+                // New order button
                 NavigationLink (destination: NewOrderView().environmentObject(menuVM).environmentObject(orderVM)
                                     .onAppear {
+                    // Clear variables
                     orderVM.error = ""
                     orderVM.editingOrder = false
                     orderVM.tableNumberInput = ""
@@ -117,25 +124,21 @@ struct OrderView: View {
                         Text("New Order")
                             .font(Font.custom("DIN Bold", size: 80))
                             .foregroundColor(Color.white)
-                            //.navigationBarTitle("")
-                            //.navigationBarHidden(true)
                     }
-                }//.navigationBarHidden(true)
-                    .frame(maxWidth: 300, maxHeight: .infinity)
+                }.frame(maxWidth: 300, maxHeight: .infinity)
                     .background(Color(red: 237/255, green: 106/255, blue: 90/255))
                 
             }.background(Color(red: 242/255, green: 242/255, blue: 248/255))
-                //.navigationBarHidden(true)
                 .onAppear {
+                    // Start synchronising data
                     orderVM.getOrders()
                 }
             
+            // Help button
             VStack {
                 Spacer()
-                
                 HStack {
                     Spacer()
-                    
                     Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=kix.gru3sr89fcqi")!) {
                         Image(systemName: "questionmark.circle.fill")
                             .font(.system(size: 70))
@@ -143,7 +146,7 @@ struct OrderView: View {
                 }.padding(.trailing, 40)
             }.padding(.bottom, 20)
         }.onAppear {
-            orderVM.monitorOverdue()
+            orderVM.monitorOverdue() // Run first as viewDidLoad() will start running 5 seconds afterwards
             orderVM.viewDidLoad()
         }
     }

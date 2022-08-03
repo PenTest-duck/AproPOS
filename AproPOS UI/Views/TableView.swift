@@ -20,6 +20,7 @@ struct TableView: View {
         UUID().uuidString
     }
 
+    // Table status options
     static let options: [DropdownOption] = [
         DropdownOption(key: uniqueKey, value: "free"),
         DropdownOption(key: uniqueKey, value: "yetToOrder"),
@@ -33,9 +34,10 @@ struct TableView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                if !confirmingDelete && !editingTableNumber {
+                if !confirmingDelete && !editingTableNumber { // Normal case when not deleting or editing table number
                     HStack (spacing: 0) {
                         VStack {
+                            // Centered title + add table button
                             VStack {
                                 ZStack {
                                     HStack {
@@ -47,12 +49,14 @@ struct TableView: View {
                                     HStack {
                                         Spacer()
                                         
+                                        // Add table button
                                         Button(action: {
+                                            // Clear values
                                             addingTable = true
                                             tableVM.error = ""
                                             tableVM.tableNumberInput = ""
                                             tableVM.seatsInput = 1
-                                            tableVM.statusInput = "" // not really necessary according to logic
+                                            tableVM.statusInput = ""
                                         }) {
                                             Image(systemName: "plus.square.fill")
                                                 .font(.system(size: 60))
@@ -65,7 +69,7 @@ struct TableView: View {
                             }
                             
                             ZStack {
-                                if tableVM.tables == [] {
+                                if tableVM.tables == [] { // View for when there are no tables
                                     VStack(spacing: 10) {
                                         Image(systemName: "exclamationmark.triangle.fill")
                                             .foregroundColor(.orange)
@@ -79,8 +83,10 @@ struct TableView: View {
                                 }
                                 
                                 List {
+                                    // List of all tables
                                     ForEach(tableVM.tables) { table in
                                         Button(action: {
+                                            // Pre-fill values for editing when pressed
                                             addingTable = false
                                             tableVM.error = ""
                                             selectedTable = table
@@ -92,7 +98,6 @@ struct TableView: View {
                                     }
                                 }.listStyle(PlainListStyle())
                             }
-                            
                         }
                         
                         Spacer()
@@ -101,12 +106,14 @@ struct TableView: View {
                             .frame(width: 10)
                             .background(Color(red: 202/255, green: 85/255, blue: 220/255))
                         
+                        // Input fields
                         ZStack {
                             VStack {
-                                if addingTable {
+                                if addingTable { // If adding a table
                                     Text("New Table")
                                         .font(Font.custom("DIN Bold", size: 60))
                                     
+                                    // Table number input
                                     HStack {
                                         Text("Table Number")
                                             .fontWeight(.bold)
@@ -118,10 +125,8 @@ struct TableView: View {
                                             .frame(width: 100, height: 40)
                                             .cornerRadius(25)
                                             .multilineTextAlignment(.center)
-                                            // Code bellow from: https://stackoverflow.com/questions/58733003/how-to-create-textfield-that-only-accepts-numbers
-                                            //in order to only allow numbers in the input for the tableNumber
                                             .keyboardType(.numberPad)
-                                            .onReceive(Just(tableVM.tableNumberInput)) { newValue in
+                                            .onReceive(Just(tableVM.tableNumberInput)) { newValue in // Filter only numbers
                                                 let filtered = newValue.filter { "0123456789".contains($0) }
                                                 if filtered != newValue {
                                                     tableVM.tableNumberInput = filtered
@@ -129,6 +134,7 @@ struct TableView: View {
                                             }
                                     }.padding(.horizontal, 20)
                                     
+                                    // Seats input
                                     VStack(alignment: .leading) {
                                         HStack {
                                             Text("Seats")
@@ -136,17 +142,19 @@ struct TableView: View {
                                             
                                             Spacer()
                                             
+                                            // Stepper from 1 to 20
                                             Stepper("\(tableVM.seatsInput)", value: $tableVM.seatsInput, in: 1...20)
-
-                                            
                                         }.padding(.horizontal, 20)
                                     }
                                     
                                     Spacer()
                                     
+                                    // Add table button
                                     Button(action: {
+                                        // Perform the add table function
                                         tableVM.addTable()
-                                        if tableVM.error == "" {
+                                        if tableVM.error == "" { // If success
+                                            // Reset values
                                             self.selectedTable = nil
                                             addingTable = false
                                         }
@@ -166,13 +174,16 @@ struct TableView: View {
                                         }
                                     }
                                     
+                                    // Error display
                                     Text("\(tableVM.error)")
                                         .foregroundColor(.red)
                                     
-                                } else if let selectedTable = selectedTable {
+                                } else if let selectedTable = selectedTable { // If an existing table has been pressed
+                                    // Adjust input field title
                                     Text("Table \(selectedTable.id!)")
                                         .font(Font.custom("DIN Bold", size: 60))
                                     
+                                    // Edit table number button
                                     Button(action: {
                                         editingTableNumber = true
                                     }) {
@@ -182,6 +193,7 @@ struct TableView: View {
                                         }.font(.system(size: 20))
                                     }.padding(.bottom, 30)
                                     
+                                    // Seats input
                                     VStack(alignment: .leading) {
                                         HStack {
                                             Text("Seats")
@@ -190,42 +202,33 @@ struct TableView: View {
                                             Spacer()
                                             
                                             Stepper("\(tableVM.seatsInput)", value: $tableVM.seatsInput, in: 1...20)
-                                                /*.onChange(of: tableVM.seatsInput) { newValue in
-                                                    tableVM.tableNumberInput = self.selectedTable!.id!
-                                                    tableVM.editTable()
-                                                }*/
-                                            /*TextField("", value: $tableVM.seatsInput, formatter: NumberFormatter())
-                                                .background(.white)
-                                                .frame(width: 100, height: 40)
-                                                .cornerRadius(25)
-                                                .multilineTextAlignment(.center)*/
-                                            
                                         }.padding(.horizontal, 20)
                                     }
                                     
+                                    // Status input
                                     HStack {
                                         Text("Status")
                                             .fontWeight(.bold)
                                         
+                                        // Dropdown select from available statuses
                                         DropdownSelector(
                                             placeholder: "\(tableVM.statusInput)",
                                             options: TableView.options,
                                             onOptionSelected: { option in
                                                 tableVM.statusInput = option.value
                                             }
-                                        )/*.onChange(of: tableVM.statusInput) { newValue in
-                                            tableVM.tableNumberInput = self.selectedTable!.id!
-                                            tableVM.editTable()
-                                            }*/
+                                        )
                                     }.padding(.horizontal, 20)
                                     
                                     Spacer()
                                     
-                                    
-
+                                    // Save changes button
                                     Button(action: {
+                                        // Perform edit table function
                                         tableVM.tableNumberInput = selectedTable.id!
                                         tableVM.editTable()
+                                        
+                                        // Reset selected table value
                                         self.selectedTable = nil
                                     }) {
                                         ZStack {
@@ -243,10 +246,9 @@ struct TableView: View {
                                         }
                                     }
                                     
+                                    // Remove button
                                     HStack {
                                         Spacer()
-                                        
-                                
                                         
                                         Button(action: {
                                             tableVM.tableNumberInput = selectedTable.id!
@@ -259,39 +261,43 @@ struct TableView: View {
                                         }
                                     }.padding(.horizontal, 20)
                                     
-                                } else {
+                                } else { // If neither the add button nor an existing table has been pressed
                                     Text("Select a table")
                                         .font(Font.custom("DIN Bold", size: 60))
                                 }
                                 
                             }.frame(maxWidth: 450, maxHeight: 550)
-                            .background(Color(red: 242/255, green: 242/255, blue: 248/255))
-                            .font(.system(size: 30))
+                                .background(Color(red: 242/255, green: 242/255, blue: 248/255))
+                                .font(.system(size: 30))
                         }
                     }.background(Color(red: 242/255, green: 242/255, blue: 248/255))
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
-                        //.padding(.top, 30)
-                        //.ignoresSafeArea()
                         .onAppear {
+                            // Start synchronising data
                             tableVM.getTables()
                         }
                     
-                } else {
+                } else { // If requiring a prompt either for removing table or changing table number
                     ZStack {
+                        // Input prompt background
                         Color(red: 220/255, green: 220/255, blue: 220/255).ignoresSafeArea()
                         RoundedRectangle(cornerRadius:20)
                             .frame(width: 400, height: 220)
                             .foregroundColor(.white)
                         
                         VStack {
-                            if confirmingDelete {
+                            if confirmingDelete { // If deleting a table
+                                // Confirm deleting table
                                 Text("**Delete Table \(tableVM.tableNumberInput)?**")
                                     .font(.system(size: 40))
+                                
                                 Spacer()
+                                
                                 HStack {
+                                    // Cancel button
                                     Button(action: {
-                                        confirmingDelete = false
+                                        confirmingDelete = false // Returns to TableView
                                     }) {
                                         Text("Cancel")
                                             .foregroundColor(.gray)
@@ -300,10 +306,11 @@ struct TableView: View {
                                     
                                     Spacer()
                                     
+                                    // Remove button
                                     Button(action: {
                                         tableVM.removeTable()
                                         self.selectedTable = nil
-                                        confirmingDelete = false
+                                        confirmingDelete = false // Returns to TableView
                                     }) {
                                         Text("Delete")
                                             .foregroundColor(.red)
@@ -311,36 +318,45 @@ struct TableView: View {
                                     }
                                 }.padding(.horizontal, 50)
 
-                            } else if editingTableNumber {
+                            } else if editingTableNumber { // If editing the table number
                                 Text("**Edit Table Number**")
                                     .font(.system(size: 30))
+                                
+                                // Current table number
                                 Text("Table \(self.selectedTable!.id!)")
                                     .font(.system(size: 23))
                                     .foregroundColor(.orange)
+                                
                                 Spacer()
+                                
+                                // New table number input
                                 HStack {
                                     Text("**New Number**")
                                         .font(.system(size: 20))
+                                    
                                     Spacer()
+                                    
                                     TextField("", text: $tableVM.newTableNumberInput)
                                         .frame(width: 150, height: 40)
                                         .background(Color(red: 242/255, green: 242/255, blue: 248/255))
                                         .cornerRadius(25)
                                         .multilineTextAlignment(.center)
-                                        // From: https://stackoverflow.com/questions/58733003/how-to-create-textfield-that-only-accepts-numbers
                                         .keyboardType(.numberPad)
-                                        .onReceive(Just(tableVM.newTableNumberInput)) { newValue in
+                                        .onReceive(Just(tableVM.newTableNumberInput)) { newValue in // Filters only numbers
                                             let filtered = newValue.filter { "0123456789".contains($0) }
                                             if filtered != newValue {
                                                 tableVM.newTableNumberInput = filtered
                                             }
                                         }
                                 }.padding(.horizontal, 50)
+                                
                                 Spacer()
+                                
                                 HStack {
+                                    // Cancel button
                                     Button(action: {
                                         tableVM.error = ""
-                                        editingTableNumber = false
+                                        editingTableNumber = false // Return to TableView
                                     }) {
                                         Text("Cancel")
                                             .foregroundColor(.gray)
@@ -349,13 +365,17 @@ struct TableView: View {
                                     
                                     Spacer()
                                     
+                                    // Save changes button
                                     Button(action: {
+                                        // Perform edit table number function
                                         tableVM.tableNumberInput = selectedTable!.id!
                                         tableVM.editTableNumber()
-                                        if tableVM.error == "" {
+                                        
+                                        if tableVM.error == "" { // If success
+                                            // Reset variables
                                             self.selectedTable = nil
                                             tableVM.newTableNumberInput = ""
-                                            editingTableNumber = false
+                                            editingTableNumber = false // Return to TableView
                                         }
                                     }) {
                                         Text("Save Changes")
@@ -363,7 +383,7 @@ struct TableView: View {
                                     }
                                 }.padding(.horizontal, 50)
                           
-                                
+                                // Error display
                                 Text("\(tableVM.error)")
                                     .foregroundColor(.red)
                             }
@@ -372,17 +392,16 @@ struct TableView: View {
                         .ignoresSafeArea()
                 }
                 
-                if !editingTableNumber {
+                if !editingTableNumber && !confirmingDelete {
+                    // Help button
                     VStack {
                         HStack {
                             Spacer()
-                            
                             Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=id.iw3dn7mc99d9")!) {
                                 Image(systemName: "questionmark.circle.fill")
                                     .font(.system(size: 50))
                             }
                         }.padding(.trailing, 40)
-                        
                         Spacer()
                     }.padding(.top, 12)
                 }

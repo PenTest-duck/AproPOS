@@ -108,12 +108,11 @@ struct LoginView: View {
                         }.frame(width: 450, height: 800)
                             .background(.white)
                         
+                        // Help button
                         VStack {
                             Spacer()
-                            
                             HStack {
                                 Spacer()
-                                
                                 Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=id.jj0fm58hx5ed")!) {
                                     Image(systemName: "questionmark.circle.fill")
                                         .font(.system(size: 70))
