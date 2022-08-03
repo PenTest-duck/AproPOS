@@ -434,18 +434,20 @@ struct MenuView: View {
                 }
             }
             
-            VStack {
-                HStack {
-                    Spacer()
+            if !editingMenuItemName {
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=id.iw3dn7mc99d9")!) {
+                            Image(systemName: "questionmark.circle.fill")
+                                .font(.system(size: 45))
+                        }
+                    }.padding(.trailing, 30)
                     
-                    Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=id.iw3dn7mc99d9")!) {
-                        Image(systemName: "questionmark.circle.fill")
-                            .font(.system(size: 45))
-                    }
-                }.padding(.trailing, 30)
-                
-                Spacer()
-            }.padding(.top, 15)
+                    Spacer()
+                }.padding(.top, 15)
+            }
         }
     }
 }

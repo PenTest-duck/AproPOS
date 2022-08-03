@@ -113,7 +113,7 @@ struct BillingView: View {
                                     }
                                 }
                         }.padding(.horizontal, 20)
-                            .frame(width: 360, height: 360)
+                            .frame(width: 360, height: 320)
                             .background(.white)
                         
                         Spacer()

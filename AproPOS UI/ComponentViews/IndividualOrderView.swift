@@ -16,9 +16,16 @@ struct IndividualOrderView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(.green, lineWidth: 2)
-                .foregroundColor(.white)
+            
+            if order.status == "preparing" {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.green, lineWidth: 2)
+                    .foregroundColor(.white)
+            } else { // "overdue" case, and also potentially deals with erroneous "served" cases
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.orange, lineWidth: 2)
+                    .foregroundColor(.white)
+            }
             
             VStack(alignment: .leading) {
                 Text("Table \(order.id!)")
@@ -80,7 +87,7 @@ struct IndividualOrderView: View {
 }
 
 struct IndividualOrderView_Previews: PreviewProvider {
-    static var sampleOrder = OrderModel(id: "7", orderTime: Date(), status: "preparing", menuItems: [OrderedMenuItem(name: "Fried Rice", quantity: 2, price: 14.8, served: false), OrderedMenuItem(name: "Noodles", quantity: 5, price: 22.5, served: true), OrderedMenuItem(name: "Pasta", quantity: 3, price: 13.5, served: false)], subtotalPrice: 50.8, estimatedServingTime: 15)
+    static var sampleOrder = OrderModel(id: "7", orderTime: Date(), status: "overdue", menuItems: [OrderedMenuItem(name: "Fried Rice", quantity: 2, price: 14.8, served: false), OrderedMenuItem(name: "Noodles", quantity: 5, price: 22.5, served: true), OrderedMenuItem(name: "Pasta", quantity: 3, price: 13.5, served: false)], subtotalPrice: 50.8, estimatedServingTime: 15)
     
     static var previews: some View {
         //IndividualOrderView(order: sampleOrder)

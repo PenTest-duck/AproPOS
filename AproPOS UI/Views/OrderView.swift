@@ -13,15 +13,7 @@ struct OrderView: View {
     @StateObject private var menuVM = MenuViewModel()
         
     @State private var selectedMenuItem: MenuItemModel? = nil
-
-    var timer = Timer()
-/*
-    func viewDidLoad() {
-        self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
-            orderVM.monitorOverdue()
-        })
-    }*/
-
+    
     var body: some View {
         ZStack {
             HStack (spacing: 0) {
@@ -150,6 +142,9 @@ struct OrderView: View {
                     }
                 }.padding(.trailing, 40)
             }.padding(.bottom, 20)
+        }.onAppear {
+            orderVM.monitorOverdue()
+            orderVM.viewDidLoad()
         }
     }
 }

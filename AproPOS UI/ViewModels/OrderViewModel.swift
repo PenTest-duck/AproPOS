@@ -189,12 +189,21 @@ final class OrderViewModel: ObservableObject {
     
     func monitorOverdue() {
         for order in orders {
-            let now = Date()
-            let deadline = order.orderTime.addingTimeInterval(Double(order.estimatedServingTime * 60))
-            
-            if now > deadline {
-                print("\(order.id!) overdue")
+            if order.status == "preparing" {
+                let now = Date()
+                let deadline = order.orderTime.addingTimeInterval(Double(order.estimatedServingTime * 60))
+                
+                if now > deadline {
+                    changeOrderStatus(tableNumber: order.id!, status: "overdue")
+                }
             }
         }
+    }
+    
+    var timer = Timer()
+    func viewDidLoad() {
+        self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
+            self.monitorOverdue()
+        })
     }
 }

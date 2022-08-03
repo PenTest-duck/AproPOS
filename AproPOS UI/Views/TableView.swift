@@ -372,18 +372,20 @@ struct TableView: View {
                         .ignoresSafeArea()
                 }
                 
-                VStack {
-                    HStack {
-                        Spacer()
+                if !editingTableNumber {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            
+                            Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=id.iw3dn7mc99d9")!) {
+                                Image(systemName: "questionmark.circle.fill")
+                                    .font(.system(size: 50))
+                            }
+                        }.padding(.trailing, 40)
                         
-                        Link(destination: URL(string: "https://docs.google.com/document/d/1fmndVOoGDhNku8Z8J-9fgqND61m4VME4OHuz0bK8KRA/edit#bookmark=id.iw3dn7mc99d9")!) {
-                            Image(systemName: "questionmark.circle.fill")
-                                .font(.system(size: 50))
-                        }
-                    }.padding(.trailing, 40)
-                    
-                    Spacer()
-                }.padding(.top, 12)
+                        Spacer()
+                    }.padding(.top, 12)
+                }
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
