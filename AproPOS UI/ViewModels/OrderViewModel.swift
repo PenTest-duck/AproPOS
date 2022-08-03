@@ -86,7 +86,6 @@ final class OrderViewModel: ObservableObject {
                             
                             // Add to database
                             self.orderRepository.addOrder(order: newOrder)
-                            self.error = ""
                         }
                     } else {
                         // Error with name of insufficient ingredient

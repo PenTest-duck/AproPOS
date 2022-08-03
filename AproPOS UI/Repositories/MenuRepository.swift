@@ -134,7 +134,7 @@ class MenuRepository: ObservableObject {
                         }
                         
                         // If stock levels are sufficient, remove from low ingredients and update the database
-                        if Decimal(stock) >= menuItem.ingredients[ingredient]! {
+                        if Decimal(stock) >= (menuItem.ingredients[ingredient] ?? Decimal(stock - 1)) {
                             lowIngredients.removeAll(where: { $0 == ingredient })
                             if lowIngredients.isEmpty {
                                 self.db.collection("menu").document(menuItem.id!).updateData(["status": ["available": lowIngredients]])
