@@ -18,8 +18,9 @@ final class AnalyticsViewModel: ObservableObject {
         billingRepository.fetchBills() { (fetchedBills) -> Void in
             self.billsHistory = fetchedBills
         }
-        
+    }
     func addBillPrice() {
+        
         totalIncome = 0
         for bill in billsHistory {
             totalIncome += bill.totalPrice
@@ -33,4 +34,4 @@ final class AnalyticsViewModel: ObservableObject {
         return totalIncome
     }*/
 }
-}
+
