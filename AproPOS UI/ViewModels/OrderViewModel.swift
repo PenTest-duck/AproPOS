@@ -187,12 +187,14 @@ final class OrderViewModel: ObservableObject {
         }
     }
     
+    // Monitor elapsed and estimated time of each preparing order and change to "overdue" if necessary
     func monitorOverdue() {
         for order in orders {
             if order.status == "preparing" {
                 let now = Date()
-                let deadline = order.orderTime.addingTimeInterval(Double(order.estimatedServingTime * 60))
+                let deadline = order.orderTime.addingTimeInterval(Double(order.estimatedServingTime * 60)) // estimated finish time
                 
+                // If the current time is past the estimated finish time, change order to "overdue"
                 if now > deadline {
                     changeOrderStatus(tableNumber: order.id!, status: "overdue")
                 }
@@ -201,7 +203,10 @@ final class OrderViewModel: ObservableObject {
     }
     
     var timer = Timer()
+    
+    // Starts the routine monitoring of overdue orders
     func viewDidLoad() {
+        // Every 5 seconds, call the monitorOverdue() function
         self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
             self.monitorOverdue()
         })

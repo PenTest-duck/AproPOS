@@ -127,8 +127,8 @@ class OrderRepository: ObservableObject {
     
     // Remove an existing order from the database
     func removeOrder(tableNumber: String) { // TODO: ingredients should be replaced? ... probably not
-        // Error handling
         db.collection("orders").document(tableNumber).delete() { err in
+            // Error handling
             if let err = err {
                 print("Error removing document: \(err)")
             } else {
