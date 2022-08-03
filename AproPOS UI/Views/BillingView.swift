@@ -40,7 +40,7 @@ struct BillingView: View {
                         Spacer()
                         ZStack {
                             if billingVM.selectedOrder == nil {
-                                Text("Select a bill to view")
+                                Text("Select a bill to view") // If there is no bill selected show text
                                     .font(.system(size: 50))
                                     .fontWeight(.semibold)
                                     .padding(.bottom, 90)

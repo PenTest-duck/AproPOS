@@ -19,14 +19,14 @@ struct MainView: View {
                 VStack (spacing: 0) {
                     HStack (spacing: 0) {
                         NavigationLink(destination: OrderView()) {
-                            Text("Order")
+                            Text("Order") // Order Section of Main menu
                                 .font(Font.custom("DIN Bold", size: 100))
                                 .foregroundColor(Color.white)
                         }.frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color(red: 237/255, green: 106/255, blue: 90/255))
                         
                         NavigationLink(destination: BillingView()) {
-                            Text("Billing")
+                            Text("Billing") // Billing Section of Main menu
                                 .font(Font.custom("DIN Bold", size: 100))
                                 .foregroundColor(Color.white)
                         }.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -36,7 +36,7 @@ struct MainView: View {
                     HStack (spacing: 0) {
                         ZStack {
                             NavigationLink(destination: TableView()) {
-                                Text("Tables")
+                                Text("Tables") // Table Section of Main Menu on second line
                                     .font(Font.custom("DIN Bold", size: 100))
                                     .foregroundColor(Color.white)
                             }.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -49,7 +49,7 @@ struct MainView: View {
                                         authVM.logout()
                                         authVM.isLoggedIn = false
                                     }) {
-                                        Text("Logout")
+                                        Text("Logout") // Logout button to log out the user
                                             .font(.system(size: 30))
                                             .foregroundColor(.white)
                                             .underline()
@@ -59,7 +59,7 @@ struct MainView: View {
                             }.padding(.bottom, 30)
                         }
                         
-                        if !staffVM.disallowedViews.contains("ManagementView") {
+                        if !staffVM.disallowedViews.contains("ManagementView") { // Disallow some staff from viewing the Management section
                             NavigationLink(destination: ManagementView().environmentObject(staffVM)) {
                                 ZStack {
                                     Text("Management")
@@ -74,7 +74,7 @@ struct MainView: View {
                                     .font(Font.custom("DIN Bold", size: 100))
                                     .foregroundColor(Color.white)
                                 
-                                Image(systemName: "lock.fill")
+                                Image(systemName: "lock.fill") // Put Lock icon over disallowed page
                                     .font(.system(size: 180))
                                     .foregroundColor(.red)
                                     .opacity(0.8)

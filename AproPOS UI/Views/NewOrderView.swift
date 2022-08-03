@@ -25,14 +25,14 @@ struct NewOrderView: View {
                     VStack {
                         ZStack {
                             HStack {
-                                Text(orderVM.editingOrder ? "Order for Table \(orderVM.tableNumberInput)" : "New Order")
+                                Text(orderVM.editingOrder ? "Order for Table \(orderVM.tableNumberInput)" : "New Order") // Input table number
                                     .font(.system(size: 60))
                                     .fontWeight(.bold)
                             }
                         }
                     }
                     
-                    if menuVM.menu == [] {
+                    if menuVM.menu == [] { // If there are no menu items show no menu items view
                         Spacer()
                         VStack(spacing: 10) {
                             Image(systemName: "exclamationmark.triangle.fill")

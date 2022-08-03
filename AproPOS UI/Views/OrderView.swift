@@ -30,7 +30,7 @@ struct OrderView: View {
                         ZStack {
                             HStack {
                                 VStack {
-                                    Text("Total")
+                                    Text("Total") // Show total amount of orders
                                         .foregroundColor(.white)
                                         .fontWeight(.semibold)
                                     
@@ -40,7 +40,7 @@ struct OrderView: View {
                                 }.padding(.horizontal, 20)
                                 
                                 VStack {
-                                    Text("Preparing")
+                                    Text("Preparing") // Show How many orders are being prepared
                                         .foregroundColor(.white)
                                         .fontWeight(.semibold)
                                     
@@ -50,7 +50,7 @@ struct OrderView: View {
                                 }.padding(.horizontal, 20)
                                 
                                 VStack {
-                                    Text("Overdue")
+                                    Text("Overdue") // Show how many orders are overdue
                                         .foregroundColor(.white)
                                         .fontWeight(.semibold)
                                     
@@ -60,7 +60,7 @@ struct OrderView: View {
                                 }.padding(.horizontal, 20)
                                 
                                 VStack {
-                                    Text("Served")
+                                    Text("Served") // Show how many orders have been served
                                         .foregroundColor(.white)
                                         .fontWeight(.semibold)
                                     
@@ -74,7 +74,7 @@ struct OrderView: View {
                         }
                     }
                     
-                    ScrollView {
+                    ScrollView { // If there are no orders show the No Orders view
                         if orderVM.orderStatistics["preparing"] == 0 && orderVM.orderStatistics["overdue"] == 0 {
                             Spacer()
                             VStack(spacing: 10) {
