@@ -85,6 +85,7 @@ struct OrderView: View {
                                     .font(.system(size: 20))
                             }.padding(.bottom, 90)
                             Spacer()
+                            
                         } else { // If at least one outstanding order exists
                             // Grid of every order
                             LazyVGrid(columns: [.init(.adaptive(minimum: 200, maximum: .infinity), spacing: 15, alignment: .top)], spacing: 15) {
