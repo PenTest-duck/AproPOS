@@ -143,15 +143,7 @@ struct MenuDropDownInputView: View {
 }
 
 struct MenuDropDownInputView_Previews: PreviewProvider {
-    //static let orderVM = OrderViewModel()
-    
     static var previews: some View {
-
-        //orderVM.menuItemsInput.append(OrderedMenuItem(name: "Pasta", quantity: 2, price: 20))
-        
-        /*MenuDropDownInputView()
-            .frame(width: 350, height: 500)
-            .environmentObject(OrderViewModel()) //orderVM*/
         NewOrderView().previewInterfaceOrientation(.landscapeLeft)
             .environmentObject(MenuViewModel())
             .environmentObject(OrderViewModel())
